@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ahng.mapper.ReplyMapper">
+
+	<insert id="insert">
+		insert into feed_reply(rno, fno, reply, replyer)
+		values(seq_reply.nextval, #{fno}, #{reply}, #{replyer})
+	</insert>
+
+	<select id="read" resultType="com.ahng.domain.ReplyVO">
+		select * from feed_reply where rno
+		= #{rno}
+	</select>
+
+	<delete id="delete">
+		delete from feed_reply where rno = #{rno}
+	</delete>
+	
+	<delete id="deleteAll">
+		delete from feed_reply where fno = #{fno}
+	</delete>
+
+	<update id="update">
+		update feed_reply
+		set reply = #{reply},
+		updatedate =
+		sysdate
+		where rno = #{rno}
+	</update>
+
+	<select id="getList" resultType="com.ahng.domain.ReplyVO">
+	<![CDATA[
+		select rno, fno, reply, replyer, replydate, updatedate
+		from (
+				select /*+INDEX_DESC(feed_reply idx_reply)*/ 
+				rownum rn, rno, fno, reply, replyer, replydate, updatedate
+				from feed_reply
+				where fno = #{fno}
+				and rno > 0
+				and rownum <= #{cri.pageNum} * #{cri.amount}
+			)
+		where rn > (#{cri.pageNum} -1) * #{cri.amount}
+	]]>
+	</select>
+
+	<select id="getCountByFno" resultType="int">
+	<![CDATA[
+	select count(rno) from feed_reply where fno = #{fno}
+	]]>
+	</select>
+	
+	<select id="latestReply" resultType="com.ahng.domain.ReplyVO">
+		select * from feed_reply 
+		where fno = #{fno} 
+		and replydate = (select max(replydate) from feed_reply)
+	</select>
+	
+</mapper>

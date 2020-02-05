@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.ahng.mapper.InquireMapper">
+
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%' || #{keyword} || '%'
+						</when>
+						<when test="type == 'W'.toString()">
+							writer like '%' || #{keyword} || '%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+	<select id="getList" resultType="com.ahng.domain.InquireVO">
+		<![CDATA[
+		select ino, title, content, writer, regdate, updatedate
+		from (
+			select /*+INDEX_DESC(inquire pk_iq)*/
+				rownum rn, ino, title, content, writer, regdate, updatedate
+				from inquire
+				where
+		]]>
+		<include refid="criteria" />
+		<![CDATA[		
+				rownum <= #{pageNum} * #{amount}
+			)
+		where rn > (#{pageNum} -1) * #{amount}
+		]]>
+	</select>
+
+	<select id="getTotalCount" resultType="int">
+		select count(*) from inquire
+		where
+		<include refid="criteria" />
+		ino > 0
+	</select>
+
+	<insert id="insert">
+		<selectKey keyProperty="ino" order="BEFORE"
+			resultType="long">
+			select seq_iq.nextval from dual
+		</selectKey>
+		insert into inquire(ino, title, content, writer)
+		values(#{ino},
+		#{title}, #{content}, #{writer})
+	</insert>
+
+	<select id="read" resultType="com.ahng.domain.InquireVO">
+		select * from inquire where ino =
+		#{ino}
+	</select>
+
+	<update id="update">
+		update inquire
+		set title = #{title},
+		content =
+		#{content},
+		writer = #{writer},
+		updatedate = sysdate
+		where ino = #{ino}
+	</update>
+
+	<delete id="delete">
+		delete from inquire where ino = #{ino}
+	</delete>
+
+</mapper>
