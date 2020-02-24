@@ -1,0 +1,53 @@
+@charset "UTF-8";
+
+.container {
+	position: relative;
+	width: 50%;
+}
+
+.image {
+	opacity: 1;
+	display: block;
+	width: 100%;
+	height: auto;
+	transition: .5s ease;
+	backface-visibility: hidden;
+}
+
+.pdt-dir-btn {
+	transition: .5s ease;
+	opacity: 0;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	-ms-transform: translate(-50%, -50%);
+	text-align: center;
+}
+
+.card-image:hover img {
+	opacity: 0.5;
+}
+
+.card-image:hover .pdt-dir-btn {
+	opacity: 1;
+}
+
+.text {
+	background-color: #4CAF50;
+	color: white;
+	font-size: 16px;
+	padding: 16px 32px;
+}
+
+@media ( min-width :0px) {
+	.card-header {
+		flex-direction: column;
+	}
+}
+
+@media ( min-width :1200px) {
+	.card-header {
+		flex-direction: row;
+	}
+}

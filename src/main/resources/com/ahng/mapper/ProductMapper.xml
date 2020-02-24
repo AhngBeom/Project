@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ahng.mapper.ProductMapper">
+
+	<select id="getList" resultType="com.ahng.domain.ProductVO">
+		select * from product
+	</select>
+	
+	<insert id="insert">
+	insert into product(name, price) values(#{name}, #{price})
+	</insert>
+	
+	<select id="read" resultType="com.ahng.domain.ProductVO">
+		select * from product where pno = #{pno}
+	</select>
+	
+
+</mapper>
