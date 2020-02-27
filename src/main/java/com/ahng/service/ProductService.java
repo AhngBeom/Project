@@ -20,5 +20,7 @@ public interface ProductService {
 	public int getTotal(Criteria cri);
 
 	// public List<ProductAttachDTO> getAttachList(Long pno);
+	
+	public List<ProductVO> getCartList(Long pno);
 
 }

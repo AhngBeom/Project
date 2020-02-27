@@ -18,6 +18,8 @@
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 	crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	crossorigin="anonymous"></script>
 </head>
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -49,6 +51,18 @@
 					aria-labelledby="userDropdown">
 					<a class="dropdown-item" href="#">Settings</a><a
 						class="dropdown-item" href="#">Activity Log</a>
+					<div class="dropdown-divider"></div>
+					<a class="dropdown-item" href="login.html">Logout</a>
+				</div></li>
+			<li class="nav-item dropdown"><a
+				class="nav-link dropdown-toggle" id="userDropdown" href="#"
+				role="button" data-toggle="dropdown" aria-haspopup="true"
+				aria-expanded="false"><i class="fas fa-shopping-cart"></i></a>
+				<div class="dropdown-menu dropdown-menu-right"
+					aria-labelledby="userDropdown">
+					<div class="dropdown-item bg-secondary">
+						<i class="fas fa-cart-plus"></i>
+					</div>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="login.html">Logout</a>
 				</div></li>
@@ -157,7 +171,8 @@
 						<div class="sb-sidenav-menu-heading">Adminstrator</div>
 						<a class="nav-link collapsed" href="#" data-toggle="collapse"
 							data-target="#collapseAdminPdt" aria-expanded="false"
-							aria-controls="collapseAdminPdt"><div class="sb-nav-link-icon">
+							aria-controls="collapseAdminPdt"><div
+								class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>
 							</div> Product
 							<div class="sb-sidenav-collapse-arrow">
@@ -166,8 +181,8 @@
 						<div class="collapse" id="collapseAdminPdt"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-							<a class="nav-link" href="/admin/pdtTable">Table</a>
-								<a class="nav-link" href="/admin/pdtAdd">Addition</a><a
+								<a class="nav-link" href="/admin/pdtTable">Table</a> <a
+									class="nav-link" href="/admin/pdtAdd">Addition</a><a
 									class="nav-link" href="/admin/pdtModify">Modify</a>
 							</nav>
 						</div>

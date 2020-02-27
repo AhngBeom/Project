@@ -58,4 +58,10 @@ public class ProductServiceImpl implements ProductService {
 		return 0;
 	}
 
+	@Override
+	public List<ProductVO> getCartList(Long pno) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
