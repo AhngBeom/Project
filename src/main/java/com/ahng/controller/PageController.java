@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/pages/*")
 public class PageController {
-	
+
 	@GetMapping("/401")
 	public void error401() {
 
@@ -22,35 +22,42 @@ public class PageController {
 	public void error500() {
 
 	}
+
 	@GetMapping("/index")
 	public void index() {
 
 	}
+
 	@GetMapping("/charts")
 	public void charts() {
 
 	}
+
 	@GetMapping("/layout-sidenav-light")
 	public void layoutSidenavLight() {
 
 	}
+
 	@GetMapping("/layout-static")
 	public void layoutStatic() {
 
 	}
-	
+
 	@GetMapping("/login")
 	public void login() {
 
 	}
+
 	@GetMapping("/password")
 	public void password() {
 
 	}
+
 	@GetMapping("/register")
 	public void register() {
 
 	}
+
 	@GetMapping("/tables")
 	public void tables() {
 

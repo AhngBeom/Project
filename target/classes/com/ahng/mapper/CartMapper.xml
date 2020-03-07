@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ahng.mapper.CartMapper">
+
+	<select id="itemList" resultType="com.ahng.domain.ProductVO">
+		select * from product
+		where pno
+		in(select pno from cart where userid = #{userID})
+	</select>
+
+	<insert id="insert">
+		insert into cart(userid, pno) values(#{userID},
+		#{pno})
+	</insert>
+
+	<select id="read" resultType="com.ahng.domain.CartVO">
+		select * from cart where pno =
+		#{pno}
+	</select>
+
+	<delete id="delete">
+		delete from cart where userid = #{userID} and pno = #{pno}
+	</delete>
+
+
+</mapper>

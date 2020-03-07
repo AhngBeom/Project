@@ -24,6 +24,11 @@ public class AdminController {
 	@Autowired
 	private ProductService service;
 
+	@GetMapping("/pdtInfo")
+	public void pdtInfo(@RequestParam("pno") Long pno, @ModelAttribute("cri") Criteria cri, Model model) {
+		model.addAttribute("pdt", service.get(pno));
+	}
+	
 	@GetMapping("/pdtAdd")
 	public void pdtAddGET() {
 

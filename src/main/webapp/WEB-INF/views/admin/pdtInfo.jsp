@@ -127,7 +127,7 @@ body {
 <div id="layoutSidenav_content">
 	<main>
 		<div class="container-fluid">
-			<h1 class="mt-4">Products Addition</h1>
+			<h1 class="mt-4">Products Info</h1>
 			<ol class="breadcrumb mb-4">
 				<li class="breadcrumb-item"><a href="/product/all">Dashboard</a></li>
 				<li class="breadcrumb-item active">Tables</li>
@@ -140,7 +140,8 @@ body {
 						</div>
 						<div class="col-75">
 							<input type="text" id="fname" name="name"
-								placeholder="Product name..">
+								value="${pdt.name }">
+								
 						</div>
 					</div>
 					<div class="row">
@@ -162,6 +163,15 @@ body {
 								<option value="2">Category 2</option>
 								<option value="3">Category 3</option>
 							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-25">
+							<label for="lname">Price</label>
+						</div>
+						<div class="col-75">
+							<input type="text" id="price" name="price"
+								 value="${pdt.price }">
 						</div>
 					</div>
 					<div class="row">

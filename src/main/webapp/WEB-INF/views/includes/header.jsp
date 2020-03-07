@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -15,12 +16,17 @@
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
 	crossorigin="anonymous"></script>
 </head>
+
+<form action="" method="post" id="headerForm"></form>
+
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
 		<a class="navbar-brand" href="/pages/index">Shop</a>
@@ -54,17 +60,28 @@
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="login.html">Logout</a>
 				</div></li>
-			<li class="nav-item dropdown"><a
-				class="nav-link dropdown-toggle" id="userDropdown" href="#"
-				role="button" data-toggle="dropdown" aria-haspopup="true"
+			<li class="nav-item dropdown nav-cart"><a
+				class="nav-link dropdown-toggle cart-toggle" id="userDropdown"
+				href="#" role="button" data-toggle="dropdown" aria-haspopup="true"
 				aria-expanded="false"><i class="fas fa-shopping-cart"></i></a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
-					<div class="dropdown-item bg-secondary">
-						<i class="fas fa-cart-plus"></i>
+					<div class="cart-list">
+						<div class="dropdown-item btn">
+							<a class="dropdown-item" href="#">Item 1</a>
+						</div>
+						<div class="dropdown-item btn">
+							<a class="dropdown-item" href="#">Item 2</a>
+						</div>
+						<c:forEach items="${cart }" var="cart">
+							<div class="dropdown-item btn">
+								<a class="dropdown-item" href="#">${cart.name }</a>
+							</div>
+						</c:forEach>
 					</div>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="login.html">Logout</a>
+					<a class="dropdown-item" href="/product/cart">Cart Page</a> <a
+						class="dropdown-item" href="/product/order">Buy Now</a>
 				</div></li>
 		</ul>
 	</nav>
@@ -74,6 +91,24 @@
 				id="sidenavAccordion">
 				<div class="sb-sidenav-menu">
 					<div class="nav">
+						<div class="sb-sidenav-menu-heading">Adminstrator</div>
+						<a class="nav-link collapsed" href="#" data-toggle="collapse"
+							data-target="#collapseAdminPdt" aria-expanded="false"
+							aria-controls="collapseAdminPdt"><div
+								class="sb-nav-link-icon">
+								<i class="fas fa-columns"></i>
+							</div> Product
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div></a>
+						<div class="collapse" id="collapseAdminPdt"
+							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="/admin/pdtTable">Table</a> <a
+									class="nav-link" href="/admin/pdtAdd">Addition</a><a
+									class="nav-link" href="/admin/pdtModify">Modify</a>
+							</nav>
+						</div>
 						<div class="sb-sidenav-menu-heading">Core</div>
 						<a class="nav-link" href="/pages/index"><div
 								class="sb-nav-link-icon">
@@ -168,24 +203,7 @@
 								<i class="fas fa-table"></i>
 							</div> Tables</a>
 
-						<div class="sb-sidenav-menu-heading">Adminstrator</div>
-						<a class="nav-link collapsed" href="#" data-toggle="collapse"
-							data-target="#collapseAdminPdt" aria-expanded="false"
-							aria-controls="collapseAdminPdt"><div
-								class="sb-nav-link-icon">
-								<i class="fas fa-columns"></i>
-							</div> Product
-							<div class="sb-sidenav-collapse-arrow">
-								<i class="fas fa-angle-down"></i>
-							</div></a>
-						<div class="collapse" id="collapseAdminPdt"
-							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="/admin/pdtTable">Table</a> <a
-									class="nav-link" href="/admin/pdtAdd">Addition</a><a
-									class="nav-link" href="/admin/pdtModify">Modify</a>
-							</nav>
-						</div>
+
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">

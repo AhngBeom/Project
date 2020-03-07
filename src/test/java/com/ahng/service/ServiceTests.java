@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import com.ahng.domain.CartVO;
 import com.ahng.domain.ProductVO;
 
 import lombok.extern.log4j.Log4j;
@@ -16,17 +17,16 @@ import lombok.extern.log4j.Log4j;
 public class ServiceTests {
 
 	@Autowired
-	private ProductService service;
+	private CartService service;
 
 	@Test
 	public void serviceTest() {
-		ProductVO vo = service.get(7L);
-		log.info(vo.getPno());
-
-//		ProductVO vo = new ProductVO();
-//		vo.setName("Å×½ºÆ®");
-//		vo.setPrice(1000);
+		String userID = "unknown";
+//		CartVO vo = new CartVO();
+//		vo.setUserID(userID);
+//		vo.setPno(7L);
 //		service.register(vo);
+//		service.remove(userID, 2L);
+		service.getList(userID);
 	}
-
 }

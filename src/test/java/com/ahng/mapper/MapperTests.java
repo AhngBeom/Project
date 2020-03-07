@@ -17,14 +17,13 @@ import lombok.extern.log4j.Log4j;
 public class MapperTests {
 
 	@Autowired
-	private ProductMapper mapper;
+	private CartMapper mapper;
 
 	@Test
 	public void test() {
-		ProductVO vo = new ProductVO();
-		vo.setName("Product Name");
-		vo.setPrice(5000);
-		mapper.insert(vo);
+		String userID = "unknown";
+//		mapper.itemList(userID);
+		mapper.delete(userID, 3L); 
 	}
 
 }

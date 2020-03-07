@@ -24,10 +24,9 @@
 									style="width: 100%">
 								<div class="pdt-dir-btn d-flex justify-content-around w-100">
 									<button class="btn btn-warning add-cart-btn"
-										data-pno="${pdt.pno }">장바구니</button>
-									<%
-										session.setAttribute("pno", 1);
-									%>
+										data-pno="${pdt.pno }">
+										<i class="fas fa-cart-plus"></i> 장바구니
+									</button>
 									<button class="btn btn-success dir-buy-btn"
 										data-pno="${pdt.pno }">바로 구매</button>
 								</div>

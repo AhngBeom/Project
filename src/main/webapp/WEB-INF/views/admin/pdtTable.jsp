@@ -56,7 +56,7 @@
 								<c:forEach items="${pdt }" var="pdt">
 									<tr>
 										<td><c:out value="${pdt.pno }" /></td>
-										<td><a href="#"><c:out value="${pdt.name }" /></a></td>
+										<td><a href="/admin/pdtInfo?pno=${pdt.pno }" data-pno="${pdt.pno }"><c:out value="${pdt.name }" /></a></td>
 										<td>￦ <c:out value="${pdt.price }" /></td>
 										<td><fmt:formatDate value="${pdt.regDate }"
 												pattern="yyyy-MM-dd hh:mm:ss" /></td>
