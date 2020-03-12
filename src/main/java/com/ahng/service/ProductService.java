@@ -3,6 +3,7 @@ package com.ahng.service;
 import java.util.List;
 
 import com.ahng.domain.Criteria;
+import com.ahng.domain.ProductAttachVO;
 import com.ahng.domain.ProductVO;
 
 public interface ProductService {
@@ -19,7 +20,7 @@ public interface ProductService {
 
 	public int getTotal(Criteria cri);
 
-	// public List<ProductAttachDTO> getAttachList(Long pno);
+	public List<ProductAttachVO> getAttachList(Long pno);
 	
 	public List<ProductVO> getCartList(Long pno);
 

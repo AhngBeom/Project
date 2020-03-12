@@ -7,6 +7,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.ahng.domain.CartVO;
+import com.ahng.domain.Criteria;
 import com.ahng.domain.ProductVO;
 
 import lombok.extern.log4j.Log4j;
@@ -17,7 +18,9 @@ import lombok.extern.log4j.Log4j;
 public class ServiceTests {
 
 	@Autowired
-	private CartService service;
+	private CartService cartService;
+	@Autowired
+	private ProductService pdtService;
 
 	@Test
 	public void serviceTest() {
@@ -27,6 +30,6 @@ public class ServiceTests {
 //		vo.setPno(7L);
 //		service.register(vo);
 //		service.remove(userID, 2L);
-		service.getList(userID);
+		pdtService.getList(new Criteria());
 	}
 }

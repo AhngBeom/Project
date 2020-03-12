@@ -59,4 +59,13 @@ $(document).ready(
 								+ pno + "'>");
 						form.attr("action", "/product/get").submit();
 					});
+			$(".pdt-del-btn").on("click", function(e){
+				var pno = $(this).data("pno");
+				$('#alertModal').modal('show');
+				$("#acceptBtn").on("click", function(e){
+					form.append("<input type='hidden' name='pno' value='" + pno + "'>");
+					form.attr("action", "/admin/pdtDelete");
+					form.attr("method", "post").submit();
+				});
+			});
 		});

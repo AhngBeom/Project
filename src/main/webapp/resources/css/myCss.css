@@ -5,6 +5,11 @@
 	width: 50%;
 }
 
+.container-selectImg {
+	position: relative;
+	width: 100%;
+}
+
 .image {
 	opacity: 1;
 	display: block;
@@ -14,7 +19,11 @@
 	backface-visibility: hidden;
 }
 
-.pdt-dir-btn {
+.img-item {
+	width: 100%;
+}
+
+.opacity-div {
 	transition: .5s ease;
 	opacity: 0;
 	position: absolute;
@@ -29,7 +38,7 @@
 	opacity: 0.5;
 }
 
-.card-image:hover .pdt-dir-btn {
+.card-image:hover .opacity-div {
 	opacity: 1;
 }
 

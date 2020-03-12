@@ -1,6 +1,13 @@
 package com.ahng.controller;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,9 +15,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ahng.domain.Criteria;
+import com.ahng.domain.ProductAttachVO;
 import com.ahng.domain.ProductVO;
 import com.ahng.service.ProductService;
 
@@ -28,7 +37,7 @@ public class AdminController {
 	public void pdtInfo(@RequestParam("pno") Long pno, @ModelAttribute("cri") Criteria cri, Model model) {
 		model.addAttribute("pdt", service.get(pno));
 	}
-	
+
 	@GetMapping("/pdtAdd")
 	public void pdtAddGET() {
 
@@ -38,15 +47,15 @@ public class AdminController {
 	public String pdtAddPOST(ProductVO vo, RedirectAttributes rttr) {
 
 		log.info("===============================================");
-//		if(vo.getAttachList() != null) {
-//			vo.getAttachList().forEach(attach -> log.info(attach));
-//		}
+		if (vo.getAttachList() != null) {
+			vo.getAttachList().forEach(attach -> log.info(attach));
+		}
 		log.info(vo);
 		log.info("===============================================");
 
 		service.register(vo);
 		rttr.addFlashAttribute("result", vo.getPno());
-		return "redirect:/product/all";
+		return "redirect:/admin/pdtTable";
 	}
 
 	@GetMapping("/pdtModify")
@@ -58,5 +67,44 @@ public class AdminController {
 	@GetMapping("/pdtTable")
 	public void pdtTable(Criteria cri, Model model) {
 		model.addAttribute("pdt", service.getList(cri));
+	}
+
+	private void deleteFiles(List<ProductAttachVO> attachList) {
+		if (attachList == null || attachList.size() == 0) {
+			return;
+		}
+		log.info(attachList);
+		attachList.forEach(attach -> {
+			try {
+				Path file = Paths.get("C:\\SpringProject\\OnlineShop\\upload\\" + attach.getUploadPath() + "\\"
+						+ attach.getUuid() + "_" + attach.getFileName());
+				Files.deleteIfExists(file);
+				if (Files.probeContentType(file).startsWith("image")) {
+					Path thumbnail = Paths.get("C:\\SpringProject\\OnlineShop\\upload\\" + attach.getUploadPath()
+							+ "\\s_" + attach.getUuid() + "_" + attach.getFileName());
+					Files.delete(thumbnail);
+				}
+			} catch (Exception e) {
+				log.error("Delete File ERROR : " + e.getMessage());
+			}
+		});
+	}
+
+	@PostMapping("/pdtDelete")
+	public String pdtTable(@RequestParam("pno") Long pno, RedirectAttributes rttr) {
+		List<ProductAttachVO> attachList = service.getAttachList(pno);
+		
+		if (service.remove(pno)) {
+			deleteFiles(attachList);
+			rttr.addFlashAttribute("result", "pdt-del-success");
+			log.info("Product(" + pno + ") Delete : Success");
+		}
+		return "redirect:/admin/pdtTable";
+	}
+
+	@GetMapping(value = "/getAttachList")
+	@ResponseBody
+	public ResponseEntity<List<ProductAttachVO>> getAttachList(Long pno) {
+		return new ResponseEntity<>(service.getAttachList(pno), HttpStatus.OK);
 	}
 }

@@ -5,14 +5,25 @@
 	<select id="getList" resultType="com.ahng.domain.ProductVO">
 		select * from product
 	</select>
-	
+
 	<insert id="insert">
-	insert into product(name, price) values(#{name}, #{price})
+		<selectKey keyProperty="pno" order="BEFORE"
+			resultType="long">
+			select max(pno)+1 from product
+		</selectKey>
+		insert into product(pno, name, price, category, title, descript)
+		values(#{pno}, #{name},
+		#{price}, #{category}, #{title}, #{descript})
 	</insert>
-	
+
 	<select id="read" resultType="com.ahng.domain.ProductVO">
-		select * from product where pno = #{pno}
+		select * from product where pno =
+		#{pno}
 	</select>
-	
+
+	<delete id="delete">
+		delete from product where pno = #{pno}
+	</delete>
+
 
 </mapper>

@@ -56,7 +56,8 @@
 								<c:forEach items="${pdt }" var="pdt">
 									<tr>
 										<td><c:out value="${pdt.pno }" /></td>
-										<td><a href="/admin/pdtInfo?pno=${pdt.pno }" data-pno="${pdt.pno }"><c:out value="${pdt.name }" /></a></td>
+										<td><a href="/admin/pdtInfo?pno=${pdt.pno }"
+											data-pno="${pdt.pno }"><c:out value="${pdt.name }" /></a></td>
 										<td>￦ <c:out value="${pdt.price }" /></td>
 										<td><fmt:formatDate value="${pdt.regDate }"
 												pattern="yyyy-MM-dd hh:mm:ss" /></td>
@@ -65,11 +66,12 @@
 										<td>x</td>
 										<td>x</td>
 										<td>
-											<div class="d-flex ">
-												<button class="btn btn-warning">
+											<div class="d-flex">
+												<button class="btn btn-warning" data-pno="${pdt.pno }">
 													<i class="fas fa-pencil-alt"></i>
 												</button>
-												<button class="btn btn-danger">
+												<button class="btn btn-danger pdt-del-btn"
+													data-pno="${pdt.pno }">
 													<i class="fas fa-trash-alt"></i>
 												</button>
 											</div>
@@ -78,6 +80,28 @@
 								</c:forEach>
 							</tbody>
 						</table>
+						<form action="/admin/pdtTable" method="get" id="operForm"></form>
+						<div class="modal fade" id="alertModal" tabindex="-1"
+							role="dialog" aria-labelledby="alertModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-dialog-centered" role="document">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="alertModalLabel">Alert</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">해당 상품을 삭제하시겠습니까?</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-primary" id="acceptBtn">Accept</button>
+										<button type="button" class="btn btn-secondary"
+											data-dismiss="modal">Close</button>
+									</div>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>

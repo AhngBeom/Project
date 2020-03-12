@@ -22,7 +22,7 @@
 								<img class="card-img-top"
 									src="/resources/assets/img/readyToImg.jpg" alt="Card image"
 									style="width: 100%">
-								<div class="pdt-dir-btn d-flex justify-content-around w-100">
+								<div class="opacity-div d-flex justify-content-around w-100">
 									<button class="btn btn-warning add-cart-btn"
 										data-pno="${pdt.pno }">
 										<i class="fas fa-cart-plus"></i> 장바구니
