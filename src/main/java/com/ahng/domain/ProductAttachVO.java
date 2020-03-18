@@ -9,6 +9,7 @@ public class ProductAttachVO {
 	private String uuid;
 	private String fileName;
 	private boolean fileType;
+	private int sequence;
 	
 	private Long pno;
 }

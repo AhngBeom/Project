@@ -18,7 +18,8 @@ create table cart(
     pno bigint(10) unsigned 
     );
 alter table cart add CONSTRAINT fk_cart FOREIGN KEY(pno) REFERENCES product(pno);
-select * from cart; 
+alter table cart add column amount int default 1;
+select p.pno, c.userid, c.amount, p.name, p.title, p.price from cart c join product p on c.pno = p.pno; 
 drop table cart;
 select * from product
 where pno in(select pno from cart where userid = 'unknown');
@@ -33,8 +34,10 @@ create table product_attach(
 );
 drop table product_attach;
 select * from product_attach;
- 
+
 alter table product_attach add constraint pk_attach primary key(uuid);
 alter table product_attach add constraint fk_product_attach foreign key(pno) references product(pno);
-
-select * from product;
+alter table product_attach modify sequence int(2) unsigned;
+update product_attach set sequence = 0 where pno = 13 and filename like '%1%';
+delete from product where pno = 14;
+SELECT * FROM product AS A left OUTER JOIN product_attach AS B ON A.pno = B.pno where B.sequence = 1 or B.uuid is null;

@@ -7,4 +7,5 @@ public class CartVO {
 
 	private String userID;
 	private Long pno;
+	private int amount;
 }

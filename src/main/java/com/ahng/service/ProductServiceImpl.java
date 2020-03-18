@@ -46,10 +46,20 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.read(pno);
 	}
 
+	@Transactional
 	@Override
 	public boolean modify(ProductVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		attachMapper.deleteAll(vo.getPno());
+		
+		boolean result = mapper.update(vo) == 1;
+		if(result && vo.getAttachList() != null && vo.getAttachList().size() > 0) {
+			vo.getAttachList().forEach(attach -> {
+				attach.setPno(vo.getPno());
+				attachMapper.insert(attach);
+			});
+		}
+		
+		return result;
 	}
 
 	@Override

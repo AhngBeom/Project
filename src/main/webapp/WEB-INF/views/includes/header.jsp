@@ -11,8 +11,8 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>On-Line Shopping Mall</title>
-<link href="/resources/css/styles.css" rel="stylesheet" />
-<link href="/resources/css/myCss.css" rel="stylesheet" />
+<link href="/resources/css/styles.css?ver=1" rel="stylesheet" />
+<link href="/resources/css/myCss.css?ver=1" rel="stylesheet" />
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
@@ -105,8 +105,7 @@
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/admin/pdtTable">Table</a> <a
-									class="nav-link" href="/admin/pdtAdd">Addition</a><a
-									class="nav-link" href="/admin/pdtModify">Modify</a>
+									class="nav-link" href="/admin/pdtAdd">Addition</a>
 							</nav>
 						</div>
 						<div class="sb-sidenav-menu-heading">Core</div>

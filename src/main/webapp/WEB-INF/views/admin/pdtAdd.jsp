@@ -11,7 +11,7 @@
 				<li class="breadcrumb-item active">Add Page</li>
 			</ol>
 			<div class="pdt-info">
-				<form action="/admin/pdtAdd" method="post">
+				<form role="form" action="/admin/pdtAdd" method="post">
 					<div class="form-group row">
 						<div class="col-xl-3">
 							<label class="col-sm-2 col-form-label" for="fname">Name</label>
@@ -70,8 +70,8 @@
 					</div>
 
 					<div class="row d-flex justify-content-center m-3">
-						<input type="submit" class="btn btn-success"
-							value="Submit / Modify">
+						<input class="btn btn-success" id="pdtSubmit"
+							value="Submit">
 					</div>
 				</form>
 			</div>

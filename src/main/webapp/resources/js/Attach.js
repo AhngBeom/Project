@@ -15,38 +15,56 @@ $(document)
 						return true;
 					}
 
+					$(document).on("click", ".img-expand-btn", function(e) {
+						e.preventDefault();
+						var imgItemDiv = $(this).parents(".card-image");
+						console.log("Expand : " + imgItemDiv.data('filename'));
+						$("#attach-expand")
+					});
+					$(document).on("click", ".img-remove-btn", function(e) {
+						e.preventDefault();
+						var imgItemDiv = $(this).parents(".card-image");
+						console.log("Remove : " + imgItemDiv.data('filename'));
+						if(confirm("해당 첨부파일을 삭제하시겠습니까?")){
+							$(this).parents(".card-image").remove();
+						}
+					});
+					
 					function showUploadedFile(uploadResultArr) {
 						if (!uploadResultArr || uploadResultArr.length == 0) {
 							return;
 						}
 						var attachDiv = $(".attach-list");
+						var overlay = "<div class='opacity-div d-flex flex-column justify-content-center w-100'>"
+								+ "<button class='btn btn-warning m-auto img-expand-btn'><i class=''></i>크게 보기</button>"
+								+ "<button class='btn btn-danger m-auto img-remove-btn'><i class=''></i>삭제</button>"
+								+ "</div>";
 						var str = "";
 						$(uploadResultArr)
 								.each(
-										function(i, obj) {
-											// str += "<li>" + obj.fileName +
-											// "</li>";
-											if (obj.fileType) {
-												var imageThumbPath = encodeURIComponent(obj.uploadPath
+										function(i, attach) {
+											if (attach.fileType) {
+												var imageThumbPath = encodeURIComponent(attach.uploadPath
 														+ "/s_"
-														+ obj.uuid
-														+ "_" + obj.fileName);
-												var imageOriginPath = encodeURIComponent(obj.uploadPath
+														+ attach.uuid
+														+ "_" + attach.fileName);
+												var imageOriginPath = encodeURIComponent(attach.uploadPath
 														+ "/"
-														+ obj.uuid
+														+ attach.uuid
 														+ "_"
-														+ obj.fileName);
-												str += "<div class='column'> <img class='img-item' src='/display?fileName="
-														+ imageThumbPath
-														+ "' data-path='"
-														+ obj.uploadPath
+														+ attach.fileName);
+												str += "<div class='card-image attach-image col-xl-3 mb-3' data-path='"
+														+ attach.uploadPath
 														+ "' data-uuid='"
-														+ obj.uuid
+														+ attach.uuid
 														+ "' data-filename='"
-														+ obj.fileName
+														+ attach.fileName
 														+ "' data-type='"
-														+ obj.fileType
-														+ "'></div>";
+														+ attach.fileType
+														+ "'><img class='img-item' src='/display?fileName="
+														+ imageThumbPath
+														+ "'>"
+														+ overlay + "</div>";
 											} else {
 
 											}
@@ -86,7 +104,7 @@ $(document)
 									function(e) {
 										e.preventDefault();
 										var str = "";
-										$(".attach-list .column .img-item")
+										$(".attach-image")
 												.each(
 														function(i, obj) {
 															var jobj = $(obj);
@@ -115,6 +133,12 @@ $(document)
 																	+ jobj
 																			.data('type')
 																	+ "'>";
+															str += "<input type 'hidden' name='attachList["
+																+ i
+																+ "].sequence' value='"
+																+ i
+																+ "'>";
+															console.log(str);
 														});
 										formObj.append(str).submit();
 									});

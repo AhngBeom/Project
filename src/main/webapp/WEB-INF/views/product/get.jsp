@@ -7,18 +7,18 @@
 <div id="layoutSidenav_content">
 	<main>
 		<div class="container-fluid">
-			<h1 class="mt-4">
+			<div class="h2 mt-4">
 				<c:out value="${pdt.name }" />
-			</h1>
+			</div>
 			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item active">Simple Explanation</li>
+				<li class="">${pdt.title }</li>
 			</ol>
 
 			<div class="row mb-4">
 				<div class="col-xl-12 col-md-12">
 					<div class="card">
 						<div class="card-header d-flex">
-							<div class="card-image col-xl-6 col-md-12">
+							<div class="col-xl-6 col-md-12">
 								<img class="card-img-top"
 									src="/resources/assets/img/readyToImg.jpg" alt="Card image"
 									style="width: 100%">
@@ -67,22 +67,82 @@
 									</div>
 								</form>
 								<div class="d-flex justify-content-around">
-									<button class="btn btn-warning add-cart-btn">장바구니</button>
-									<button class="btn btn-success dir-buy-btn">바로주문</button>
+									<button class="btn btn-warning add-cart-btn" data-pno="${pdt.pno }">장바구니</button>
+									<button class="btn btn-success dir-buy-btn" data-pno="${pdt.pno }">바로주문</button>
 								</div>
 							</div>
 						</div>
 						<div class="card-body text-center">
 							<h1 class="card-title">Product Name</h1>
 							<p class="card-text">Product Explanation</p>
-							<img class="card-img-top" src="/resources/assets/img/readyToImg.jpg"
-								alt="Card image" style="width: 100%">
+							<div class="attach-list d-flex flex-column justify-content-center m-3"></div>
 							<p class="card-text">Product Explanation</p>
 						</div>
 					</div>
 				</div>
 			</div>
-
 		</div>
 	</main>
+	
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							(function() {
+								var pno = '<c:out value="${pdt.pno}"/>';
+								var overlay = "<div class='opacity-div d-flex flex-column justify-content-center w-100'>"
+										+ "<button class='btn btn-warning m-auto img-expand-btn'><i class=''></i>크게 보기</button>"
+										+ "</div>";
+
+								$
+										.getJSON(
+												"/admin/getAttachList",
+												{
+													pno : pno
+												},
+												function(arr) {
+													console.log(arr);
+													var titleImg = "";
+													var bodyImg = "";
+
+													$(arr)
+															.each(
+																	function(i,
+																			attach) {
+																		if (attach.fileType) {
+																			var imageThumbPath = encodeURIComponent(attach.uploadPath
+																					+ "/s_"
+																					+ attach.uuid
+																					+ "_"
+																					+ attach.fileName);
+																			var imageOriginPath = encodeURIComponent(attach.uploadPath
+																					+ "/"
+																					+ attach.uuid
+																					+ "_"
+																					+ attach.fileName);
+																			bodyImg += "<div class='attach-image mb-3' data-path='"
+																	+ attach.uploadPath
+																	+ "' data-uuid='"
+																	+ attach.uuid
+																	+ "' data-filename='"
+																	+ attach.fileName
+																	+ "' data-type='"
+																	+ attach.fileType
+																	+ "'><img class='img-item' src='/display?fileName="
+																					+ imageOriginPath
+																					+ "'>"
+// 																					+ overlay
+																					+ "</div>";
+																					if(i === 0){
+																						$(".card-img-top").attr("src", "/display?fileName="
+																							+ imageOriginPath);
+																					}
+																		}
+
+																	});
+													$(".attach-list").html(bodyImg);
+												});
+							})();
+						});
+	</script>
 	<%@ include file="../includes/footer.jsp"%>

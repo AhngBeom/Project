@@ -2,10 +2,28 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ahng.mapper.CartMapper">
 
-	<select id="itemList" resultType="com.ahng.domain.ProductVO">
-		select * from product
-		where pno
-		in(select pno from cart where userid = #{userID})
+	<resultMap type="com.ahng.domain.ProductVO" id="product">
+		<result column="pno" property="pno"></result>
+		<result column="name" property="name"></result>
+		<result column="title" property="title"></result>
+		<result column="price" property="price"></result>
+		<collection property="cartVO" resultMap="cart">
+			<result column="userid" property="userID"></result>
+			<result column="pno" property="pno"></result>
+			<result column="amount" property="amount"></result>
+		</collection>
+	</resultMap>
+
+	<resultMap type="com.ahng.domain.CartVO" id="cart">
+		<result column="userid" property="userID"></result>
+		<result column="pno" property="pno"></result>
+		<result column="amount" property="amount"></result>
+	</resultMap>
+
+	<select id="itemList" resultMap="product">
+		select p.pno, c.userid,
+		c.amount, p.name, p.title, p.price from cart c join product p on c.pno
+		= p.pno
 	</select>
 
 	<insert id="insert">
@@ -19,7 +37,8 @@
 	</select>
 
 	<delete id="delete">
-		delete from cart where userid = #{userID} and pno = #{pno}
+		delete from cart where userid = #{userID} and pno =
+		#{pno}
 	</delete>
 
 

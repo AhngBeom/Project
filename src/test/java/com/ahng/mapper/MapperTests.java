@@ -19,12 +19,21 @@ public class MapperTests {
 
 	@Autowired
 	private ProductMapper mapper;
+	@Autowired
+	private CartMapper cartMapper;
 
 	@Test
 	public void test() {
 		String userID = "unknown";
-		mapper.getList(new Criteria());
-//		mapper.delete(1L);
+//		ProductVO vo = new ProductVO();
+//		vo.setName("TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest");
+//		vo.setTitle("Test");
+//		vo.setPrice(9999);
+//		vo.setCategory("c2");
+//		vo.setDescript("Test");
+//		mapper.insert(vo);
+//		mapper.getList(new Criteria());
+		cartMapper.itemList(userID);
 	}
 
 }

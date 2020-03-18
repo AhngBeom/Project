@@ -15,17 +15,25 @@
 				<li class="breadcrumb-item active">Cart List</li>
 			</ol>
 			<div class="row mb-4">
-				<c:forEach items="${item }" var="item">
+				<c:forEach items="${item }" var="item" varStatus="status">
 					<div class="col-xl-12">
-						<div class="card">
+						<div class="card" data-pno="${item.pno }"
+							data-index="${status.index }">
 							<div class="card-header">
 								<input type="checkbox">
 							</div>
 							<div class="card-body d-flex">
-								<div class="h4 col-xl-8">
-									<img class="w-25 m-3"
-										src="/resources/assets/img/readyToImg.jpg" alt="Card image"> <a href="#" class="mr-3"
-										data-oper="get" data-pno="${item.pno }">${item.name }</a>
+								<div class="col-xl-8 d-flex justice-content-start">
+									<div class="m-1">
+										<img class="img-thumbnail"
+											src="/resources/assets/img/readyToImg.jpg" alt="Card image">
+									</div>
+									<div class="row align-items-center p-3 m-3">
+										<a href="#" class="h5" data-oper="get" data-pno="${item.pno }">
+											<small class="text-muted">${item.title }</small><br>
+											${item.name}
+										</a>
+									</div>
 								</div>
 								<div class="h5 d-flex flex-column col-xl-4">
 									<div class="input-group mb-3 input-group-lg">
@@ -64,7 +72,8 @@
 								</div>
 							</div>
 							<div class="card-footer">
-								<a href="" class="btn btn-danger float-right mr-3 cartItemDelBtn"
+								<a href=""
+									class="btn btn-danger float-right mr-3 cartItemDelBtn"
 									data-pno="${item.pno }">상품 삭제</a> <a href=""
 									class="btn btn-success get-btn float-right mr-3"
 									data-oper="get" data-pno="${item.pno }">상품 화면</a>
@@ -75,4 +84,56 @@
 			</div>
 		</div>
 	</main>
+
+	<script type="text/javascript">
+		$(document)
+				.ready(
+						function() {
+							(function() {
+								console.log("${item}");
+								$(".card")
+										.each(
+												function(i, data) {
+													var pno = $(this).data(
+															"pno");
+													var index = $(this).data(
+															"index");
+													$
+															.getJSON(
+																	"/cartList",
+																	{
+																		userID : "unknown"
+																	},
+																	function(
+																			arr) {
+																		var cart = arr[i].cartVO;
+																		console.log(arr[i].fileName);
+																	});
+													$
+															.getJSON(
+																	"/admin/getAttachList",
+																	{
+																		pno : pno
+																	},
+																	function(
+																			arr) {
+																		var imageThumbPath = encodeURIComponent(arr[i].uploadPath
+																				+ "/s_"
+																				+ arr[i].uuid
+																				+ "_"
+																				+ arr[i].fileName);
+																		$(
+																				".card[data-index='"
+																						+ i
+																						+ "'] .card-body div img")
+																				.attr(
+																						"src",
+																						"/display?fileName="
+																								+ imageThumbPath);
+																	});
+
+												});
+							})();
+						})
+	</script>
 	<%@ include file="../includes/footer.jsp"%>

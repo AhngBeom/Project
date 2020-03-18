@@ -3,7 +3,7 @@
 <mapper namespace="com.ahng.mapper.ProductMapper">
 
 	<select id="getList" resultType="com.ahng.domain.ProductVO">
-		select * from product
+		SELECT * FROM product AS A left OUTER JOIN product_attach AS B ON A.pno = B.pno where B.sequence = 0 or B.uuid is null
 	</select>
 
 	<insert id="insert">
@@ -20,6 +20,13 @@
 		select * from product where pno =
 		#{pno}
 	</select>
+
+	<update id="update">
+		update product
+		set name = #{name}, price = #{price}, category = #{category}, title =
+		#{title}, descript = #{descript}, uptodate = now()
+		where pno = #{pno}
+	</update>
 
 	<delete id="delete">
 		delete from product where pno = #{pno}

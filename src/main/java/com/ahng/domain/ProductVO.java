@@ -17,6 +17,8 @@ public class ProductVO {
 	private Date regDate;
 	private Date upToDate;
 	
+	private List<CartVO> cartVO;
+	
 	private List<ProductAttachVO> attachList;
 
 }

@@ -63,6 +63,20 @@ public class AdminController {
 		model.addAttribute("pdt", service.get(pno));
 		// model.addAttribute("attach", service.getAttachList(pno));
 	}
+	
+	@PostMapping("/pdtModify")
+	public String modify(ProductVO vo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+		log.info(vo);
+		if (service.modify(vo)) {
+			rttr.addFlashAttribute("result", "success_modify");
+		}
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
+
+		return "redirect:/admin/pdtTable";
+	}
 
 	@GetMapping("/pdtTable")
 	public void pdtTable(Criteria cri, Model model) {
@@ -83,7 +97,9 @@ public class AdminController {
 					Path thumbnail = Paths.get("C:\\SpringProject\\OnlineShop\\upload\\" + attach.getUploadPath()
 							+ "\\s_" + attach.getUuid() + "_" + attach.getFileName());
 					Files.delete(thumbnail);
+					log.info("Delete : " + thumbnail);
 				}
+				log.info("Delete : " + file);
 			} catch (Exception e) {
 				log.error("Delete File ERROR : " + e.getMessage());
 			}

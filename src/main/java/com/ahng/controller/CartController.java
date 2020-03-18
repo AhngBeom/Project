@@ -33,8 +33,8 @@ public class CartController {
 	}
 
 	@GetMapping(value = "/cartList", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> cartList() {
-		return new ResponseEntity<>(service.getList("unknown"), HttpStatus.OK);
+	public ResponseEntity<List<ProductVO>> cartList(String userID) {
+		return new ResponseEntity<>(service.getList(userID), HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/cartAdd", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })

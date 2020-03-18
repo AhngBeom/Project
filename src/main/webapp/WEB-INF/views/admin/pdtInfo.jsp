@@ -16,8 +16,9 @@
 				<li class="breadcrumb-item active">Info Page</li>
 			</ol>
 			<div class="pdt-info">
-				<form action="/admin/pdtAdd" method="post">
+				<form role="form" action="/admin/pdtModify" method="post">
 					<div class="form-group row">
+						<input type="hidden" name="pno" value="${pdt.pno }">
 						<div class="col-xl-3">
 							<label class="col-sm-2 col-form-label" for="fname">Name</label>
 						</div>
@@ -75,13 +76,20 @@
 					</div>
 
 					<div class="row d-flex justify-content-center m-3">
-						<input type="submit" class="btn btn-success"
+						<input type="submit" class="btn btn-success" id="pdtSubmit"
 							value="Submit / Modify">
 					</div>
 				</form>
 			</div>
 		</div>
 	</main>
+	<script>
+		$(document).ready(function(){
+			var str = "";
+			$(".uploadResult ul li")
+		});
+	</script>
+	
 	<script>
 		// 		function myFunction(imgs) {
 		// 			var expandImg = document.getElementById("expandedImg");
@@ -92,13 +100,6 @@
 		// 		}
 		$(document).ready(
 				function() {
-					$(document).on("click", ".img-expand-btn", function(e) {
-						e.preventDefault();
-						var imgItemDiv = $(this).parents(".card-image");
-						console.log(imgItemDiv.data('filename'));
-						$("#attach-expand")
-					});
-
 					$("#category option").each(
 							function(i, e) {
 								if ($(this).val() === $("#category").data(
@@ -111,13 +112,15 @@
 								}
 							});
 				});
-
 		$(document)
 				.ready(
 						function() {
 							(function() {
 								var pno = '<c:out value="${pdt.pno}"/>';
-								var overlay = "<div class='opacity-div d-flex justify-content-center w-100'><button class='btn btn-warning img-expand-btn'><i class=''></i> 장바구니</button></div>";
+								var overlay = "<div class='opacity-div d-flex flex-column justify-content-center w-100'>"
+										+ "<button class='btn btn-warning m-auto img-expand-btn'><i class=''></i>크게 보기</button>"
+										+ "<button class='btn btn-danger m-auto img-remove-btn'><i class=''></i>삭제</button>"
+										+ "</div>";
 
 								$
 										.getJSON(

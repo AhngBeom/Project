@@ -128,7 +128,7 @@ public class UploadController {
 				if (checkImageType(saveFile)) {
 					attachDTO.setFileType(true);
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" + uploadFileName));
-					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 500, 500);
+					Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 255, 255);
 					thumbnail.close();
 				}
 
@@ -144,11 +144,11 @@ public class UploadController {
 	@GetMapping("/display")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
-		log.info("File Name : " + fileName);
+//		log.info("File Name : " + fileName);
 
 		File file = new File("C:\\SpringProject\\OnlineShop\\upload\\" + fileName);
 
-		log.info("File : " + file);
+//		log.info("File : " + file);
 
 		ResponseEntity<byte[]> result = null;
 

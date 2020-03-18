@@ -3,8 +3,8 @@
 <mapper namespace="com.ahng.mapper.ProductAttachMapper">
 
 	<insert id="insert">
-		insert into product_attach(uuid, uploadpath, filename, filetype, pno)
-		values(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{pno})
+		insert into product_attach(uuid, uploadpath, filename, filetype, pno, sequence)
+		values(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{pno}, #{sequence})
 	</insert>
 
 	<delete id="delete">
