@@ -107,7 +107,7 @@
 																	function(
 																			arr) {
 																		var cart = arr[i].cartVO;
-																		console.log(arr[i].fileName);
+																		console.log(cart.amount);
 																	});
 													$
 															.getJSON(

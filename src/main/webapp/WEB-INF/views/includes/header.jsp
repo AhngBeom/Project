@@ -34,6 +34,11 @@
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
+		<div class="progress ml-3 mr-3" style="height: 30px; width: 800px;" data-toggle="tooltip"
+			data-placement="bottom" title="Development Progress">
+			<div class="progress-bar" role="progressbar" style="width: 70%;"
+				aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+		</div>
 		<!-- Navbar Search-->
 		<form
 			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
@@ -170,9 +175,9 @@
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="login">Login</a><a class="nav-link"
-											href="register">Register</a><a class="nav-link"
-											href="password">Forgot Password</a>
+										<a class="nav-link" href="/pages/login">Login</a><a class="nav-link"
+											href="/pages/register">Register</a><a class="nav-link"
+											href="/pages/password">Forgot Password</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-toggle="collapse"
@@ -186,8 +191,8 @@
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="401">401 Page</a><a class="nav-link"
-											href="404">404 Page</a><a class="nav-link" href="500">500
+										<a class="nav-link" href="/pages/401">401 Page</a><a class="nav-link"
+											href="/pages/404">404 Page</a><a class="nav-link" href="/pages/500">500
 											Page</a>
 									</nav>
 								</div>
@@ -206,8 +211,8 @@
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">
-					<div class="small">Logged in as:</div>
-					Start Bootstrap
+					<div class="small">Reference:</div>
+					Bootstrap v4.4, w3schools.com, fontawesome.com
 				</div>
 			</nav>
 		</div>

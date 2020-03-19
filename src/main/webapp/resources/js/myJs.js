@@ -1,5 +1,7 @@
 $(document).ready(
 		function() {
+			$('[data-toggle="tooltip"]').tooltip()
+
 			$(".add-cart-btn").on(
 					"click",
 					function(e) {

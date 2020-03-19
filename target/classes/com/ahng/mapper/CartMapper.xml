@@ -21,9 +21,10 @@
 	</resultMap>
 
 	<select id="itemList" resultMap="product">
-		select p.pno, c.userid,
-		c.amount, p.name, p.title, p.price from cart c join product p on c.pno
-		= p.pno
+		<!-- select p.pno, c.userid, -->
+		<!-- c.amount, p.name, p.title, p.price from cart c join product p on c.pno -->
+		<!-- = p.pno -->
+		select * from cart where userid = #{userID}
 	</select>
 
 	<insert id="insert">

@@ -16,7 +16,7 @@
 	</delete>
 	
 	<select id="findByPno" resultType="com.ahng.domain.ProductAttachVO">
-		select * from product_attach where pno = #{pno}
+		select * from product_attach where pno = #{pno} order by sequence
 	</select>
 
 </mapper>

@@ -5,10 +5,25 @@
 <div id="layoutSidenav_content">
 	<main>
 		<div class="container-fluid">
-			<h1 class="mt-4">HOME</h1>
+			<h1 class="mt-4">Dashboard</h1>
 			<ol class="breadcrumb mb-4">
-				<li class="breadcrumb-item active">HOME</li>
+				<li class="breadcrumb-item active">Example</li>
 			</ol>
+
+			<div class="mb-3">
+				<h3>Development Progress</h3>
+				<div class="progress mb-3" style="height: 50px;">
+					<div class="progress-bar" role="progressbar" style="width: 70%;"
+						aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+				</div>
+
+				<div class="progress mb-3" style="height: 50px;">
+					<div class="progress-bar progress-bar-striped bg-info"
+						role="progressbar" style="width: 70%" aria-valuenow="70"
+						aria-valuemin="0" aria-valuemax="100">70%</div>
+				</div>
+			</div>
+
 			<div class="d-flex justify-content-start bg-secondary mb-3">
 				<div class="p-2 bg-info">Flex item 1</div>
 				<div class="p-2 bg-warning">Flex item 2</div>
@@ -606,5 +621,5 @@
 		crossorigin="anonymous"></script>
 	<script src="/resources/assets/demo/chart-area-demo.js"></script>
 	<script src="/resources/assets/demo/chart-bar-demo.js"></script>
-	
+
 	<%@ include file="../includes/footer.jsp"%>
