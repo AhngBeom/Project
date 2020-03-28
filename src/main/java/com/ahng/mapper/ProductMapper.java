@@ -1,4 +1,4 @@
- package com.ahng.mapper;
+package com.ahng.mapper;
 
 import java.util.List;
 
@@ -8,7 +8,10 @@ import com.ahng.domain.Criteria;
 import com.ahng.domain.ProductVO;
 
 public interface ProductMapper {
+	
 	public List<ProductVO> getList(Criteria cri);
+
+	public List<ProductVO> categoryList(String category);
 
 	public void insert(ProductVO vo);
 

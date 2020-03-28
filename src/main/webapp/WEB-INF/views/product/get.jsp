@@ -11,7 +11,8 @@
 				<c:out value="${pdt.name }" />
 			</div>
 			<ol class="breadcrumb mb-4">
-				<li class="">${pdt.title }</li>
+				<li class="breadcrumb-item active">${pdt.category }</li>
+				<li class="breadcrumb-item">${pdt.title }</li>
 			</ol>
 
 			<div class="row mb-4">
@@ -29,8 +30,8 @@
 										<div class="input-group-prepend">
 											<span class="input-group-text">가격</span>
 										</div>
-										<input type="text" class="form-control text-right" readonly="readonly"
-											value="${pdt.price }">
+										<input type="text" class="form-control text-right"
+											readonly="readonly" value="${pdt.price }">
 										<div class="input-group-append">
 											<span class="input-group-text">￦</span>
 										</div>
@@ -67,15 +68,18 @@
 									</div>
 								</form>
 								<div class="d-flex justify-content-around">
-									<button class="btn btn-warning add-cart-btn" data-pno="${pdt.pno }">장바구니</button>
-									<button class="btn btn-success dir-buy-btn" data-pno="${pdt.pno }">바로주문</button>
+									<button class="btn btn-warning add-cart-btn"
+										data-pno="${pdt.pno }">장바구니</button>
+									<button class="btn btn-success dir-buy-btn"
+										data-pno="${pdt.pno }">바로주문</button>
 								</div>
 							</div>
 						</div>
 						<div class="card-body text-center">
 							<h1 class="card-title">Product Name</h1>
 							<p class="card-text">Product Explanation</p>
-							<div class="attach-list d-flex flex-column justify-content-center m-3"></div>
+							<div
+								class="attach-list d-flex flex-column justify-content-center m-3"></div>
 							<p class="card-text">Product Explanation</p>
 						</div>
 					</div>
@@ -83,7 +87,7 @@
 			</div>
 		</div>
 	</main>
-	
+
 	<script type="text/javascript">
 		$(document)
 				.ready(
@@ -131,16 +135,21 @@
 																	+ "'><img class='img-item' src='/display?fileName="
 																					+ imageOriginPath
 																					+ "'>"
-// 																					+ overlay
+																					// 																					+ overlay
 																					+ "</div>";
-																					if(i === 0){
-																						$(".card-img-top").attr("src", "/display?fileName="
-																							+ imageOriginPath);
-																					}
+																			if (i === 0) {
+																				$(
+																						".card-img-top")
+																						.attr(
+																								"src",
+																								"/display?fileName="
+																										+ imageOriginPath);
+																			}
 																		}
 
 																	});
-													$(".attach-list").html(bodyImg);
+													$(".attach-list").html(
+															bodyImg);
 												});
 							})();
 						});

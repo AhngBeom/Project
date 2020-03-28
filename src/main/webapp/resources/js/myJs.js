@@ -1,5 +1,14 @@
 $(document).ready(
 		function() {
+			var headForm = $("#headerForm");
+			$(".nav-product").on("click", function(e){
+				console.log($(this).data('cate'));
+				headForm.attr("action", "/product/category");
+				headForm.append("<input type='hidden' name='cate' value='"
+						+ $(this).data('cate') + "'>");
+				headForm.submit();
+			});
+			
 			$('[data-toggle="tooltip"]').tooltip()
 
 			$(".add-cart-btn").on(
@@ -45,29 +54,28 @@ $(document).ready(
 				});
 			});
 			$(".dir-buy-btn").on("click", function(e) {
-				console.log("상품 주문 화면 출력");
-				console.log(JSON.parse(sessionStorage.getItem("CART0")));
+				location.href = "/product/order";
 			});
 			$(".get-btn").on("click", function(e) {
 				location.href = "/product/get";
 			});
 
-			var form = $("#operForm");
-			$("a[data-oper='get']").on(
+			var operForm = $("#operForm");
+			$("button[data-oper='get']").on(
 					"click",
 					function(e) {
 						var pno = $(this).data("pno");
-						form.append("<input type='hidden' name='pno' value='"
+						operForm.append("<input type='hidden' name='pno' value='"
 								+ pno + "'>");
-						form.attr("action", "/product/get").submit();
+						operForm.attr("action", "/product/get").submit();
 					});
 			$(".pdt-del-btn").on("click", function(e){
 				var pno = $(this).data("pno");
 				$('#alertModal').modal('show');
 				$("#acceptBtn").on("click", function(e){
-					form.append("<input type='hidden' name='pno' value='" + pno + "'>");
-					form.attr("action", "/admin/pdtDelete");
-					form.attr("method", "post").submit();
+					operForm.append("<input type='hidden' name='pno' value='" + pno + "'>");
+					operForm.attr("action", "/admin/pdtDelete");
+					operForm.attr("method", "post").submit();
 				});
 			});
 		});

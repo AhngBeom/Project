@@ -25,7 +25,7 @@
 	crossorigin="anonymous"></script>
 </head>
 
-<form action="" method="post" id="headerForm"></form>
+<form action="" method="get" id="headerForm"></form>
 
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
@@ -34,8 +34,9 @@
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
-		<div class="progress ml-3 mr-3" style="height: 30px; width: 800px;" data-toggle="tooltip"
-			data-placement="bottom" title="Development Progress">
+		<div class="progress ml-3 mr-3" style="height: 30px; width: 800px;"
+			data-toggle="tooltip" data-placement="bottom"
+			title="Development Progress">
 			<div class="progress-bar" role="progressbar" style="width: 70%;"
 				aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
 		</div>
@@ -60,10 +61,10 @@
 				aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">Settings</a><a
-						class="dropdown-item" href="#">Activity Log</a>
+					<a class="dropdown-item" href="#">Activity Log</a>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="login.html">Logout</a>
+					<a class="dropdown-item" href="#">My Page</a> <a
+						class="dropdown-item" href="login.html">Logout</a>
 				</div></li>
 			<li class="nav-item dropdown nav-cart"><a
 				class="nav-link dropdown-toggle cart-toggle" id="userDropdown"
@@ -72,17 +73,12 @@
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
 					<div class="cart-list">
-						<div class="dropdown-item btn">
-							<a class="dropdown-item" href="#">Item 1</a>
-						</div>
-						<div class="dropdown-item btn">
-							<a class="dropdown-item" href="#">Item 2</a>
-						</div>
-						<c:forEach items="${cart }" var="cart">
-							<div class="dropdown-item btn">
-								<a class="dropdown-item" href="#">${cart.name }</a>
-							</div>
-						</c:forEach>
+						<!-- 						<div class="dropdown-item btn"> -->
+						<!-- 							<a class="dropdown-item" href="#">Item 1</a> -->
+						<!-- 						</div> -->
+						<!-- 						<div class="dropdown-item btn"> -->
+						<!-- 							<a class="dropdown-item" href="#">Item 2</a> -->
+						<!-- 						</div> -->
 					</div>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="/product/cart">Cart Page</a> <a
@@ -129,9 +125,11 @@
 						<div class="collapse" id="collapseProducts"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link" href="/product/all">All</a> <a
-									class="nav-link" href="/product//category1">Category 1</a> <a
-									class="nav-link" href="/product//category2">Category 2</a>
+								<a class="nav-link nav-product" href="/product/all">All</a> <a
+									class="nav-link nav-product" href="#" data-cate="Category 1">Category 1</a> <a
+									class="nav-link nav-product" href="#" data-cate="Category 2">Category 2</a>
+									<a
+									class="nav-link nav-product" href="#" data-cate="Category 3">Category 3</a>
 							</nav>
 						</div>
 
@@ -175,9 +173,9 @@
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="/pages/login">Login</a><a class="nav-link"
-											href="/pages/register">Register</a><a class="nav-link"
-											href="/pages/password">Forgot Password</a>
+										<a class="nav-link" href="/pages/login">Login</a><a
+											class="nav-link" href="/pages/register">Register</a><a
+											class="nav-link" href="/pages/password">Forgot Password</a>
 									</nav>
 								</div>
 								<a class="nav-link collapsed" href="#" data-toggle="collapse"
@@ -191,9 +189,9 @@
 									aria-labelledby="headingOne"
 									data-parent="#sidenavAccordionPages">
 									<nav class="sb-sidenav-menu-nested nav">
-										<a class="nav-link" href="/pages/401">401 Page</a><a class="nav-link"
-											href="/pages/404">404 Page</a><a class="nav-link" href="/pages/500">500
-											Page</a>
+										<a class="nav-link" href="/pages/401">401 Page</a><a
+											class="nav-link" href="/pages/404">404 Page</a><a
+											class="nav-link" href="/pages/500">500 Page</a>
 									</nav>
 								</div>
 							</nav>

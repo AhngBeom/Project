@@ -21,6 +21,7 @@ alter table cart add CONSTRAINT fk_cart FOREIGN KEY(pno) REFERENCES product(pno)
 alter table cart add column amount int default 1;
 select p.pno, c.userid, c.amount, p.name, p.title, p.price from cart c join product p on c.pno = p.pno; 
 drop table cart;
+select * from cart;
 select * from product
 where pno in(select pno from cart where userid = 'unknown');
 delete from cart;
@@ -40,4 +41,9 @@ alter table product_attach add constraint fk_product_attach foreign key(pno) ref
 alter table product_attach modify sequence int(2) unsigned;
 update product_attach set sequence = 0 where pno = 13 and filename like '%1%';
 delete from product where pno = 14;
-SELECT * FROM product AS A left OUTER JOIN product_attach AS B ON A.pno = B.pno where B.sequence = 1 or B.uuid is null;
+
+SELECT * 
+FROM product AS pdt left OUTER JOIN product_attach AS atch ON pdt.pno = atch.pno 
+where pdt.category = "c2" and (atch.sequence = 0 or atch.uuid is null);
+select * from product;
+update product set category = 'Category 3' where category like 'c3';

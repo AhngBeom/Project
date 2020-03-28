@@ -38,9 +38,9 @@
 						<div class="col-xl-9">
 							<select class="form-control" id="category" name="category"
 								data-category="${pdt.category }">
-								<option value="c1">Category 1</option>
-								<option value="c2">Category 2</option>
-								<option value="c3">Category 3</option>
+								<option value="Category 1">Category 1</option>
+								<option value="Category 2">Category 2</option>
+								<option value="Category 3">Category 3</option>
 							</select>
 						</div>
 					</div>

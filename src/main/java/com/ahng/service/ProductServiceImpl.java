@@ -28,6 +28,11 @@ public class ProductServiceImpl implements ProductService {
 		return mapper.getList(cri);
 	}
 
+	@Override
+	public List<ProductVO> categoryList(String category) {
+		return mapper.categoryList(category);
+	}
+
 	@Transactional
 	@Override
 	public void register(ProductVO vo) {

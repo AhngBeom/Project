@@ -6,6 +6,13 @@
 		SELECT * FROM product AS A left
 		OUTER JOIN product_attach AS B ON A.pno = B.pno where B.sequence = 0
 		or B.uuid is null
+		order by uptodate
+	</select>
+
+	<select id="categoryList" resultType="com.ahng.domain.ProductVO">
+		SELECT * FROM product AS A left
+		OUTER JOIN product_attach AS B ON A.pno = B.pno 
+		where (B.sequence = 0 or B.uuid is null) and category like #{category}
 	</select>
 
 	<insert id="insert">

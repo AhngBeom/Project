@@ -32,7 +32,7 @@ public class CartController {
 		model.addAttribute("item", service.getList("unknown"));
 	}
 
-	@GetMapping(value = "/cartList", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PostMapping(value = "/cartList", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductVO>> cartList(String userID) {
 		return new ResponseEntity<>(service.getList(userID), HttpStatus.OK);
 	}

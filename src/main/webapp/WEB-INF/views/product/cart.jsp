@@ -16,7 +16,7 @@
 			</ol>
 			<div class="row mb-4">
 				<c:forEach items="${item }" var="item" varStatus="status">
-					<div class="col-xl-12">
+					<div class="col-xl-12 mb-3">
 						<div class="card" data-pno="${item.pno }"
 							data-index="${status.index }">
 							<div class="card-header">
@@ -98,17 +98,33 @@
 															"pno");
 													var index = $(this).data(
 															"index");
-													$
-															.getJSON(
-																	"/cartList",
-																	{
-																		userID : "unknown"
-																	},
-																	function(
-																			arr) {
-																		var cart = arr[i].cartVO;
-																		console.log(cart.amount);
-																	});
+													var cart;
+													$.ajax({
+														url : '/cartList',
+														processData : false,
+														contentType : false,
+														data : cart,
+														type : 'POST',
+														dataType : 'json',
+														success : function(result) {
+															console.log(result[i]);
+															console.log(cart);
+														}
+													});
+// 													$
+// 															.getJSON(
+// 																	"/cartList",
+// 																	{
+// 																		userID : "unknown"
+// 																	},
+// 																	function(
+// 																			arr) {
+// 																		var cart = arr[i].cartVO;
+// 																		console
+// 																				.log(cart);
+// 																	});
+
+
 													$
 															.getJSON(
 																	"/admin/getAttachList",

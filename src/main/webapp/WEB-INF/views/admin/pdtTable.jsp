@@ -33,6 +33,7 @@
 									<th>Num</th>
 									<th>Name</th>
 									<th>Price</th>
+									<th>Category</th>
 									<th>Regit Date</th>
 									<th>Up to Date</th>
 									<th>Volume</th>
@@ -45,6 +46,7 @@
 									<th>Num</th>
 									<th>Name</th>
 									<th>Price</th>
+									<th>Category</th>
 									<th>Regit Date</th>
 									<th>Up to Date</th>
 									<th>Volume</th>
@@ -59,6 +61,7 @@
 										<td><a href="/admin/pdtInfo?pno=${pdt.pno }"
 											data-pno="${pdt.pno }"><c:out value="${pdt.name }" /></a></td>
 										<td>￦ <c:out value="${pdt.price }" /></td>
+										<td><c:out value="${pdt.category }" /></td>
 										<td><fmt:formatDate value="${pdt.regDate }"
 												pattern="yyyy-MM-dd hh:mm:ss" /></td>
 										<td><fmt:formatDate value="${pdt.upToDate }"
@@ -67,9 +70,9 @@
 										<td>x</td>
 										<td>
 											<div class="d-flex">
-												<button class="btn btn-warning" data-pno="${pdt.pno }">
-													<i class="fas fa-pencil-alt"></i>
-												</button>
+<%-- 												<button class="btn btn-warning" data-pno="${pdt.pno }"> --%>
+<!-- 													<i class="fas fa-pencil-alt"></i> -->
+<!-- 												</button> -->
 												<button class="btn btn-danger pdt-del-btn"
 													data-pno="${pdt.pno }">
 													<i class="fas fa-trash-alt"></i>

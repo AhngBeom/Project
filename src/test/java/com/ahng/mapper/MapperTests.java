@@ -1,5 +1,7 @@
 package com.ahng.mapper;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,6 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import com.ahng.domain.Criteria;
 import com.ahng.domain.ProductVO;
 
-import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -24,16 +25,10 @@ public class MapperTests {
 
 	@Test
 	public void test() {
-		String userID = "unknown";
-//		ProductVO vo = new ProductVO();
-//		vo.setName("TestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTestTest");
-//		vo.setTitle("Test");
-//		vo.setPrice(9999);
-//		vo.setCategory("c2");
-//		vo.setDescript("Test");
-//		mapper.insert(vo);
+		Criteria cri = new Criteria();
+		cri.setType("c1");
+		List<ProductVO> vo = mapper.categoryList("c1");
 //		mapper.getList(new Criteria());
-		cartMapper.itemList(userID);
 	}
 
 }

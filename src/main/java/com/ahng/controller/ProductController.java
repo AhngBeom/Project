@@ -29,13 +29,18 @@ public class ProductController {
 		model.addAttribute("pdt", service.getList(cri));
 	}
 
-	@GetMapping("/category1")
-	public void category1() {
-
+	@GetMapping("/category")
+	public void category(@RequestParam("cate") String category, Model model) {
+		model.addAttribute("pdt", service.categoryList(category));
 	}
 
 	@GetMapping("/category2")
 	public void category2() {
+
+	}
+	
+	@GetMapping("/category3")
+	public void category3() {
 
 	}
 

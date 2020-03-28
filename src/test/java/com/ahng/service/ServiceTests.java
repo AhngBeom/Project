@@ -1,5 +1,7 @@
 package com.ahng.service;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +32,8 @@ public class ServiceTests {
 //		vo.setPno(7L);
 //		service.register(vo);
 //		service.remove(userID, 2L);
-//		cartService.getList(userID);
-		pdtService.getAttachList(13L);
+		List<ProductVO> vo = cartService.getList(userID);
+		log.info(vo);
+//		pdtService.getAttachList(13L);
 	}
 }

@@ -20,24 +20,33 @@
 }
 
 .img-item {
-/* 	width: 100%; */
+	/* 	width: 100%; */
+	
 }
 
 .opacity-div {
 	transition: .5s ease;
 	opacity: 0;
 	position: absolute;
-	top: 25%;
+	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
 	-ms-transform: translate(-50%, -50%);
 	text-align: center;
 }
-.card-image:hover img {
+
+.card-header {
+	max-width: 100%;
+	height: auto !important;
+	padding-top : calc(300 / 1000 * 100 %);
+	padding-bottom: calc(300/1000 * 100);
+}
+
+.card-header:hover img {
 	opacity: 0.5;
 }
 
-.card-image:hover .opacity-div {
+.card-header:hover .opacity-div {
 	opacity: 1;
 }
 

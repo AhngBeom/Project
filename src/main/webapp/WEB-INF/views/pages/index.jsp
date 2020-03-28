@@ -10,8 +10,8 @@
 				<li class="breadcrumb-item active">Example</li>
 			</ol>
 
-			<div class="mb-3">
-				<h3>Development Progress</h3>
+			<div class="mb-3 p-2 bg-warning">
+				<h3 class="text-center">Development Progress</h3>
 				<div class="progress mb-3" style="height: 50px;">
 					<div class="progress-bar" role="progressbar" style="width: 70%;"
 						aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>

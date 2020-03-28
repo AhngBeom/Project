@@ -44,9 +44,9 @@
 						<div class="col-xl-9">
 							<select class="form-control" id="category" name="category"
 								data-category="${pdt.category }">
-								<option value="c1">Category 1</option>
-								<option value="c2">Category 2</option>
-								<option value="c3">Category 3</option>
+								<option value="Category 1">Category 1</option>
+								<option value="Category 2">Category 2</option>
+								<option value="Category 3">Category 3</option>
 							</select>
 						</div>
 					</div>
@@ -147,7 +147,7 @@
 																					+ attach.uuid
 																					+ "_"
 																					+ attach.fileName);
-																			str += "<div class='card-image attach-image col-xl-3 mb-3' data-path='"
+																			str += "<div class='card-image attach-image col-xl-3 col-md-12 mb-3 d-flex justice-content-center' data-path='"
 																				+ attach.uploadPath
 																				+ "' data-uuid='"
 																				+ attach.uuid

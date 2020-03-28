@@ -9,6 +9,8 @@ import com.ahng.domain.ProductVO;
 public interface ProductService {
 
 	public List<ProductVO> getList(Criteria cri);
+	
+	public List<ProductVO> categoryList(String category);
 
 	public void register(ProductVO vo);
 
