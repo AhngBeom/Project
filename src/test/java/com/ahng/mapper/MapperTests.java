@@ -1,5 +1,8 @@
 package com.ahng.mapper;
 
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.List;
 
 import org.junit.Test;
@@ -23,12 +26,18 @@ public class MapperTests {
 	@Autowired
 	private CartMapper cartMapper;
 
+	private String getFolderYesterDay() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Calendar cal = Calendar.getInstance();
+		cal.add(Calendar.DATE, -1);
+		String str = sdf.format(cal.getTime());
+		return str.replace("-", File.separator);
+	}
+	
 	@Test
 	public void test() {
-		Criteria cri = new Criteria();
-		cri.setType("c1");
-		List<ProductVO> vo = mapper.categoryList("c1");
-//		mapper.getList(new Criteria());
+//		Calendar cal = Calendar.DATE;
+		log.info(Calendar.DATE);
 	}
 
 }

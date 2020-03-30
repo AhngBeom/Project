@@ -47,3 +47,12 @@ FROM product AS pdt left OUTER JOIN product_attach AS atch ON pdt.pno = atch.pno
 where pdt.category = "c2" and (atch.sequence = 0 or atch.uuid is null);
 select * from product;
 update product set category = 'Category 3' where category like 'c3';
+
+SELECT * FROM product AS A left
+		OUTER JOIN product_attach AS B ON A.pno = B.pno where B.sequence = 0
+		or B.uuid is null
+		order by uptodate desc;
+        
+select filename, uploadpath from product_attach where uploadpath = subdate(curdate(), 1);    
+select filename, uploadpath from product_attach;
+select subdate(curdate(), 1) from dual;

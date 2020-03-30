@@ -18,4 +18,5 @@ public interface ProductAttachMapper {
 	
 	public List<ProductAttachVO> findByPno(Long pno);
 	
+	public List<ProductAttachVO> getOldFiles();
 }

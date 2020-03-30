@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ahng.domain.Criteria;
 import com.ahng.domain.ProductVO;
+import com.ahng.service.CartService;
 import com.ahng.service.ProductService;
 
 @Controller
@@ -22,37 +23,39 @@ import com.ahng.service.ProductService;
 public class ProductController {
 
 	@Autowired
-	private ProductService service;
+	private ProductService pdtService;
+	@Autowired
+	private CartService cartService;
 
 	@GetMapping("/all")
 	public void all(Criteria cri, Model model) {
-		model.addAttribute("pdt", service.getList(cri));
+		model.addAttribute("pdt", pdtService.getList(cri));
 	}
 
 	@GetMapping("/category")
 	public void category(@RequestParam("cate") String category, Model model) {
-		model.addAttribute("pdt", service.categoryList(category));
-	}
-
-	@GetMapping("/category2")
-	public void category2() {
-
-	}
-	
-	@GetMapping("/category3")
-	public void category3() {
-
+		model.addAttribute("pdt", pdtService.categoryList(category));
 	}
 
 	@GetMapping("/get")
 	public void get(@RequestParam("pno") Long pno, @ModelAttribute("cri") Criteria cri, Model model) {
-		model.addAttribute("pdt", service.get(pno));
-		// model.addAttribute("attach", service.getAttachList(pno));
+		model.addAttribute("pdt", pdtService.get(pno));
+		// model.addAttribute("attach", pdtService.getAttachList(pno));
 	}
 
 	@GetMapping(value = "/get/{pno}", produces = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
 	public ResponseEntity<ProductVO> get(@PathVariable("pno") Long pno) {
-		return new ResponseEntity<>(service.get(pno), HttpStatus.OK);
+		return new ResponseEntity<>(pdtService.get(pno), HttpStatus.OK);
+	}
+	
+	@GetMapping("/dirOrder")
+	public void directOrder(@RequestParam("pno") Long pno, Model model) {
+		model.addAttribute("order", pdtService.get(pno));
+	}
+	
+	@GetMapping("/cartOrder")
+	public void cartOrder(Model model) {
+		model.addAttribute("item", cartService.getList("unknown"));
 	}
 }

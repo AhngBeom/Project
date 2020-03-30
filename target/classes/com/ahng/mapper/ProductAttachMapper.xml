@@ -3,20 +3,29 @@
 <mapper namespace="com.ahng.mapper.ProductAttachMapper">
 
 	<insert id="insert">
-		insert into product_attach(uuid, uploadpath, filename, filetype, pno, sequence)
-		values(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{pno}, #{sequence})
+		insert into product_attach(uuid, uploadpath,
+		filename, filetype, pno, sequence)
+		values(#{uuid}, #{uploadPath},
+		#{fileName}, #{fileType}, #{pno}, #{sequence})
 	</insert>
 
 	<delete id="delete">
 		delete from product_attach where uuid = #{uuid}
 	</delete>
-	
+
 	<delete id="deleteAll">
 		delete from product_attach where pno = #{pno}
 	</delete>
-	
-	<select id="findByPno" resultType="com.ahng.domain.ProductAttachVO">
-		select * from product_attach where pno = #{pno} order by sequence
+
+	<select id="findByPno"
+		resultType="com.ahng.domain.ProductAttachVO">
+		select * from product_attach where pno = #{pno} order by
+		sequence
 	</select>
 
+	<select id="getOldFiles"
+		resultType="com.ahng.domain.ProductAttachVO">
+		select * from product_attach where uploadpath != curdate()    
+<!-- select filename, uploadpath from product_attach where uploadpath = subdate(curdate(), 1); -->
+	</select>
 </mapper>

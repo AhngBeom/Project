@@ -82,7 +82,7 @@
 					</div>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="/product/cart">Cart Page</a> <a
-						class="dropdown-item" href="/product/order">Buy Now</a>
+						class="dropdown-item" href="/product/cartOrder">Buy Now</a>
 				</div></li>
 		</ul>
 	</nav>

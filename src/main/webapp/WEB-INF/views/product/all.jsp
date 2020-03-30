@@ -47,8 +47,8 @@
 											data-pno="${pdt.pno }">바로 구매</button>
 									</div>
 									<div class="mb-3">
-										<button class="btn btn-primary get-btn" data-oper="get"
-											data-pno="${pdt.pno }">자세히</button>
+										<a class="btn btn-primary get-btn text-white" data-oper="get"
+											data-pno="${pdt.pno }">자세히</a>
 									</div>
 									<div class="mb-3">
 										<button class="btn btn-secondary" data-toggle="collapse"
@@ -60,7 +60,7 @@
 							<div class="collapse p-3" id="collapseExample"
 								data-index="${status.index }">
 								<div class="card-body">
-								<span>${pdt.category }</span>
+									<span>${pdt.category }</span>
 									<div class="h4 card-title">${pdt.title }</div>
 									<div class="h5 card-text float-right">￦${pdt.price }</div>
 								</div>
@@ -70,7 +70,32 @@
 				</c:forEach>
 			</div>
 	</main>
-	<script type="text/javascript" src="/resources/js/Product.js"></script>
+
+	<div class="modal fade" id="alertModal" tabindex="-1" role="dialog"
+		aria-labelledby="alertModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="alertModalLabel">Alert</h5>
+					<button type="button" class="close" data-dismiss="modal"
+						aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div>
+				<div class="modal-body">
+					장바구니에 보관되어있는 상품이 있습니다.<br> 현재 상품만 구매하시겠습니까?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" id="modalSecFunc">장바구니에 추가 &
+						구매</button>
+					<button type="button" class="btn btn-primary" id="modalAccept">예</button>
+<!-- 					<button type="button" class="btn btn-secondary" -->
+<!-- 						data-dismiss="modal">Close</button> -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/resources/js/productJS.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			$("button[data-toggle='collapse']").on("click", function(e) {

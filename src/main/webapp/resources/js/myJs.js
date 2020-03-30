@@ -10,11 +10,24 @@ $(document).ready(
 			});
 			
 			$('[data-toggle="tooltip"]').tooltip()
-
+			
+			function cartADD(vo){
+				console.log(vo);
+				$.getJSON("/product/get/" + vo.pno
+						+ ".json", function(result) {
+					console.log(result);
+					$.ajax({
+						type : 'post',
+						url : '/cartAdd',
+						data : JSON.stringify(vo),
+						contentType : "application/json; charset=utf-8"
+					});
+				});
+			}
 			$(".add-cart-btn").on(
 					"click",
 					function(e) {
-						alert("장바구니 추가");
+						alert("장바구니에 추가되었습니다.");
 						var userID = "unknown";
 						var pno = $(this).data("pno");
 						var cartVO = {userID, pno};
@@ -53,15 +66,30 @@ $(document).ready(
 					});
 				});
 			});
+			
+			var operForm = $("#operForm");
+			
 			$(".dir-buy-btn").on("click", function(e) {
-				location.href = "/product/order";
-			});
-			$(".get-btn").on("click", function(e) {
-				location.href = "/product/get";
+				$("#alertModal").modal('show');
+				var pno = $(this).data("pno");
+				$("#alertModal #modalAccept").on("click", function(e){
+					operForm.attr("action", "/product/dirOrder");
+					operForm.append("<input type='hidden' name='pno' value='"
+							+ pno + "'>");
+					operForm.submit();
+				});
+				$("#alertModal #modalSecFunc").on("click", function(e){
+					var cartVO = {userID : "unknown", pno : pno};
+					cartADD(cartVO);
+				});
+				
+				console.log(pno);
+// $.getJSON("/product/get", {pno : pno}, function(arr){
+// console.log(arr);
+// });
 			});
 
-			var operForm = $("#operForm");
-			$("button[data-oper='get']").on(
+			$("a[data-oper='get']").on(
 					"click",
 					function(e) {
 						var pno = $(this).data("pno");

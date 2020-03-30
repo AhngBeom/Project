@@ -6,7 +6,7 @@
 		SELECT * FROM product AS A left
 		OUTER JOIN product_attach AS B ON A.pno = B.pno where B.sequence = 0
 		or B.uuid is null
-		order by uptodate
+		order by uptodate desc
 	</select>
 
 	<select id="categoryList" resultType="com.ahng.domain.ProductVO">

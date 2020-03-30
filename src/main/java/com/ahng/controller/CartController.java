@@ -27,12 +27,12 @@ public class CartController {
 	@Autowired
 	private CartService service;
 
-	@GetMapping({"/product/cart", "/product/order"})
+	@GetMapping("/product/cart")
 	public void cart(Model model) {
 		model.addAttribute("item", service.getList("unknown"));
 	}
 
-	@PostMapping(value = "/cartList", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/cartList", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductVO>> cartList(String userID) {
 		return new ResponseEntity<>(service.getList(userID), HttpStatus.OK);
 	}

@@ -81,75 +81,15 @@
 						</div>
 					</div>
 				</c:forEach>
+				<div>
+					<a href="" class="btn btn-danger float-right mr-3 cartItemDelBtn"
+						data-pno="">상품 삭제</a> <a href=""
+						class="btn btn-success get-btn float-right mr-3" data-oper="get"
+						data-pno="">상품 화면</a>
+				</div>
 			</div>
 		</div>
 	</main>
 
-	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							(function() {
-								console.log("${item}");
-								$(".card")
-										.each(
-												function(i, data) {
-													var pno = $(this).data(
-															"pno");
-													var index = $(this).data(
-															"index");
-													var cart;
-													$.ajax({
-														url : '/cartList',
-														processData : false,
-														contentType : false,
-														data : cart,
-														type : 'POST',
-														dataType : 'json',
-														success : function(result) {
-															console.log(result[i]);
-															console.log(cart);
-														}
-													});
-// 													$
-// 															.getJSON(
-// 																	"/cartList",
-// 																	{
-// 																		userID : "unknown"
-// 																	},
-// 																	function(
-// 																			arr) {
-// 																		var cart = arr[i].cartVO;
-// 																		console
-// 																				.log(cart);
-// 																	});
-
-
-													$
-															.getJSON(
-																	"/admin/getAttachList",
-																	{
-																		pno : pno
-																	},
-																	function(
-																			arr) {
-																		var imageThumbPath = encodeURIComponent(arr[i].uploadPath
-																				+ "/s_"
-																				+ arr[i].uuid
-																				+ "_"
-																				+ arr[i].fileName);
-																		$(
-																				".card[data-index='"
-																						+ i
-																						+ "'] .card-body div img")
-																				.attr(
-																						"src",
-																						"/display?fileName="
-																								+ imageThumbPath);
-																	});
-
-												});
-							})();
-						})
-	</script>
+	<script type="text/javascript" src="/resources/js/cartJS.js"></script>
 	<%@ include file="../includes/footer.jsp"%>
