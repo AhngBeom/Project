@@ -1,13 +1,24 @@
 package com.ahng.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.ahng.domain.Criteria;
+import com.ahng.service.ProductService;
 
 @Controller
 @RequestMapping("/pages/*")
 public class PageController {
-
+	@Autowired
+	private ProductService pdtService;
+	@GetMapping("/test")
+	public void Test(Criteria cri, Model model) {
+		model.addAttribute("pdt", pdtService.getList(cri));
+	}
+	
 	@GetMapping("/401")
 	public void error401() {
 

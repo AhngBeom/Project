@@ -17,6 +17,33 @@ c1 : where category like = #{category}
 
 ==========================================================
 
+Responsive Image Grid (Instagram Grid?)
+
+<c:if test="${status.index % 4 eq 0}">${status.index }</c:if>
+
+  0       1      2      3     
+column culumn culumn culumn 생성
+ 
+ 4,5,6 ..... culumn 안에 카드만 추가
+ 
+
+
+<div class="row">
+	<div class="col-xl-3 col-md-6">								*1 Loop
+		<div class="card">
+			<div class="card-header">
+				<img class="card-image"/>						
+				<div class="opacity-div"></div>
+			</div>
+			<div class="collapse">
+				<div class="card-body"></div>
+			</div>
+		</div>
+	</div>														*
+</div>
+==========================================================
 외부 웹사이트 등 에서의 데이터 추출 & 삽입 (Python)
 
 ==========================================================
+
+장바구니 페이지 col-md-12 모바일버전 화면 레이아웃 조정

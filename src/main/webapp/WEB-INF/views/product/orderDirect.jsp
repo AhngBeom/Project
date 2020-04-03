@@ -23,33 +23,6 @@ body {
 	flex-wrap: wrap;
 }
 
-.col-25 {
-	-ms-flex: 25%; /* IE10 */
-	flex: 25%;
-}
-
-.col-50 {
-	-ms-flex: 50%; /* IE10 */
-	flex: 50%;
-}
-
-.col-75 {
-	-ms-flex: 75%; /* IE10 */
-	flex: 75%;
-}
-
-.col-25, .col-50, .col-75 {
-	padding: 0 16px;
-}
-
-.container-order {
-	background-color: #f2f2f2;
-	padding: 5px 20px 15px 20px;
-	border: 1px solid lightgrey;
-	border-radius: 3px;
-	margin-bottom: 20px;
-}
-
 input[type=text] {
 	width: 100%;
 	margin-bottom: 20px;
@@ -67,16 +40,6 @@ label {
 	margin-bottom: 20px;
 	padding: 7px 0;
 	font-size: 24px;
-}
-
-/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
-@media ( max-width : 800px) {
-	.row {
-		flex-direction: column-reverse;
-	}
-	.col-25 {
-		margin-bottom: 20px;
-	}
 }
 </style>
 <div id="layoutSidenav_content">
@@ -125,7 +88,7 @@ label {
 			<!-- 			</div> -->
 
 			<div class="row">
-				<div class="col-75">
+				<div class="col-xl-12">
 					<div class="container-order">
 						<div class="h4 d-flex justify-content-between mb-3">Cart</div>
 						<hr>
@@ -156,13 +119,14 @@ label {
 						</div>
 					</div>
 				</div>
-				<div class="col-75">
+				<div class="col-xl-12">
 					<div class="container-order">
 						<form action="/action_page.php">
 
 							<div class="row">
-								<div class="col-50">
+								<div class="col-xl-6 col-md-12">
 									<h3>Billing Address</h3>
+									<hr>
 									<label for="fname"><i class="fa fa-user"></i> Full Name</label>
 									<input type="text" id="fname" name="firstname"
 										placeholder="John M. Doe"> <label for="email"><i
@@ -175,18 +139,18 @@ label {
 										id="city" name="city" placeholder="New York">
 
 									<div class="row">
-										<div class="col-50">
+										<div class="col-xl-6 col-md-12">
 											<label for="state">State</label> <input type="text"
 												id="state" name="state" placeholder="NY">
 										</div>
-										<div class="col-50">
+										<div class="col-xl-6 col-md-12">
 											<label for="zip">Zip</label> <input type="text" id="zip"
 												name="zip" placeholder="10001">
 										</div>
 									</div>
 								</div>
 
-								<div class="col-50">
+								<div class="col-xl-6 col-md-12">
 									<h3>Payment</h3>
 									<label for="fname">Accepted Cards</label>
 									<div class="icon-container-order">
@@ -203,11 +167,11 @@ label {
 										for="expmonth">Exp Month</label> <input type="text"
 										id="expmonth" name="expmonth" placeholder="September">
 									<div class="row">
-										<div class="col-50">
+										<div class="col-xl-6 col-md-12">
 											<label for="expyear">Exp Year</label> <input type="text"
 												id="expyear" name="expyear" placeholder="2018">
 										</div>
-										<div class="col-50">
+										<div class="col-xl-6 col-md-12">
 											<label for="cvv">CVV</label> <input type="text" id="cvv"
 												name="cvv" placeholder="352">
 										</div>

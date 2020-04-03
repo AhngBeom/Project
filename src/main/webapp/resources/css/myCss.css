@@ -10,6 +10,13 @@
 	width: 100%;
 }
 
+.container-order {
+	background-color: #f2f2f2;
+	padding: 40px;
+	border: 1px solid lightgrey;
+	border-radius: 3px;
+	margin-bottom: 20px;
+}
 .image {
 	opacity: 1;
 	display: block;

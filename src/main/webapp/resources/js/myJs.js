@@ -44,6 +44,7 @@ $(document).ready(
 							});
 						});
 					});
+			
 			$(".cartItemDelBtn").on("click", function(e){
 				console.log($(this).data("pno"));
 				$.ajax({
@@ -54,7 +55,7 @@ $(document).ready(
 				          alert('ERROR');
 				        },
 					success : alert("상품이 장바구니에서 정상적으로 삭제되었습니다."),
-					complete : location.reload()
+					complete : operForm.attr("action", "/product/cart").submit()
 				});
 				
 			});
@@ -62,7 +63,7 @@ $(document).ready(
 				$.getJSON("/cartList.json", function(result) {
 					$(result).each(function(i, item){
 						console.log(item);
-						sessionStorage.setItem("CART" + i, JSON.stringify(item));
+//						sessionStorage.setItem("CART" + i, JSON.stringify(item));
 					});
 				});
 			});
@@ -73,7 +74,7 @@ $(document).ready(
 				$("#alertModal").modal('show');
 				var pno = $(this).data("pno");
 				$("#alertModal #modalAccept").on("click", function(e){
-					operForm.attr("action", "/product/dirOrder");
+					operForm.attr("action", "/product/orderDirect");
 					operForm.append("<input type='hidden' name='pno' value='"
 							+ pno + "'>");
 					operForm.submit();
@@ -82,11 +83,7 @@ $(document).ready(
 					var cartVO = {userID : "unknown", pno : pno};
 					cartADD(cartVO);
 				});
-				
 				console.log(pno);
-// $.getJSON("/product/get", {pno : pno}, function(arr){
-// console.log(arr);
-// });
 			});
 
 			$("a[data-oper='get']").on(

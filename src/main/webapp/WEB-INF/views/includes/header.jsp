@@ -13,6 +13,10 @@
 <title>On-Line Shopping Mall</title>
 <link href="/resources/css/styles.css?ver=1" rel="stylesheet" />
 <link href="/resources/css/myCss.css?ver=1" rel="stylesheet" />
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
@@ -22,6 +26,14 @@
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 	crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+	crossorigin="anonymous"></script>
+<script
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
 	crossorigin="anonymous"></script>
 </head>
 
@@ -37,8 +49,8 @@
 		<div class="progress ml-3 mr-3" style="height: 30px; width: 800px;"
 			data-toggle="tooltip" data-placement="bottom"
 			title="Development Progress">
-			<div class="progress-bar" role="progressbar" style="width: 70%;"
-				aria-valuenow="70" aria-valuemin="0" aria-valuemax="100">70%</div>
+			<div class="progress-bar" role="progressbar" style="width: 80%;"
+				aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
 		</div>
 		<!-- Navbar Search-->
 		<form
@@ -82,7 +94,7 @@
 					</div>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="/product/cart">Cart Page</a> <a
-						class="dropdown-item" href="/product/cartOrder">Buy Now</a>
+						class="dropdown-item" href="/product/orderCart">Buy Now</a>
 				</div></li>
 		</ul>
 	</nav>
@@ -93,6 +105,7 @@
 				<div class="sb-sidenav-menu">
 					<div class="nav">
 						<div class="sb-sidenav-menu-heading">Adminstrator</div>
+
 						<a class="nav-link collapsed" href="#" data-toggle="collapse"
 							data-target="#collapseAdminPdt" aria-expanded="false"
 							aria-controls="collapseAdminPdt"><div
@@ -110,12 +123,9 @@
 							</nav>
 						</div>
 						<div class="sb-sidenav-menu-heading">Core</div>
-						<a class="nav-link" href="/pages/index"><div
-								class="sb-nav-link-icon">
-								<i class="fas fa-tachometer-alt"></i>
-							</div> Dashboard</a> <a class="nav-link collapsed" href="#"
-							data-toggle="collapse" data-target="#collapseProducts"
-							aria-expanded="false" aria-controls="collapseProducts"><div
+						<a class="nav-link collapsed" href="#" data-toggle="collapse"
+							data-target="#collapseProducts" aria-expanded="false"
+							aria-controls="collapseProducts"><div
 								class="sb-nav-link-icon">
 								<i class="fas fa-barcode"></i>
 							</div> Product
@@ -126,17 +136,22 @@
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link nav-product" href="/product/all">All</a> <a
-									class="nav-link nav-product" href="#" data-cate="Category 1">Category 1</a> <a
-									class="nav-link nav-product" href="#" data-cate="Category 2">Category 2</a>
-									<a
-									class="nav-link nav-product" href="#" data-cate="Category 3">Category 3</a>
+									class="nav-link nav-product" href="#" data-cate="Category 1">Category
+									1</a> <a class="nav-link nav-product" href="#"
+									data-cate="Category 2">Category 2</a> <a
+									class="nav-link nav-product" href="#" data-cate="Category 3">Category
+									3</a>
 							</nav>
 						</div>
 
-						<div class="sb-sidenav-menu-heading">Interface</div>
-						<a class="nav-link collapsed" href="#" data-toggle="collapse"
-							data-target="#collapseLayouts" aria-expanded="false"
-							aria-controls="collapseLayouts"><div class="sb-nav-link-icon">
+						<div class="sb-sidenav-menu-heading">Basic Format</div>
+						<a class="nav-link" href="/pages/index"><div
+								class="sb-nav-link-icon">
+								<i class="fas fa-tachometer-alt"></i>
+							</div> Dashboard</a> <a class="nav-link collapsed" href="#"
+							data-toggle="collapse" data-target="#collapseLayouts"
+							aria-expanded="false" aria-controls="collapseLayouts"><div
+								class="sb-nav-link-icon">
 								<i class="fas fa-columns"></i>
 							</div> Layouts
 							<div class="sb-sidenav-collapse-arrow">
@@ -196,7 +211,6 @@
 								</div>
 							</nav>
 						</div>
-						<div class="sb-sidenav-menu-heading">Addons</div>
 						<a class="nav-link" href="charts"><div
 								class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
@@ -204,8 +218,6 @@
 								class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
 							</div> Tables</a>
-
-
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">

@@ -24,7 +24,7 @@
 							</div>
 							<div class="card-body d-flex">
 								<div class="col-xl-8 d-flex justice-content-start">
-									<div class="m-1">
+									<div class="col-xl-3">
 										<img class="img-thumbnail"
 											src="/resources/assets/img/readyToImg.jpg" alt="Card image">
 									</div>
@@ -82,10 +82,10 @@
 					</div>
 				</c:forEach>
 				<div>
-					<a href="" class="btn btn-danger float-right mr-3 cartItemDelBtn"
-						data-pno="">상품 삭제</a> <a href=""
-						class="btn btn-success get-btn float-right mr-3" data-oper="get"
-						data-pno="">상품 화면</a>
+					<a href="" class="btn btn-danger float-right mr-3"
+						data-pno="">선택 상품 주문</a> <a href=""
+						class="btn btn-success float-right mr-3" data-oper="get"
+						data-pno="">전체 상품 주문</a>
 				</div>
 			</div>
 		</div>
