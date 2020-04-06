@@ -49,11 +49,11 @@
 	padding-bottom: calc(300/1000 * 100);
 }
 
-.card-header:hover img {
+.pdt-header:hover img {
 	opacity: 0.5;
 }
 
-.card-header:hover .opacity-div {
+.pdt-header:hover .opacity-div {
 	opacity: 1;
 }
 

@@ -37,9 +37,8 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public CartVO get(Long pno) {
-//		return mapper.read(pno);
-		return null;
+	public List<CartVO> get(String userID) {
+		return mapper.read(userID);
 	}
 
 	@Override

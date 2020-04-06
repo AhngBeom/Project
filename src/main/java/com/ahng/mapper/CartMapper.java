@@ -14,7 +14,7 @@ public interface CartMapper {
 
 	public int insert(CartVO vo);
 
-	public CartVO read(String userID);
+	public List<CartVO> read(String userID);
 
 	public int update(CartVO vo);
 

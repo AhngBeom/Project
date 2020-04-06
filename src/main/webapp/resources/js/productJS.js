@@ -23,8 +23,8 @@ $(document)
 																			+ "_"
 																			+ arr[0].fileName);
 																	$(
-																			".card-image[data-index='"
-																					+ i
+																			".card-image[data-pno='"
+																					+ pno
 																					+ "']")
 																			.attr(
 																					"src",

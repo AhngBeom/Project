@@ -21,8 +21,15 @@
 				</div>
 			</div>
 			<div class="card mb-4">
-				<div class="card-header">
-					<i class="fas fa-table mr-1"></i>Products
+				<div class="card-header d-flex justify-content-between">
+					<div class="h5">
+						<i class="fas fa-table mr-1"></i>Products
+					</div>
+					<div>
+						<a href="/admin/pdtAdd" class="btn btn-primary">
+							<i class="fas fa-plus-circle"></i>Addition
+						</a>
+					</div>
 				</div>
 				<div class="card-body">
 					<div class="table-responsive">
@@ -70,9 +77,9 @@
 										<td>x</td>
 										<td>
 											<div class="d-flex">
-<%-- 												<button class="btn btn-warning" data-pno="${pdt.pno }"> --%>
-<!-- 													<i class="fas fa-pencil-alt"></i> -->
-<!-- 												</button> -->
+												<%-- 												<button class="btn btn-warning" data-pno="${pdt.pno }"> --%>
+												<!-- 													<i class="fas fa-pencil-alt"></i> -->
+												<!-- 												</button> -->
 												<button class="btn btn-danger pdt-del-btn"
 													data-pno="${pdt.pno }">
 													<i class="fas fa-trash-alt"></i>

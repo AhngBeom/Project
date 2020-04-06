@@ -12,7 +12,7 @@ public interface CartService {
 
 	public int register(CartVO vo);
 
-	public CartVO get(Long pno);
+	public List<CartVO> get(String userID);
 
 	public boolean modify(CartVO vo);
 

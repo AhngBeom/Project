@@ -6,10 +6,7 @@
 
 <div id="layoutSidenav_content">
 	<main>
-		<div class="container-fluid">
-			<div class="h2 mt-4">
-				<c:out value="${pdt.name }" />
-			</div>
+		<div class="container-fluid mt-3">
 			<ol class="breadcrumb mb-4">
 				<li class="breadcrumb-item active">${pdt.category }</li>
 				<li class="breadcrumb-item">${pdt.title }</li>
@@ -21,40 +18,39 @@
 						<div class="card-header d-flex">
 							<div class="col-xl-6 col-md-12">
 								<img class="card-img-top"
-									src="/resources/assets/img/readyToImg.jpg" alt="Card image"
-									style="width: 100%">
+									src="/resources/assets/img/readyToImg.jpg" alt="Card image">
 							</div>
 							<div class="p-4 col-xl-6 col-md-12">
-								<form>
+								<form action="/" method="post">
 									<div class="input-group mb-lg-5 input-group-lg">
 										<div class="input-group-prepend">
-											<span class="input-group-text">가격</span>
+											<span class="input-group-text">이름</span>
 										</div>
-										<input type="text" class="form-control text-right"
-											readonly="readonly" value="${pdt.price }">
-										<div class="input-group-append">
-											<span class="input-group-text">￦</span>
-										</div>
+										<input type="text" class="form-control" readonly="readonly"
+											value="${pdt.name }">
 									</div>
 									<div class="input-group mb-lg-5 input-group-lg">
-										<div class="input-group-prepend">
-											<label class="input-group-text" for="inputGroupSelect">옵션
-												선택</label>
-										</div>
-										<select class="custom-select" id="inputGroupSelect">
-											<option selected>옵션 선택</option>
-											<option value="opt01">옵션 01</option>
-											<option value="opt02">옵션 02</option>
-											<option value="opt03">옵션 03</option>
-										</select>
+										<input type="text" class="form-control" readonly="readonly"
+											value="${pdt.title }">
 									</div>
-									<div class="input-group mb-lg-5 input-group-lg">
+									<!-- 									<div class="input-group mb-lg-5 input-group-lg"> -->
+									<!-- 										<div class="input-group-prepend"> -->
+									<!-- 											<label class="input-group-text" for="inputGroupSelect">옵션 -->
+									<!-- 												선택</label> -->
+									<!-- 										</div> -->
+									<!-- 										<select class="custom-select" id="inputGroupSelect"> -->
+									<!-- 											<option selected>옵션 선택</option> -->
+									<!-- 											<option value="opt01">옵션 01</option> -->
+									<!-- 											<option value="opt02">옵션 02</option> -->
+									<!-- 											<option value="opt03">옵션 03</option> -->
+									<!-- 										</select> -->
+									<!-- 									</div> -->
+									<div class="input-group mb-lg-5 col-xl-6 float-right">
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="inputGroupSelect01">수량</label>
 										</div>
-										<select class="custom-select" id="inputGroupSelect01">
-											<option selected>수량 선택</option>
-											<option value="1">1</option>
+										<select class="custom-select" id="inputGroupSelect01" name="amount">
+											<option value="1" selected>1</option>
 											<option value="2">2</option>
 											<option value="3">3</option>
 											<option value="4">4</option>
@@ -66,8 +62,18 @@
 											<option value="10">10</option>
 										</select>
 									</div>
+									<div class="input-group mb-lg-5 col-xl-8 float-right">
+										<div class="input-group-prepend">
+											<span class="input-group-text">가격</span>
+										</div>
+										<input type="text" class="form-control text-right h3"
+											readonly="readonly" value="${pdt.price }">
+										<div class="input-group-append">
+											<span class="input-group-text">￦</span>
+										</div>
+									</div>
 								</form>
-								<div class="d-flex justify-content-around">
+								<div class="d-flex justify-content-around col-xl-12">
 									<button class="btn btn-warning add-cart-btn"
 										data-pno="${pdt.pno }">장바구니</button>
 									<button class="btn btn-success dir-buy-btn"
@@ -76,11 +82,11 @@
 							</div>
 						</div>
 						<div class="card-body text-center">
-							<h1 class="card-title">Product Name</h1>
-							<p class="card-text">Product Explanation</p>
+							<h1 class="card-title">${pdt.name }</h1>
+							<p class="card-text">${pdt.title }</p>
 							<div
 								class="attach-list d-flex flex-column justify-content-center m-3"></div>
-							<p class="card-text">Product Explanation</p>
+							<p class="card-text">${pdt.descript }</p>
 						</div>
 					</div>
 				</div>

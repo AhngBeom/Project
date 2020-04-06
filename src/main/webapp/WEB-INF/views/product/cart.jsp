@@ -36,27 +36,27 @@
 									</div>
 								</div>
 								<div class="h5 d-flex flex-column col-xl-4">
+									<!-- 									<div class="input-group mb-3 input-group-lg"> -->
+									<!-- 										<select class="custom-select" id="inputGroupSelect"> -->
+									<!-- 											<option selected>옵션 선택</option> -->
+									<!-- 											<option value="opt01">옵션 01</option> -->
+									<!-- 											<option value="opt02">옵션 02</option> -->
+									<!-- 											<option value="opt03">옵션 03</option> -->
+									<!-- 										</select> -->
+									<!-- 									</div> -->
 									<div class="input-group mb-3 input-group-lg">
-										<select class="custom-select" id="inputGroupSelect">
-											<option selected>옵션 선택</option>
-											<option value="opt01">옵션 01</option>
-											<option value="opt02">옵션 02</option>
-											<option value="opt03">옵션 03</option>
-										</select>
-									</div>
-									<div class="input-group mb-3 input-group-lg">
-										<select class="custom-select" id="inputGroupSelect">
-											<option selected>수량</option>
-											<option value="cnt01">1</option>
-											<option value="cnt02">2</option>
-											<option value="cnt03">3</option>
-											<option value="cnt04">4</option>
-											<option value="cnt05">5</option>
-											<option value="cnt06">6</option>
-											<option value="cnt07">7</option>
-											<option value="cnt08">8</option>
-											<option value="cnt09">9</option>
-											<option value="cnt10">10</option>
+										<select class="custom-select" name="amount"
+											data-index="${status.index }" data-amount="">
+											<option value="1">1</option>
+											<option value="2">2</option>
+											<option value="3">3</option>
+											<option value="4">4</option>
+											<option value="5">5</option>
+											<option value="6">6</option>
+											<option value="7">7</option>
+											<option value="8">8</option>
+											<option value="9">9</option>
+											<option value="10">10</option>
 										</select>
 									</div>
 									<div class="input-group mb-3 input-group-lg">
@@ -81,15 +81,33 @@
 						</div>
 					</div>
 				</c:forEach>
-				<div>
-					<a href="" class="btn btn-danger float-right mr-3"
-						data-pno="">선택 상품 주문</a> <a href=""
-						class="btn btn-success float-right mr-3" data-oper="get"
-						data-pno="">전체 상품 주문</a>
-				</div>
+			</div>
+			<div class="d-flex justify-content-center mb-3">
+				<a href="" class="btn btn-warning float-right mr-3" data-pno="">선택
+					상품 주문</a> <a href="" class="btn btn-success float-right mr-3"
+					data-oper="get" data-pno="">전체 상품 주문</a> <a href=""
+					class="btn btn-danger float-right mr-3" data-pno="">전체 상품 삭제</a>
 			</div>
 		</div>
 	</main>
 
 	<script type="text/javascript" src="/resources/js/cartJS.js"></script>
+	<script type="text/javascript">
+		$(document).ready(
+				function() {
+					var selectTag = $("select[name='amount']");
+					$(selectTag).each(
+							function(i, e) {
+								if ($(this).val() === $(selectTag).data(
+										"amount")) {
+									$(
+											selectTag
+													+ " option[value='"
+													+ $(selectTag).data(
+															"amount") + "']")
+											.attr("selected", "selected");
+								}
+							});
+				});
+	</script>
 	<%@ include file="../includes/footer.jsp"%>

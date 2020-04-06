@@ -24,16 +24,22 @@ $(document).ready(
 					});
 				});
 			}
+			function operation(form, data){
+				form.append("<input type='hidden' name='pno' value='"
+						+ data + "'>");
+				form.attr("action", "/product/get").submit();
+			} 
+			
 			$(".add-cart-btn").on(
 					"click",
 					function(e) {
 						alert("장바구니에 추가되었습니다.");
 						var userID = "unknown";
 						var pno = $(this).data("pno");
-						var cartVO = {userID, pno};
-						console.log(cartVO);
+						var amount = $("select[name='amount']").val();
+						var cartVO = {userID, pno, amount};
 						
-						$.getJSON("/product/get/" + $(this).data("pno")
+						$.getJSON("/product/get/" + pno
 								+ ".json", function(result) {
 							console.log(result);
 							$.ajax({
@@ -60,11 +66,14 @@ $(document).ready(
 				
 			});
 			$(".cart-toggle").on("click", function(e) {
+				var cart = $(".cart-list");
 				$.getJSON("/cartList.json", function(result) {
+					var str = "";
 					$(result).each(function(i, item){
-						console.log(item);
-//						sessionStorage.setItem("CART" + i, JSON.stringify(item));
+						str += "<a class='dropdown-item' data-oper='get' data-pno='" 
+							+ item.pno + "'>" + item.title + "</a>";
 					});
+					cart.html(str);
 				});
 			});
 			
@@ -86,13 +95,15 @@ $(document).ready(
 				console.log(pno);
 			});
 
-			$("a[data-oper='get']").on(
-					"click",
+			$(document).on(
+					"click", "a[data-oper='get']",
 					function(e) {
 						var pno = $(this).data("pno");
-						operForm.append("<input type='hidden' name='pno' value='"
-								+ pno + "'>");
-						operForm.attr("action", "/product/get").submit();
+						console.log(pno);
+// operForm.append("<input type='hidden' name='pno' value='"
+// + pno + "'>");
+// operForm.attr("action", "/product/get").submit();
+						operation(operForm, pno);
 					});
 			$(".pdt-del-btn").on("click", function(e){
 				var pno = $(this).data("pno");

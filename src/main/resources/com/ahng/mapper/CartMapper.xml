@@ -27,13 +27,13 @@
 	</select>
 
 	<insert id="insert">
-		insert into cart(userid, pno) values(#{userID},
-		#{pno})
+		insert into cart(userid, pno, amount) values(#{userID},
+		#{pno}, #{amount})
 	</insert>
 
 	<select id="read" resultType="com.ahng.domain.CartVO">
-		select * from cart where pno =
-		#{pno}
+		select * from cart where userid =
+		#{userID}
 	</select>
 
 	<delete id="delete">

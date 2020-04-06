@@ -32,52 +32,6 @@ body {
 				<li class="breadcrumb-item active">Example</li>
 			</ol>
 			
-			<div class="d-flex border">
-				<div class="col-xl-3 col-md-6">
-					<img src="/resources/assets/img/42-black-1_GEO_KR.jpg"
-						style="width: 100%"> <img
-						src="/resources/assets/img/iPhone_11bk.jpg" style="width: 100%">
-					<img src="/resources/assets/img/cake.png" style="width: 100%">
-					<img src="/resources/assets/img/circus.png" style="width: 100%">
-					<img src="/resources/assets/img/cabin.png" style="width: 100%">
-					<img src="/resources/assets/img/game.png" style="width: 100%">
-					<img src="/resources/assets/img/safe.png" style="width: 100%">
-				</div>
-				<div class="col-xl-3 col-md-6">
-					<img src="/resources/assets/img/submarine.png" style="width: 100%">
-					<img src="/resources/assets/img/42-black-2_GEO_KR.jpg"
-						style="width: 100%"> <img
-						src="/resources/assets/img/42-black-1_GEO_KR.jpg"
-						style="width: 100%"> <img
-						src="/resources/assets/img/circus.png" style="width: 100%">
-					<img src="/resources/assets/img/iPhone_11wh.jpg"
-						style="width: 100%"> <img
-						src="/resources/assets/img/circus.png" style="width: 100%">
-				</div>
-				<div class="col-xl-3 col-md-6">
-					<img src="/resources/assets/img/iPhone_11bk.jpg"
-						style="width: 100%"> <img
-						src="/resources/assets/img/iPhone_11yw.jpg" style="width: 100%">
-					<img src="/resources/assets/img/safe.png" style="width: 100%">
-					<img src="/resources/assets/img/game.png" style="width: 100%">
-					<img src="/resources/assets/img/game.png" style="width: 100%">
-					<img src="/resources/assets/img/42-black-2_GEO_KR.jpg"
-						style="width: 100%"> <img
-						src="/resources/assets/img/iPhone_11wh.jpg" style="width: 100%">
-				</div>
-				<div class="col-xl-3 col-md-6">
-					<img src="/resources/assets/img/42-black-1_GEO_KR.jpg"
-						style="width: 100%"> <img
-						src="/resources/assets/img/iPhone_11bk.jpg" style="width: 100%">
-					<img src="/resources/assets/img/cake.png" style="width: 100%">
-					<img src="/resources/assets/img/circus.png" style="width: 100%">
-					<img src="/resources/assets/img/cabin.png" style="width: 100%">
-					<img src="/resources/assets/img/game.png" style="width: 100%">
-					<img src="/resources/assets/img/safe.png" style="width: 100%">
-				</div>
-			</div>
-
-
 			<div class="row">
 				<div class="col-xl-3 col-md-6">
 					<div class="card bg-primary text-white mb-4">

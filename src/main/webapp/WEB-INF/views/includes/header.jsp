@@ -85,12 +85,8 @@
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
 					<div class="cart-list">
-						<!-- 						<div class="dropdown-item btn"> -->
-						<!-- 							<a class="dropdown-item" href="#">Item 1</a> -->
-						<!-- 						</div> -->
-						<!-- 						<div class="dropdown-item btn"> -->
-						<!-- 							<a class="dropdown-item" href="#">Item 2</a> -->
-						<!-- 						</div> -->
+						<div class="dropdown-item">Item 1</div>
+						<a class="dropdown-item" href="#">Item 2</a>
 					</div>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="/product/cart">Cart Page</a> <a

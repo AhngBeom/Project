@@ -99,22 +99,44 @@ label {
 						<%-- 							<c:set var="total" value="${total + item.price }"></c:set> --%>
 						<%-- 							<c:set var="count" value="${status.count}"></c:set> --%>
 						<%-- 						</c:forEach> --%>
-						<p class="d-flex justify-content-between mb-3">
-							<a href="#">${order.name }</a> <span class="price">${order.price }</span>
-						</p>
-						<c:set var="total" value="${total + order.price }"></c:set>
-						<c:set var="count" value="${status.count}"></c:set>
-						<hr>
-						<div class="d-flex justify-content-between">
-							<div>
-								<span class="price" style="color: black"><i
-									class="fa fa-shopping-cart"></i> <b><c:out
-											value="${count }" /></b></span>
+						<div class="d-flex justify-content-between mb-3">
+							<a href="#">${order.name }</a>
+							<div class="col-xl-4">
+								<div class="input-group mb-3 col-xl-12">
+									<div class="input-group-prepend">
+										<label class="input-group-text" for="inputGroupSelect01">Options</label>
+									</div>
+									<select class="custom-select" id="inputGroupSelect01">
+										<option selected>Options</option>
+										<option value="1">Option 1</option>
+										<option value="2">Option 2</option>
+										<option value="3">Option 3</option>
+									</select>
+								</div>
+								<div class="input-group mb-3 col-xl-6 float-right">
+									<select class="custom-select" id="inputGroupSelect03"
+										aria-label="Example select with button addon">
+										<option value="1" selected>1</option>
+										<option value="2">2</option>
+										<option value="3">3</option>
+									</select>
+									<div class="input-group-append">
+										<label class="input-group-text btn btn-outline-secondary">Amount</label>
+									</div>
+								</div>
 							</div>
-							<div class="d-flex">
-								<p class="mr-3">Total</p>
-								<span class="price" style="color: black"><b><c:out
-											value="${total }" /></b></span>
+						</div>
+						<hr>
+						<div class="d-flex justify-content-end">
+							<div class="input-group col-xl-2">
+								<div class="input-group-prepend">
+									<span class="input-group-text">Price</span>
+								</div>
+								<input type="text" class="form-control text-right" name="price"
+									value="${order.price }" readonly="readonly">
+								<div class="input-group-append">
+									<span class="input-group-text">￦</span>
+								</div>
 							</div>
 						</div>
 					</div>

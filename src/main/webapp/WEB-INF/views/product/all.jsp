@@ -20,7 +20,7 @@
 					<c:forEach items="${pdt }" var="pdt" varStatus="status">
 						<c:if test="${status.index % 4 eq 0}">
 							<div class="card mb-3">
-								<div class="card-header">
+								<div class="card-header pdt-header">
 									<img class="card-image"
 										src="/resources/assets/img/readyToImg.jpg" alt="Card image"
 										data-pno="${pdt.pno }" data-index="${status.index }"
@@ -61,7 +61,7 @@
 					<c:forEach items="${pdt }" var="pdt" varStatus="status">
 						<c:if test="${status.index % 4 eq 1}">
 							<div class="card mb-3">
-								<div class="card-header">
+								<div class="card-header pdt-header">
 									<img class="card-image"
 										src="/resources/assets/img/readyToImg.jpg" alt="Card image"
 										data-pno="${pdt.pno }" data-index="${status.index }"
@@ -102,7 +102,7 @@
 					<c:forEach items="${pdt }" var="pdt" varStatus="status">
 						<c:if test="${status.index % 4 eq 2}">
 							<div class="card mb-3">
-								<div class="card-header">
+								<div class="card-header pdt-header">
 									<img class="card-image"
 										src="/resources/assets/img/readyToImg.jpg" alt="Card image"
 										data-pno="${pdt.pno }" data-index="${status.index }"
@@ -143,7 +143,7 @@
 					<c:forEach items="${pdt }" var="pdt" varStatus="status">
 						<c:if test="${status.index % 4 eq 3}">
 							<div class="card mb-3">
-								<div class="card-header">
+								<div class="card-header pdt-header">
 									<img class="card-image"
 										src="/resources/assets/img/readyToImg.jpg" alt="Card image"
 										data-pno="${pdt.pno }" data-index="${status.index }"
@@ -151,7 +151,7 @@
 									<div
 										class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
 										<div class="d-flex justify-content-around w-100 mb-3">
-											<button class="btn btn-warning add-cart-btn"
+											<button class="btn btn-warning add-cart-simple"
 												data-pno="${pdt.pno }">
 												<i class="fas fa-cart-plus"></i> 장바구니
 											</button>
