@@ -92,22 +92,4 @@
 	</main>
 
 	<script type="text/javascript" src="/resources/js/cartJS.js"></script>
-	<script type="text/javascript">
-		$(document).ready(
-				function() {
-					var selectTag = $("select[name='amount']");
-					$(selectTag).each(
-							function(i, e) {
-								if ($(this).val() === $(selectTag).data(
-										"amount")) {
-									$(
-											selectTag
-													+ " option[value='"
-													+ $(selectTag).data(
-															"amount") + "']")
-											.attr("selected", "selected");
-								}
-							});
-				});
-	</script>
 	<%@ include file="../includes/footer.jsp"%>

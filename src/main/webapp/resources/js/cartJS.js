@@ -25,27 +25,17 @@ $(document)
 																				function(
 																						i,
 																						e) {
-//																					console
-//																							.log(Number($(
-//																									this)
-//																									.val()));
 																					if (Number($(
 																							this)
 																							.val()) === amount) {
-																						console
-																								.log($(
-																										this)
-																										.val());
-																						 $(
-																						 selectTag
-																						 .children("option[value='"
-																						 +
-																						 amount
-																						 +
-																						 "']"))
-																						 .attr(
-																						 "selected",
-																						 "selected");
+																						$(
+																								selectTag
+																										.children("option[value='"
+																												+ amount
+																												+ "']"))
+																								.attr(
+																										"selected",
+																										"selected");
 																					}
 																				});
 															});
@@ -56,8 +46,6 @@ $(document)
 																pno : pno
 															},
 															function(arr) {
-																// console
-																// .log(arr);
 																if (arr.length != 0) {
 																	var imageThumbPath = encodeURIComponent(arr[0].uploadPath
 																			+ "/s_"
