@@ -1,5 +1,7 @@
 package com.ahng.mapper;
 
+import static org.hamcrest.CoreMatchers.nullValue;
+
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,8 +30,12 @@ public class MapperTests {
 
 	@Test
 	public void test() {
-		cartMapper.read("unknown");
-//		mapper.getList(new Criteria());
+		Criteria cri = new Criteria();
+		cri.setKeyword("Mac");
+		cri.setType("ND");
+		
+		List<ProductVO> list = mapper.getListWithPaging(cri, "");
+		list.forEach(product -> log.info(product));
 	}
 
 }

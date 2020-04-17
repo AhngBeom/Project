@@ -2,6 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ahng.mapper.ProductMapper">
 
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach item="type" collection="cri.typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'N'.toString()">
+							name like CONCAT('%',#{cri.keyword},'%')
+						</when>
+						<when test="type == 'D'.toString()">
+							descript like CONCAT('%',#{cri.keyword},'%')
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
 	<select id="getList" resultType="com.ahng.domain.ProductVO">
 		SELECT * FROM product AS A left
 		OUTER JOIN product_attach AS B ON A.pno = B.pno where B.sequence = 0
@@ -9,20 +26,33 @@
 		order by uptodate desc
 	</select>
 
-	<select id="categoryList" resultType="com.ahng.domain.ProductVO">
-		SELECT * FROM product AS A left
-		OUTER JOIN product_attach AS B ON A.pno = B.pno 
-		where (B.sequence = 0 or B.uuid is null) and category like #{category}
+	<select id="getListWithPaging"
+		resultType="com.ahng.domain.ProductVO">
+		SELECT (@ROWNUM:=@ROWNUM+1) rownum, pdt.*
+		<!-- , atch.* -->
+		FROM product AS pdt left OUTER JOIN product_attach AS atch ON pdt.pno
+		=
+		atch.pno, (select @ROWNUM:=0) rownum
+		where
+		<include refid="criteria"></include>
+		(atch.sequence = 0 or atch.uuid is null) and category like CONCAT('%', #{ctg}, '%')
+		order
+		by pdt.pno desc limit #{cri.pageNum}, #{cri.amount}
 	</select>
 
-	<insert id="insert">
-		<selectKey keyProperty="pno" order="BEFORE"
-			resultType="long">
-			select max(pno)+1 from product
-		</selectKey>
-		insert into product(pno, name, price, category, title, descript)
-		values(#{pno}, #{name},
+	<select id="getTotalCount" resultType="int">
+		select count(*) from
+		product where pno > 0 and category like #{ctg}
+		<!-- <include refid="criteria"></include> -->
+	</select>
+
+	<insert id="insert" parameterType="com.ahng.domain.ProductVO">
+		insert into product(name, price, category, title, descript)
+		values(#{name},
 		#{price}, #{category}, #{title}, #{descript})
+		<selectKey keyProperty="pno" order="AFTER" resultType="long">
+			select last_insert_id()
+		</selectKey>
 	</insert>
 
 	<select id="read" resultType="com.ahng.domain.ProductVO">
@@ -42,6 +72,5 @@
 	<delete id="delete">
 		delete from product where pno = #{pno}
 	</delete>
-
 
 </mapper>

@@ -9,8 +9,8 @@ import com.ahng.domain.ProductVO;
 public interface ProductService {
 
 	public List<ProductVO> getList(Criteria cri);
-	
-	public List<ProductVO> categoryList(String category);
+
+	public List<ProductVO> getListWithPaging(Criteria cri, String ctg);
 
 	public void register(ProductVO vo);
 
@@ -20,10 +20,10 @@ public interface ProductService {
 
 	public boolean remove(Long pno);
 
-	public int getTotal(Criteria cri);
+	public int getTotal(Criteria cri, String ctg);
 
 	public List<ProductAttachVO> getAttachList(Long pno);
-	
+
 	public List<ProductVO> getCartList(Long pno);
 
 }

@@ -17,11 +17,12 @@
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
 	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
 	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
 	rel="stylesheet" crossorigin="anonymous" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <script
 	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
 	crossorigin="anonymous"></script>
@@ -41,7 +42,7 @@
 
 <body class="sb-nav-fixed">
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-		<a class="navbar-brand" href="/pages/index">Shop</a>
+		<a class="navbar-brand" href="/product">Shop</a>
 		<button class="btn btn-link btn-sm order-1 order-lg-0"
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
@@ -53,18 +54,7 @@
 				aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
 		</div>
 		<!-- Navbar Search-->
-		<form
-			class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-			<div class="input-group">
-				<input class="form-control" type="text" placeholder="Search for..."
-					aria-label="Search" aria-describedby="basic-addon2" />
-				<div class="input-group-append">
-					<button class="btn btn-primary" type="button">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-			</div>
-		</form>
+
 		<!-- Navbar-->
 		<ul class="navbar-nav ml-auto ml-md-0">
 			<li class="nav-item dropdown"><a
@@ -131,11 +121,11 @@
 						<div class="collapse" id="collapseProducts"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link nav-product" href="/product/all">All</a> <a
-									class="nav-link nav-product" href="#" data-cate="Category 1">Category
+								<a class="nav-link nav-product" href="/product">All</a> <a
+									class="nav-link nav-product" href="#" data-ctg="Category 1">Category
 									1</a> <a class="nav-link nav-product" href="#"
-									data-cate="Category 2">Category 2</a> <a
-									class="nav-link nav-product" href="#" data-cate="Category 3">Category
+									data-ctg="Category 2">Category 2</a> <a
+									class="nav-link nav-product" href="#" data-ctg="Category 3">Category
 									3</a>
 							</nav>
 						</div>
@@ -207,13 +197,16 @@
 								</div>
 							</nav>
 						</div>
-						<a class="nav-link" href="charts"><div
+						<a class="nav-link" href="/pages/charts"><div
 								class="sb-nav-link-icon">
 								<i class="fas fa-chart-area"></i>
-							</div> Charts</a><a class="nav-link" href="tables"><div
+							</div> Charts</a><a class="nav-link" href="/pages/tables"><div
 								class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
-							</div> Tables</a>
+							</div> Tables</a> <a class="nav-link" href="/pages/test"><div
+								class="sb-nav-link-icon">
+								<i class="fas fa-random"></i>
+							</div> Test</a>
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">

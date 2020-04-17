@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ahng.domain.Criteria;
+import com.ahng.domain.PageDTO;
 import com.ahng.domain.ProductAttachVO;
 import com.ahng.domain.ProductVO;
 import com.ahng.service.ProductService;
@@ -54,6 +55,7 @@ public class AdminController {
 		log.info("===============================================");
 
 		service.register(vo);
+		log.info(vo.getPno());
 		rttr.addFlashAttribute("result", vo.getPno());
 		return "redirect:/admin/pdtTable";
 	}
@@ -63,7 +65,7 @@ public class AdminController {
 		model.addAttribute("pdt", service.get(pno));
 		// model.addAttribute("attach", service.getAttachList(pno));
 	}
-	
+
 	@PostMapping("/pdtModify")
 	public String modify(ProductVO vo, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info(vo);
@@ -81,6 +83,7 @@ public class AdminController {
 	@GetMapping("/pdtTable")
 	public void pdtTable(Criteria cri, Model model) {
 		model.addAttribute("pdt", service.getList(cri));
+		model.addAttribute("page", new PageDTO(cri, 123));
 	}
 
 	private void deleteFiles(List<ProductAttachVO> attachList) {
@@ -109,7 +112,7 @@ public class AdminController {
 	@PostMapping("/pdtDelete")
 	public String pdtTable(@RequestParam("pno") Long pno, RedirectAttributes rttr) {
 		List<ProductAttachVO> attachList = service.getAttachList(pno);
-		
+
 		if (service.remove(pno)) {
 			deleteFiles(attachList);
 			rttr.addFlashAttribute("result", "pdt-del-success");

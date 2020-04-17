@@ -91,5 +91,5 @@
 		</div>
 	</main>
 
-	<script type="text/javascript" src="/resources/js/cartJS.js"></script>
+	<script type="text/javascript" src="/resources/js/cart.js"></script>
 	<%@ include file="../includes/footer.jsp"%>

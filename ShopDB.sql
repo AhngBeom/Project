@@ -1,5 +1,5 @@
 create table product(
-	pno bigint(10) unsigned not null primary key auto_increment,
+	pno bigint(10) unsigned not null auto_increment primary key,
     name varchar(100),
     price bigint(10),
     category varchar(50),
@@ -8,10 +8,32 @@ create table product(
     regdate datetime default now(),
     uptodate datetime default now()
 );
-select * from product;
+create index idx_pdt on product(pno, uptodate, regdate);
+ALTER TABLE product AUTO_INCREMENT=1;
+select last_insert_id();
+
 insert into product(name, price) values('상품이름', 10000);
 delete from product;
-drop table product;
+
+select  (@ROWNUM:=@ROWNUM+1) rownum, product.* 
+from product use index(idx_pdt), (select @ROWNUM:=0) rownum 
+order by pno desc limit 0, 8;
+
+SELECT (@ROWNUM:=@ROWNUM+1) rownum, pdt.*, atch.*
+FROM product AS pdt left OUTER JOIN product_attach AS atch ON pdt.pno = atch.pno, (select @ROWNUM:=0) rownum
+where name like concat('%','Mac','%') and
+(atch.sequence = 0
+		or atch.uuid is null) and (category like concat('%', '', '%'))
+		order by pdt.pno desc limit 0, 8;
+
+
+SELECT AUTO_INCREMENT
+FROM information_schema.tables
+WHERE table_name = 'product';
+
+select * from product where name like '%Mac%' OR descript like '%%';
+select * from product;
+
 
 create table cart(
 	userid varchar(100),

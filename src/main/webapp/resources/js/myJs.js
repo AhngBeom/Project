@@ -2,10 +2,10 @@ $(document).ready(
 		function() {
 			var headForm = $("#headerForm");
 			$(".nav-product").on("click", function(e){
-				console.log($(this).data('cate'));
-				headForm.attr("action", "/product/category");
-				headForm.append("<input type='hidden' name='cate' value='"
-						+ $(this).data('cate') + "'>");
+				console.log($(this).data('ctg'));
+				headForm.attr("action", "/product");
+				headForm.append("<input type='hidden' name='ctg' value='"
+						+ $(this).data('ctg') + "'>");
 				headForm.submit();
 			});
 			
@@ -71,7 +71,7 @@ $(document).ready(
 					var str = "";
 					$(result).each(function(i, item){
 						str += "<a class='dropdown-item' data-oper='get' data-pno='" 
-							+ item.pno + "'>" + item.title + "</a>";
+							+ item.pno + "'>" + item.name + "</a>";
 					});
 					cart.html(str);
 				});
@@ -100,9 +100,6 @@ $(document).ready(
 					function(e) {
 						var pno = $(this).data("pno");
 						console.log(pno);
-// operForm.append("<input type='hidden' name='pno' value='"
-// + pno + "'>");
-// operForm.attr("action", "/product/get").submit();
 						operation(operForm, pno);
 					});
 			$(".pdt-del-btn").on("click", function(e){

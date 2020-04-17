@@ -7,7 +7,12 @@
 <div id="layoutSidenav_content">
 	<main>
 		<div class="container-fluid mt-3">
+			<form action="/product/all" method="get">
+				<input type="hidden" name="pageNum" value="${cri.pageNum }">
+				<input type="hidden" name="amount" value="${cri.amount }">
+			</form>
 			<ol class="breadcrumb mb-4">
+				<li class="breadcrumb-item active"><a href="#" id="listOper">List</a></li>
 				<li class="breadcrumb-item active">${pdt.category }</li>
 				<li class="breadcrumb-item">${pdt.title }</li>
 			</ol>
@@ -49,7 +54,8 @@
 										<div class="input-group-prepend">
 											<label class="input-group-text" for="inputGroupSelect01">수량</label>
 										</div>
-										<select class="custom-select" id="inputGroupSelect01" name="amount">
+										<select class="custom-select" id="inputGroupSelect01"
+											name="amount">
 											<option value="1" selected>1</option>
 											<option value="2">2</option>
 											<option value="3">3</option>
@@ -86,7 +92,7 @@
 							<p class="card-text">${pdt.title }</p>
 							<div
 								class="attach-list d-flex flex-column justify-content-center m-3"></div>
-							<p class="card-text">${pdt.descript }</p>
+							<textarea rows="10" class="col-xl-12" readonly="readonly">${pdt.descript }</textarea>
 						</div>
 					</div>
 				</div>
@@ -138,7 +144,7 @@
 																	+ attach.fileName
 																	+ "' data-type='"
 																	+ attach.fileType
-																	+ "'><img class='img-item' src='/display?fileName="
+																	+ "'><img class='img-item col-xl-12' src='/display?fileName="
 																					+ imageOriginPath
 																					+ "'>"
 																					// 																					+ overlay

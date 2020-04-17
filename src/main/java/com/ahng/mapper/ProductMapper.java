@@ -7,11 +7,13 @@ import org.apache.ibatis.annotations.Param;
 import com.ahng.domain.Criteria;
 import com.ahng.domain.ProductVO;
 
+import lombok.experimental.PackagePrivate;
+
 public interface ProductMapper {
 	
 	public List<ProductVO> getList(Criteria cri);
-
-	public List<ProductVO> categoryList(String category);
+	
+	public List<ProductVO> getListWithPaging(@Param("cri") Criteria cri, @Param("ctg") String category);
 
 	public void insert(ProductVO vo);
 
@@ -21,7 +23,7 @@ public interface ProductMapper {
 
 	public int delete(Long pno);
 
-	public int getTotalCount(Criteria cri);
+	public int getTotalCount(@Param("cri") Criteria cri, @Param("ctg") String category);
 
-	public void updateReplyCnt(@Param("pno") Long pno, @Param("amount") int amount);
+//	public void updateReplyCnt(@Param("pno") Long pno, @Param("amount") int amount);
 }

@@ -16,12 +16,15 @@
 </div>
 </div>
 
+
 <script
 	src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"
 	crossorigin="anonymous"></script>
+
 <script type="text/javascript" src="/resources/js/scripts.js"></script>
-<script type="text/javascript" src="/resources/js/attachJS.js?ver=1"></script>
-<script type="text/javascript" src="/resources/js/myJs.js?ver=1"></script>
+<script type="text/javascript" src="/resources/js/attach.js"></script>
+<script type="text/javascript" src="/resources/js/myJs.js"></script>
+<script type="text/javascript" src="/resources/js/operJs.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
 	crossorigin="anonymous"></script>

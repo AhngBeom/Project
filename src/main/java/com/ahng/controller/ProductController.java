@@ -15,12 +15,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ahng.domain.Criteria;
+import com.ahng.domain.PageDTO;
 import com.ahng.domain.ProductVO;
 import com.ahng.service.CartService;
 import com.ahng.service.ProductService;
 
+import lombok.extern.log4j.Log4j;
+
 @Controller
-@RequestMapping("/product/*")
+@Log4j
+@RequestMapping("/product")
 public class ProductController {
 
 	@Autowired
@@ -28,14 +32,13 @@ public class ProductController {
 	@Autowired
 	private CartService cartService;
 
-	@GetMapping("/all")
-	public void all(Criteria cri, Model model) {
-		model.addAttribute("pdt", pdtService.getList(cri));
-	}
-
-	@GetMapping("/category")
-	public void category(@RequestParam("cate") String category, Model model) {
-		model.addAttribute("pdt", pdtService.categoryList(category));
+	@RequestMapping(value = "", method = RequestMethod.GET)
+	public String all(@RequestParam(value = "ctg", defaultValue = "%") String ctg, Criteria cri, Model model) {
+		log.info("List : " + cri);
+		log.info("Total : " + pdtService.getTotal(cri, ctg));
+		model.addAttribute("pdt", pdtService.getListWithPaging(cri, ctg));
+		model.addAttribute("page", new PageDTO(cri, pdtService.getTotal(cri, ctg)));
+		return "/product/list";
 	}
 
 	@GetMapping("/get")
@@ -49,12 +52,12 @@ public class ProductController {
 	public ResponseEntity<ProductVO> get(@PathVariable("pno") Long pno) {
 		return new ResponseEntity<>(pdtService.get(pno), HttpStatus.OK);
 	}
-	
+
 	@GetMapping("/orderDirect")
 	public void directOrder(@RequestParam("pno") Long pno, Model model) {
 		model.addAttribute("order", pdtService.get(pno));
 	}
-	
+
 	@GetMapping("/orderCart")
 	public void cartOrder(Model model) {
 		model.addAttribute("item", cartService.getList("unknown"));

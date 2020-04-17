@@ -29,15 +29,16 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public List<ProductVO> categoryList(String category) {
-		return mapper.categoryList(category);
+	public List<ProductVO> getListWithPaging(Criteria cri, String ctg) {
+		return mapper.getListWithPaging(cri ,ctg);
 	}
 
 	@Transactional
 	@Override
 	public void register(ProductVO vo) {
 		mapper.insert(vo);
-		if(vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
+		log.info(vo.getPno());
+		if (vo.getAttachList() == null || vo.getAttachList().size() <= 0) {
 			return;
 		}
 		vo.getAttachList().forEach(attach -> {
@@ -55,15 +56,15 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public boolean modify(ProductVO vo) {
 		attachMapper.deleteAll(vo.getPno());
-		
+
 		boolean result = mapper.update(vo) == 1;
-		if(result && vo.getAttachList() != null && vo.getAttachList().size() > 0) {
+		if (result && vo.getAttachList() != null && vo.getAttachList().size() > 0) {
 			vo.getAttachList().forEach(attach -> {
 				attach.setPno(vo.getPno());
 				attachMapper.insert(attach);
 			});
 		}
-		
+
 		return result;
 	}
 
@@ -74,9 +75,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int getTotal(Criteria cri) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getTotal(Criteria cri, String ctg) {
+		return mapper.getTotalCount(cri, ctg);
 	}
 
 	@Override

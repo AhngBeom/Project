@@ -26,8 +26,8 @@
 						<i class="fas fa-table mr-1"></i>Products
 					</div>
 					<div>
-						<a href="/admin/pdtAdd" class="btn btn-primary">
-							<i class="fas fa-plus-circle"></i>Addition
+						<a href="/admin/pdtAdd" class="btn btn-primary"> <i
+							class="fas fa-plus-circle"></i>Addition
 						</a>
 					</div>
 				</div>
@@ -43,8 +43,8 @@
 									<th>Category</th>
 									<th>Regit Date</th>
 									<th>Up to Date</th>
-									<th>Volume</th>
-									<th>Selected</th>
+									<th>Vol</th>
+									<th>Select</th>
 									<th>Delete</th>
 								</tr>
 							</thead>
@@ -56,8 +56,8 @@
 									<th>Category</th>
 									<th>Regit Date</th>
 									<th>Up to Date</th>
-									<th>Volume</th>
-									<th>Selected</th>
+									<th>Vol</th>
+									<th>Select</th>
 									<th>Delete</th>
 								</tr>
 							</tfoot>
@@ -67,7 +67,7 @@
 										<td><c:out value="${pdt.pno }" /></td>
 										<td><a href="/admin/pdtInfo?pno=${pdt.pno }"
 											data-pno="${pdt.pno }"><c:out value="${pdt.name }" /></a></td>
-										<td>￦ <c:out value="${pdt.price }" /></td>
+										<td>￦<c:out value="${pdt.price}" /></td>
 										<td><c:out value="${pdt.category }" /></td>
 										<td><fmt:formatDate value="${pdt.regDate }"
 												pattern="yyyy-MM-dd hh:mm:ss" /></td>

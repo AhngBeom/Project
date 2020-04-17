@@ -50,12 +50,18 @@ data-oper='get' Function 추가 (headerForm, operForm)
 
 상품 옵션 내보내기 & 가져오기 
 
-상품 페이지 레이아웃 (Page Number || Scroll and Spinner)
-
 장바구니 화면 수량변경 문제로 인한 오류를 방지하여 Form 태그 추가
 
+==========================================================
 
+상품 페이지 레이아웃 (Page Number || Scroll and Spinner)
 
+Page Request(cri.getPageNum, cri.amount) -> 
+Controller(cri, pageDTO) -> Service(cri) -> Mapper(cri.pageNum, cri.amount)
+ -> Service(cri) -> Controller(cri) 
+ -> Page Response(cri.getPageNum, cri.amount)
+ 
+Pagination 코드 캡슐화?
 
 
 
