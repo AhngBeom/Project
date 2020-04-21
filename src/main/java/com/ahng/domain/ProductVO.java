@@ -1,5 +1,6 @@
 package com.ahng.domain;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
 
@@ -15,7 +16,7 @@ public class ProductVO {
 	private String title;
 	private String descript;
 	private Date regDate;
-	private Date upToDate;
+	private Timestamp upToDate;
 	
 	private List<CartVO> cartVO;
 	

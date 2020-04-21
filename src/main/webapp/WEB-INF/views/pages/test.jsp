@@ -17,9 +17,6 @@
 <link rel="stylesheet" type="text/css"
 	href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.dataTables.min.css">
 
-<!-- <link rel="stylesheet" type="text/css" -->
-<!-- 	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"> -->
-
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"
 	crossorigin="anonymous"></script>
 <script
@@ -29,16 +26,6 @@
 	src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"
 	crossorigin="anonymous"></script>
 
-<!-- <script -->
-<!-- 	src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js" -->
-<!-- 	crossorigin="anonymous"></script> -->
-
-<!-- <link rel="stylesheet" -->
-<!-- 	href="https://demos.jquerymobile.com/1.4.2/css/themes/default/jquery.mobile-1.4.2.min.css"> -->
-<!-- <script src="https://demos.jquerymobile.com/1.4.2/js/jquery.js"></script> -->
-
-<!-- <script -->
-<!-- 	src="https://demos.jquerymobile.com/1.4.2/js/jquery.mobile-1.4.2.min.js"></script> -->
 </head>
 <style>
 form {
@@ -61,18 +48,8 @@ form {
 }
 </style>
 <body style="padding: 10px;">
-	<a href="/product">home</a>
-	<form>
-		<div data-role="rangeslider">
-			<label for="range-1a">Rangeslider:</label> <input type="range"
-				name="range-1a" id="range-1a" min="0" max="100" value="40"
-				data-popup-enabled="true" data-show-value="true"> <label
-				for="range-1b">Rangeslider:</label> <input type="range"
-				name="range-1b" id="range-1b" min="0" max="100" value="80"
-				data-popup-enabled="true" data-show-value="true">
-		</div>
-	</form>
-	<table id="example" class="display nowrap" style="width: 100%">
+	<a href="/product" style="margin-bottom: 10px;">home</a>
+	<table id="example" class="display nowrap" style="width: 100%; border-style: solid;">
 		<thead>
 			<tr>
 				<th>First name</th>
@@ -717,29 +694,6 @@ form {
 		</tbody>
 	</table>
 
-	<form action="/pages/test" method="get" id="searchForm">
-		<div class="bg-light border mb-3 p-3 rounded-lg">
-			<div class="input-group col-xl-12">
-				<select class="form-control col-xl-4 col-md-4">
-					<option value="A"
-						<c:out value="${page.cri.type == 'A' ? 'selected' : '' }"/>>모든
-						조건</option>
-					<option value="NT"
-						<c:out value="${page.cri.type == 'NT' ? 'selected' : '' }"/>>이름
-						or 제목</option>
-					<option value="C"
-						<c:out value="${page.cri.type == 'C' ? 'selected' : '' }"/>>내용</option>
-				</select> <input class="form-control col-xl-8 col-md-8" name="keyword"
-					value='<c:out value="${page.cri.keyword }"/>' type="text"
-					placeholder="Search for..." aria-label="Search" />
-				<div class="input-group-append">
-					<button class="btn btn-primary" id="searchBtn">
-						<i class="fas fa-search"></i>
-					</button>
-				</div>
-			</div>
-		</div>
-	</form>
 </body>
 <script type="text/javascript">
 	$(document)

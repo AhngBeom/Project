@@ -16,7 +16,7 @@ public class PageController {
 	private ProductService pdtService;
 	@GetMapping("/test")
 	public void Test(Criteria cri, Model model) {
-		model.addAttribute("pdt", pdtService.getList(cri));
+		model.addAttribute("pdt", pdtService.getPdtList(cri));
 	}
 	
 	@GetMapping("/401")

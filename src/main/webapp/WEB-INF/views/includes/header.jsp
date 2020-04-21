@@ -106,6 +106,8 @@
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/admin/pdtTable">Table</a> <a
 									class="nav-link" href="/admin/pdtAdd">Addition</a>
+									<a
+									class="nav-link" href="/admin/diary">Diary</a>
 							</nav>
 						</div>
 						<div class="sb-sidenav-menu-heading">Core</div>
@@ -121,7 +123,7 @@
 						<div class="collapse" id="collapseProducts"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link nav-product" href="/product">All</a> <a
+								<a class="nav-link nav-product" href="/product" data-ctg="%">All</a> <a
 									class="nav-link nav-product" href="#" data-ctg="Category 1">Category
 									1</a> <a class="nav-link nav-product" href="#"
 									data-ctg="Category 2">Category 2</a> <a

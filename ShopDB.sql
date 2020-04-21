@@ -8,6 +8,7 @@ create table product(
     regdate datetime default now(),
     uptodate datetime default now()
 );
+
 create index idx_pdt on product(pno, uptodate, regdate);
 ALTER TABLE product AUTO_INCREMENT=1;
 select last_insert_id();
@@ -19,19 +20,20 @@ select  (@ROWNUM:=@ROWNUM+1) rownum, product.*
 from product use index(idx_pdt), (select @ROWNUM:=0) rownum 
 order by pno desc limit 0, 8;
 
-SELECT (@ROWNUM:=@ROWNUM+1) rownum, pdt.*, atch.*
+SELECT (@ROWNUM:=@ROWNUM+1) rownum, name, price
 FROM product AS pdt left OUTER JOIN product_attach AS atch ON pdt.pno = atch.pno, (select @ROWNUM:=0) rownum
-where name like concat('%','Mac','%') and
-(atch.sequence = 0
-		or atch.uuid is null) and (category like concat('%', '', '%'))
-		order by pdt.pno desc limit 0, 8;
+where (atch.sequence = 0
+		or atch.uuid is null) and (category like concat('%', "%", '%'))
+		order by price desc limit 0, 12;
 
 
 SELECT AUTO_INCREMENT
 FROM information_schema.tables
 WHERE table_name = 'product';
 
-select * from product where name like '%Mac%' OR descript like '%%';
+select pno, name, format(price, 0) as price, category, descript, regdate, uptodate from product;
+SELECT (@ROWNUM:=@ROWNUM+1) rownum, pdt.* 
+		FROM product AS pdt, (select @ROWNUM:=0) rownum;
 select * from product;
 
 
@@ -78,3 +80,14 @@ SELECT * FROM product AS A left
 select filename, uploadpath from product_attach where uploadpath = subdate(curdate(), 1);    
 select filename, uploadpath from product_attach;
 select subdate(curdate(), 1) from dual;
+
+create table diary(
+	dno bigint(10) unsigned not null auto_increment primary key,
+    title varchar(100),
+    content varchar(1000),
+    regdate datetime default now(),
+    uptodate datetime default now()
+);
+insert into diary(title, content) values("다이어리 테스트 제목", "다이어리 테스트 내용");
+select * from diary;
+

@@ -13,9 +13,6 @@
 			<c:choose>
 				<c:when test="${page.total == 0}">
 					<div class="img-fluid col-xl-12 mt-4">
-						<!-- 						<img class="card-img-top" -->
-						<!-- 							src="https://www.w3schools.com/w3images/photographer.jpg" -->
-						<!-- 							alt="Card image" style="width: 100%; filter: blur(6px);"> -->
 						<img class="card-img-top"
 							src="/resources/assets/img/pexels-photo-1546901.jpeg"
 							alt="Card image"
@@ -52,12 +49,18 @@
 									</button>
 								</div>
 							</div>
-							<input type="range" class="custom-range" id="customRange1">
-							<input type="range" class="custom-range" id="customRange1">
+
 						</div>
 						<input type="hidden" name="pageNum" value="${page.cri.pageNum }">
 						<input type="hidden" name="amount" value="${page.cri.amount }">
 					</form>
+					<button>상품평</button>
+					<button>이름</button>
+					<button>판매</button>
+					<button>가격</button>
+					<a class="btn btn-default" href="/product"><i class="fas fa-th"></i></a>
+					<a class="btn btn-default" href="/product/list2"><i
+						class="fas fa-list"></i></a>
 					<div class="row">
 						<div class="col-xl-3 col-md-6">
 							<c:forEach items="${pdt }" var="pdt" varStatus="status">
@@ -275,6 +278,7 @@
 	</div>
 
 	<form id="pageForm" action="/product" method="get">
+		<input type='hidden' name="category" value="${page.cri.category }">
 		<input type='hidden' name="pageNum" value="${page.cri.pageNum }">
 		<input type='hidden' name="amount" value="${page.cri.amount }">
 		<input type='hidden' name="type"

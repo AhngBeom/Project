@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ahng.domain.Criteria;
+import com.ahng.domain.DiaryVO;
 import com.ahng.domain.ProductAttachVO;
 import com.ahng.domain.ProductVO;
 import com.ahng.mapper.ProductAttachMapper;
@@ -24,13 +25,18 @@ public class ProductServiceImpl implements ProductService {
 	private ProductAttachMapper attachMapper;
 
 	@Override
-	public List<ProductVO> getList(Criteria cri) {
-		return mapper.getList(cri);
+	public List<ProductVO> getPdtList(Criteria cri) {
+		return mapper.getPdtList(cri);
 	}
 
 	@Override
-	public List<ProductVO> getListWithPaging(Criteria cri, String ctg) {
-		return mapper.getListWithPaging(cri ,ctg);
+	public List<DiaryVO> getDiaryList(Criteria cri) {
+		return mapper.getDiaryList(cri);
+	}
+
+	@Override
+	public List<ProductVO> getListWithPaging(Criteria cri) {
+		return mapper.getListWithPaging(cri);
 	}
 
 	@Transactional
@@ -75,8 +81,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	@Override
-	public int getTotal(Criteria cri, String ctg) {
-		return mapper.getTotalCount(cri, ctg);
+	public int getTotal(Criteria cri) {
+		return mapper.getTotalCount(cri);
 	}
 
 	@Override

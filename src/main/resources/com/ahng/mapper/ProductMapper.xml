@@ -4,14 +4,14 @@
 
 	<sql id="criteria">
 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-			<foreach item="type" collection="cri.typeArr">
+			<foreach item="type" collection="typeArr">
 				<trim prefix="OR">
 					<choose>
 						<when test="type == 'N'.toString()">
-							name like CONCAT('%',#{cri.keyword},'%')
+							name like CONCAT('%',#{keyword},'%')
 						</when>
 						<when test="type == 'D'.toString()">
-							descript like CONCAT('%',#{cri.keyword},'%')
+							descript like CONCAT('%',#{keyword},'%')
 						</when>
 					</choose>
 				</trim>
@@ -19,13 +19,18 @@
 		</trim>
 	</sql>
 
-	<select id="getList" resultType="com.ahng.domain.ProductVO">
-		SELECT * FROM product AS A left
-		OUTER JOIN product_attach AS B ON A.pno = B.pno where B.sequence = 0
+	<select id="getPdtList" resultType="com.ahng.domain.ProductVO">
+		SELECT * FROM product AS A
+		left
+		OUTER JOIN product_attach AS B ON A.pno = B.pno where B.sequence =
+		0
 		or B.uuid is null
 		order by uptodate desc
 	</select>
-
+	<select id="getDiaryList" resultType="com.ahng.domain.DiaryVO">
+		SELECT * FROM diary
+		order by dno desc
+	</select>
 	<select id="getListWithPaging"
 		resultType="com.ahng.domain.ProductVO">
 		SELECT (@ROWNUM:=@ROWNUM+1) rownum, pdt.*
@@ -35,14 +40,16 @@
 		atch.pno, (select @ROWNUM:=0) rownum
 		where
 		<include refid="criteria"></include>
-		(atch.sequence = 0 or atch.uuid is null) and category like CONCAT('%', #{ctg}, '%')
+		(atch.sequence = 0 or atch.uuid is null) and category like CONCAT('%',
+		#{category}, '%')
 		order
-		by pdt.pno desc limit #{cri.pageNum}, #{cri.amount}
+		by ${sort} desc limit #{pageNum}, #{amount}
 	</select>
 
 	<select id="getTotalCount" resultType="int">
 		select count(*) from
-		product where pno > 0 and category like #{ctg}
+		product where pno > 0 and category like
+		CONCAT('%', #{category}, '%')
 		<!-- <include refid="criteria"></include> -->
 	</select>
 

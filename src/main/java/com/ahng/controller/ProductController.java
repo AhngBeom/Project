@@ -33,12 +33,20 @@ public class ProductController {
 	private CartService cartService;
 
 	@RequestMapping(value = "", method = RequestMethod.GET)
-	public String all(@RequestParam(value = "ctg", defaultValue = "%") String ctg, Criteria cri, Model model) {
+	public String list(Criteria cri, Model model) {
 		log.info("List : " + cri);
-		log.info("Total : " + pdtService.getTotal(cri, ctg));
-		model.addAttribute("pdt", pdtService.getListWithPaging(cri, ctg));
-		model.addAttribute("page", new PageDTO(cri, pdtService.getTotal(cri, ctg)));
+		log.info("Total : " + pdtService.getTotal(cri));
+		model.addAttribute("pdt", pdtService.getListWithPaging(cri));
+		model.addAttribute("page", new PageDTO(cri, pdtService.getTotal(cri)));
 		return "/product/list";
+	}
+	
+	@RequestMapping(value = "/list2", method = RequestMethod.GET)
+	public void list2(Criteria cri, Model model) {
+		log.info("List : " + cri);
+		log.info("Total : " + pdtService.getTotal(cri));
+		model.addAttribute("pdt", pdtService.getListWithPaging(cri));
+		model.addAttribute("page", new PageDTO(cri, pdtService.getTotal(cri)));
 	}
 
 	@GetMapping("/get")

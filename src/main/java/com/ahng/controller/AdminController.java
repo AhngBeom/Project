@@ -82,8 +82,15 @@ public class AdminController {
 
 	@GetMapping("/pdtTable")
 	public void pdtTable(Criteria cri, Model model) {
-		model.addAttribute("pdt", service.getList(cri));
-		model.addAttribute("page", new PageDTO(cri, 123));
+		model.addAttribute("pdt", service.getPdtList(cri));
+		model.addAttribute("page", new PageDTO(cri, service.getTotal(cri)));
+	}
+	@GetMapping("/diary")
+	public void diary(Criteria cri, Model model) {
+//		cri = new Criteria("", 0, 10);
+//		cri.setTable("diary");
+		model.addAttribute("diary", service.getDiaryList(cri));
+		model.addAttribute("page", new PageDTO(cri, service.getTotal(cri)));
 	}
 
 	private void deleteFiles(List<ProductAttachVO> attachList) {

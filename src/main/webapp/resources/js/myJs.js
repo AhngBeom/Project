@@ -4,7 +4,7 @@ $(document).ready(
 			$(".nav-product").on("click", function(e){
 				console.log($(this).data('ctg'));
 				headForm.attr("action", "/product");
-				headForm.append("<input type='hidden' name='ctg' value='"
+				headForm.append("<input type='hidden' name='category' value='"
 						+ $(this).data('ctg') + "'>");
 				headForm.submit();
 			});
