@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
 --
--- Host: localhost    Database: shopdb
+-- Host: 127.0.0.1    Database: shopdb
 -- ------------------------------------------------------
 -- Server version	8.0.19
 
@@ -35,7 +35,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES ('unknown',13,6),('unknown',32,1);
+INSERT INTO `cart` VALUES ('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',29,0),('unknown',28,0),('unknown',28,0),('unknown',28,0);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +48,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-04-06 23:47:36
+-- Dump completed on 2020-05-04  2:12:57
