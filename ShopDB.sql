@@ -26,7 +26,6 @@ where (atch.sequence = 0
 		or atch.uuid is null) and (category like concat('%', "%", '%'))
 		order by price desc limit 0, 12;
 
-
 SELECT AUTO_INCREMENT
 FROM information_schema.tables
 WHERE table_name = 'product';

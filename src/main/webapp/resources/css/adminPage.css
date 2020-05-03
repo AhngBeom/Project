@@ -1,0 +1,14 @@
+@charset "UTF-8";
+
+.breadcrumb-item a {
+	color: gray;
+}
+
+.input-group-text {
+	width: 135px;
+}
+
+.attach-list {
+	height: auto;
+	padding: 10px;
+}

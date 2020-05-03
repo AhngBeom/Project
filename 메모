@@ -63,5 +63,10 @@ Controller(cri, pageDTO) -> Service(cri) -> Mapper(cri.pageNum, cri.amount)
  
 Pagination 코드 캡슐화?
 
+==========================================================
+
+필터 토글
+
+모바일 버전 레이아웃 조정
 
 

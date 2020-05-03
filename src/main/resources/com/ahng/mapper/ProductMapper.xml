@@ -11,6 +11,7 @@
 							name like CONCAT('%',#{keyword},'%')
 						</when>
 						<when test="type == 'D'.toString()">
+							title like CONCAT('%',#{keyword},'%') or
 							descript like CONCAT('%',#{keyword},'%')
 						</when>
 					</choose>
@@ -43,14 +44,16 @@
 		(atch.sequence = 0 or atch.uuid is null) and category like CONCAT('%',
 		#{category}, '%')
 		order
-		by ${sort} desc limit #{pageNum}, #{amount}
+		by ${column} ${sort} limit #{pageNum}, #{amount}
 	</select>
 
 	<select id="getTotalCount" resultType="int">
 		select count(*) from
-		product where pno > 0 and category like
+		product where 
+		<include refid="criteria"></include>
+		pno > 0 and category like
 		CONCAT('%', #{category}, '%')
-		<!-- <include refid="criteria"></include> -->
+		
 	</select>
 
 	<insert id="insert" parameterType="com.ahng.domain.ProductVO">

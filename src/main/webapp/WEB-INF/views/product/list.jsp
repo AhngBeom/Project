@@ -29,7 +29,7 @@
 					<h1 class="mt-4">Product</h1>
 					<!-- 					<ol class="breadcrumb mb-4"> -->
 					<!-- 					</ol> -->
-					<form action="/product" method="get" id="searchForm">
+					<form id="pageForm" action="/product" method="get">
 						<div class="bg-light border mb-3 p-3 rounded-lg">
 							<div class="input-group col-xl-12">
 								<select class="form-control col-xl-4 col-md-4" name="type">
@@ -51,180 +51,193 @@
 							</div>
 
 						</div>
-						<input type="hidden" name="pageNum" value="${page.cri.pageNum }">
-						<input type="hidden" name="amount" value="${page.cri.amount }">
+
+						<input type='hidden' name="category" value="${page.cri.category }">
+						<input type='hidden' name="pageNum" value="${page.cri.pageNum }">
+						<input type='hidden' name="amount" value="${page.cri.amount }"><input
+							type='hidden' name='column' value='${page.cri.column }'>
+							<input
+							type='hidden' name='sort' value='${page.cri.sort }'>
 					</form>
-					<button>상품평</button>
-					<button>이름</button>
-					<button>판매</button>
-					<button>가격</button>
-					<a class="btn btn-default" href="/product"><i class="fas fa-th"></i></a>
-					<a class="btn btn-default" href="/product/list2"><i
-						class="fas fa-list"></i></a>
-					<div class="row">
-						<div class="col-xl-3 col-md-6">
-							<c:forEach items="${pdt }" var="pdt" varStatus="status">
-								<c:if test="${status.index % 4 eq 0}">
-									<div class="card mb-3">
-										<div class="card-header pdt-header">
-											<img class="card-image"
-												src="/resources/assets/img/readyToImg.jpg" alt="Card image"
-												data-pno="${pdt.pno }" data-index="${status.index }"
-												style="width: 100%; height: auto;">
-											<div
-												class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
-												<div class="d-flex justify-content-around w-100 mb-3">
-													<button class="btn btn-warning add-cart-btn"
-														data-pno="${pdt.pno }">
-														<i class="fas fa-cart-plus"></i> 장바구니
-													</button>
-													<button class="btn btn-success dir-buy-btn"
-														data-pno="${pdt.pno }">바로 구매</button>
-												</div>
-												<div class="mb-3">
-													<a class="btn btn-primary get-btn text-white"
-														data-oper="get" data-pno="${pdt.pno }">자세히</a>
-												</div>
-												<div class="mb-3">
-													<button class="btn btn-secondary" data-toggle="collapse"
-														data-index="${status.index }">가격 보기</button>
-												</div>
-											</div>
-										</div>
-										<div class="collapse p-3" id="collapseExample"
-											data-index="${status.index }">
-											<div class="card-body">
-												<span>${pdt.category }</span>
-												<div class="h5 card-title">${pdt.name }</div>
-												<div class="h5 card-text float-right">￦${pdt.price }</div>
-											</div>
-										</div>
-									</div>
-								</c:if>
-							</c:forEach>
+					<ul class="nav nav-tabs">
+						<li class="nav-item"><a class="nav-link asort" data-toggle="tab"
+							href="#home" data-col="uptodate">최신</a></li>
+						<li class="nav-item"><a class="nav-link asort" data-toggle="tab"
+							href="#menu1" data-col="name">이름</a></li>
+						<li class="nav-item"><a class="nav-link asort" data-toggle="tab"
+							href="#menu2" data-col="price">가격</a></li>
+						<div class="ml-auto">
+							<a class="btn btn-default" href="/product"><i
+								class="fas fa-th"></i></a> <a class="btn btn-default"
+								href="/product/list2"><i class="fas fa-list"></i></a>
 						</div>
-						<div class="col-xl-3 col-md-6">
-							<c:forEach items="${pdt }" var="pdt" varStatus="status">
-								<c:if test="${status.index % 4 eq 1}">
-									<div class="card mb-3">
-										<div class="card-header pdt-header">
-											<img class="card-image"
-												src="/resources/assets/img/readyToImg.jpg" alt="Card image"
-												data-pno="${pdt.pno }" data-index="${status.index }"
-												style="width: 100%; height: auto;">
-											<div
-												class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
-												<div class="d-flex justify-content-around w-100 mb-3">
-													<button class="btn btn-warning add-cart-btn"
-														data-pno="${pdt.pno }">
-														<i class="fas fa-cart-plus"></i> 장바구니
-													</button>
-													<button class="btn btn-success dir-buy-btn"
-														data-pno="${pdt.pno }">바로 구매</button>
+					</ul>
+					<div class="tab-content">
+						<div class="row">
+							<div class="col-xl-3 col-md-6">
+								<c:forEach items="${pdt }" var="pdt" varStatus="status">
+									<c:if test="${status.index % 4 eq 0}">
+										<div class="card mb-3">
+											<div class="card-header pdt-header">
+												<img class="card-image"
+													src="/resources/assets/img/readyToImg.jpg" alt="Card image"
+													data-pno="${pdt.pno }" data-index="${status.index }"
+													style="width: 100%; height: auto;">
+												<div
+													class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
+													<div class="d-flex justify-content-around w-100 mb-3">
+														<button class="btn btn-warning add-cart-btn"
+															data-pno="${pdt.pno }">
+															<i class="fas fa-cart-plus"></i> 장바구니
+														</button>
+														<button class="btn btn-success dir-buy-btn"
+															data-pno="${pdt.pno }">바로 구매</button>
+													</div>
+													<div class="mb-3">
+														<a class="btn btn-primary get-btn text-white"
+															data-oper="get" data-pno="${pdt.pno }">자세히</a>
+													</div>
+													<div class="mb-3">
+														<button class="btn btn-secondary" data-toggle="collapse"
+															data-index="${status.index }">가격 보기</button>
+													</div>
 												</div>
-												<div class="mb-3">
-													<a class="btn btn-primary get-btn text-white"
-														data-oper="get" data-pno="${pdt.pno }">자세히</a>
-												</div>
-												<div class="mb-3">
-													<button class="btn btn-secondary" data-toggle="collapse"
-														data-index="${status.index }">가격 보기</button>
+											</div>
+											<div class="collapse p-3" id="collapseExample"
+												data-index="${status.index }">
+												<div class="card-body">
+													<span>${pdt.category }</span>
+													<div class="h5 card-title">${pdt.name }</div>
+													<div class="h5 card-text float-right">￦${pdt.price }</div>
 												</div>
 											</div>
 										</div>
-										<div class="collapse p-3" id="collapseExample"
-											data-index="${status.index }">
-											<div class="card-body">
-												<span>${pdt.category }</span>
-												<div class="h5 card-title">${pdt.name }</div>
-												<div class="h5 card-text float-right">￦${pdt.price }</div>
-											</div>
-										</div>
-									</div>
-								</c:if>
-							</c:forEach>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<c:forEach items="${pdt }" var="pdt" varStatus="status">
-								<c:if test="${status.index % 4 eq 2}">
-									<div class="card mb-3">
-										<div class="card-header pdt-header">
-											<img class="card-image"
-												src="/resources/assets/img/readyToImg.jpg" alt="Card image"
-												data-pno="${pdt.pno }" data-index="${status.index }"
-												style="width: 100%; height: auto;">
-											<div
-												class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
-												<div class="d-flex justify-content-around w-100 mb-3">
-													<button class="btn btn-warning add-cart-btn"
-														data-pno="${pdt.pno }">
-														<i class="fas fa-cart-plus"></i> 장바구니
-													</button>
-													<button class="btn btn-success dir-buy-btn"
-														data-pno="${pdt.pno }">바로 구매</button>
-												</div>
-												<div class="mb-3">
-													<a class="btn btn-primary get-btn text-white"
-														data-oper="get" data-pno="${pdt.pno }">자세히</a>
-												</div>
-												<div class="mb-3">
-													<button class="btn btn-secondary" data-toggle="collapse"
-														data-index="${status.index }">가격 보기</button>
+									</c:if>
+								</c:forEach>
+							</div>
+							<div class="col-xl-3 col-md-6">
+								<c:forEach items="${pdt }" var="pdt" varStatus="status">
+									<c:if test="${status.index % 4 eq 1}">
+										<div class="card mb-3">
+											<div class="card-header pdt-header">
+												<img class="card-image"
+													src="/resources/assets/img/readyToImg.jpg" alt="Card image"
+													data-pno="${pdt.pno }" data-index="${status.index }"
+													style="width: 100%; height: auto;">
+												<div
+													class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
+													<div class="d-flex justify-content-around w-100 mb-3">
+														<button class="btn btn-warning add-cart-btn"
+															data-pno="${pdt.pno }">
+															<i class="fas fa-cart-plus"></i> 장바구니
+														</button>
+														<button class="btn btn-success dir-buy-btn"
+															data-pno="${pdt.pno }">바로 구매</button>
+													</div>
+													<div class="mb-3">
+														<a class="btn btn-primary get-btn text-white"
+															data-oper="get" data-pno="${pdt.pno }">자세히</a>
+													</div>
+													<div class="mb-3">
+														<button class="btn btn-secondary" data-toggle="collapse"
+															data-index="${status.index }">가격 보기</button>
+													</div>
 												</div>
 											</div>
-										</div>
-										<div class="collapse p-3" id="collapseExample"
-											data-index="${status.index }">
-											<div class="card-body">
-												<span>${pdt.category }</span>
-												<div class="h5 card-title">${pdt.name }</div>
-												<div class="h5 card-text float-right">￦${pdt.price }</div>
-											</div>
-										</div>
-									</div>
-								</c:if>
-							</c:forEach>
-						</div>
-						<div class="col-xl-3 col-md-6">
-							<c:forEach items="${pdt }" var="pdt" varStatus="status">
-								<c:if test="${status.index % 4 eq 3}">
-									<div class="card mb-3">
-										<div class="card-header pdt-header">
-											<img class="card-image"
-												src="/resources/assets/img/readyToImg.jpg" alt="Card image"
-												data-pno="${pdt.pno }" data-index="${status.index }"
-												style="width: 100%; height: auto;">
-											<div
-												class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
-												<div class="d-flex justify-content-around w-100 mb-3">
-													<button class="btn btn-warning add-cart-simple"
-														data-pno="${pdt.pno }">
-														<i class="fas fa-cart-plus"></i> 장바구니
-													</button>
-													<button class="btn btn-success dir-buy-btn"
-														data-pno="${pdt.pno }">바로 구매</button>
-												</div>
-												<div class="mb-3">
-													<a class="btn btn-primary get-btn text-white"
-														data-oper="get" data-pno="${pdt.pno }">자세히</a>
-												</div>
-												<div class="mb-3">
-													<button class="btn btn-secondary" data-toggle="collapse"
-														data-index="${status.index }">가격 보기</button>
+											<div class="collapse p-3" id="collapseExample"
+												data-index="${status.index }">
+												<div class="card-body">
+													<span>${pdt.category }</span>
+													<div class="h5 card-title">${pdt.name }</div>
+													<div class="h5 card-text float-right">￦${pdt.price }</div>
 												</div>
 											</div>
 										</div>
-										<div class="collapse p-3" id="collapseExample"
-											data-index="${status.index }">
-											<div class="card-body">
-												<span>${pdt.category }</span>
-												<div class="h5 card-title">${pdt.name }</div>
-												<div class="h5 card-text float-right">￦${pdt.price }</div>
+									</c:if>
+								</c:forEach>
+							</div>
+							<div class="col-xl-3 col-md-6">
+								<c:forEach items="${pdt }" var="pdt" varStatus="status">
+									<c:if test="${status.index % 4 eq 2}">
+										<div class="card mb-3">
+											<div class="card-header pdt-header">
+												<img class="card-image"
+													src="/resources/assets/img/readyToImg.jpg" alt="Card image"
+													data-pno="${pdt.pno }" data-index="${status.index }"
+													style="width: 100%; height: auto;">
+												<div
+													class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
+													<div class="d-flex justify-content-around w-100 mb-3">
+														<button class="btn btn-warning add-cart-btn"
+															data-pno="${pdt.pno }">
+															<i class="fas fa-cart-plus"></i> 장바구니
+														</button>
+														<button class="btn btn-success dir-buy-btn"
+															data-pno="${pdt.pno }">바로 구매</button>
+													</div>
+													<div class="mb-3">
+														<a class="btn btn-primary get-btn text-white"
+															data-oper="get" data-pno="${pdt.pno }">자세히</a>
+													</div>
+													<div class="mb-3">
+														<button class="btn btn-secondary" data-toggle="collapse"
+															data-index="${status.index }">가격 보기</button>
+													</div>
+												</div>
+											</div>
+											<div class="collapse p-3" id="collapseExample"
+												data-index="${status.index }">
+												<div class="card-body">
+													<span>${pdt.category }</span>
+													<div class="h5 card-title">${pdt.name }</div>
+													<div class="h5 card-text float-right">￦${pdt.price }</div>
+												</div>
 											</div>
 										</div>
-									</div>
-								</c:if>
-							</c:forEach>
+									</c:if>
+								</c:forEach>
+							</div>
+							<div class="col-xl-3 col-md-6">
+								<c:forEach items="${pdt }" var="pdt" varStatus="status">
+									<c:if test="${status.index % 4 eq 3}">
+										<div class="card mb-3">
+											<div class="card-header pdt-header">
+												<img class="card-image"
+													src="/resources/assets/img/readyToImg.jpg" alt="Card image"
+													data-pno="${pdt.pno }" data-index="${status.index }"
+													style="width: 100%; height: auto;">
+												<div
+													class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
+													<div class="d-flex justify-content-around w-100 mb-3">
+														<button class="btn btn-warning add-cart-simple"
+															data-pno="${pdt.pno }">
+															<i class="fas fa-cart-plus"></i> 장바구니
+														</button>
+														<button class="btn btn-success dir-buy-btn"
+															data-pno="${pdt.pno }">바로 구매</button>
+													</div>
+													<div class="mb-3">
+														<a class="btn btn-primary get-btn text-white"
+															data-oper="get" data-pno="${pdt.pno }">자세히</a>
+													</div>
+													<div class="mb-3">
+														<button class="btn btn-secondary" data-toggle="collapse"
+															data-index="${status.index }">가격 보기</button>
+													</div>
+												</div>
+											</div>
+											<div class="collapse p-3" id="collapseExample"
+												data-index="${status.index }">
+												<div class="card-body">
+													<span>${pdt.category }</span>
+													<div class="h5 card-title">${pdt.name }</div>
+													<div class="h5 card-text float-right">￦${pdt.price }</div>
+												</div>
+											</div>
+										</div>
+									</c:if>
+								</c:forEach>
+							</div>
 						</div>
 					</div>
 					<div class="d-flex justify-content-center col-xl-12">
@@ -277,32 +290,24 @@
 		</div>
 	</div>
 
-	<form id="pageForm" action="/product" method="get">
-		<input type='hidden' name="category" value="${page.cri.category }">
-		<input type='hidden' name="pageNum" value="${page.cri.pageNum }">
-		<input type='hidden' name="amount" value="${page.cri.amount }">
-		<input type='hidden' name="type"
-			value='<c:out value="${page.cri.type }"/>'> <input
-			type='hidden' name="keyword"
-			value='<c:out value="${page.cri.keyword }"/>'>
-	</form>
+
 	<script type="text/javascript" src="/resources/js/productJs.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var searchForm = $("#searchForm");
+			var pageForm = $("#pageForm");
 
-			$("#searchForm button").on("click", function(e) {
-				if (!searchForm.find("option:selected").val()) {
-					alert("검색 종류를 선택하세요");
-					return false;
-				}
-				if (!searchForm.find("input[name='keyword']").val()) {
+			$("#searchBtn").on("click", function(e) {
+// 				if (!pageForm.find("option:selected").val()) {
+// 					alert("검색 종류를 선택하세요");
+// 					return false;
+// 				}
+				if (!pageForm.find("input[name='keyword']").val()) {
 					alert("키워드를 입력하세요");
 					return false;
 				}
-				searchForm.find("input[name='pageNum']").val("0");
+				pageForm.find("input[name='pageNum']").val("0");
 				e.preventDefault();
-				searchForm.submit();
+				pageForm.submit();
 			});
 		});
 	</script>

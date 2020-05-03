@@ -7,25 +7,25 @@
 <div id="layoutSidenav_content">
 	<main>
 		<div class="container-fluid mt-3">
-			<form action="/product/all" method="get">
+			<form action="/product/all" method="get" id="operForm">
 				<input type="hidden" name="pageNum" value="${cri.pageNum }">
 				<input type="hidden" name="amount" value="${cri.amount }">
 			</form>
 			<ol class="breadcrumb mb-4">
 				<li class="breadcrumb-item active"><a href="#" id="listOper">List</a></li>
 				<li class="breadcrumb-item active">${pdt.category }</li>
-				<li class="breadcrumb-item">${pdt.title }</li>
+				<li class="breadcrumb-item">${pdt.name }</li>
 			</ol>
 
 			<div class="row mb-4">
 				<div class="col-xl-12 col-md-12">
 					<div class="card">
 						<div class="card-header d-flex">
-							<div class="col-xl-6 col-md-12">
+							<div class="col-xl-4 col-md-12">
 								<img class="card-img-top"
 									src="/resources/assets/img/readyToImg.jpg" alt="Card image">
 							</div>
-							<div class="p-4 col-xl-6 col-md-12">
+							<div class="p-4 col-xl-8 col-md-12">
 								<form action="/" method="post">
 									<div class="input-group mb-lg-5 input-group-lg">
 										<div class="input-group-prepend">
@@ -91,8 +91,33 @@
 							<h1 class="card-title">${pdt.name }</h1>
 							<p class="card-text">${pdt.title }</p>
 							<div
-								class="attach-list d-flex flex-column justify-content-center m-3"></div>
-							<textarea rows="10" class="col-xl-12" readonly="readonly">${pdt.descript }</textarea>
+								class="image-list d-flex flex-column justify-content-center m-3"></div>
+							<textarea rows="10" class="form-control col-xl-12 bg-transparent"
+								readonly="readonly">${pdt.descript }</textarea>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal fade" id="alertModal" tabindex="-1" role="dialog"
+				aria-labelledby="alertModalLabel" aria-hidden="true">
+				<div class="modal-dialog modal-dialog-centered" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="alertModalLabel">Alert</h5>
+							<button type="button" class="close" data-dismiss="modal"
+								aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body">
+							장바구니에 보관되어있는 상품이 있습니다.<br> 현재 상품만 구매하시겠습니까?
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-warning" id="modalSecFunc">장바구니에
+								추가 & 구매</button>
+							<button type="button" class="btn btn-primary" id="modalAccept">예</button>
+							<!-- 					<button type="button" class="btn btn-secondary" -->
+							<!-- 						data-dismiss="modal">Close</button> -->
 						</div>
 					</div>
 				</div>
@@ -136,7 +161,7 @@
 																					+ attach.uuid
 																					+ "_"
 																					+ attach.fileName);
-																			bodyImg += "<div class='attach-image mb-3' data-path='"
+																			bodyImg += "<div class='image-item mb-3' data-path='"
 																	+ attach.uploadPath
 																	+ "' data-uuid='"
 																	+ attach.uuid
@@ -144,7 +169,7 @@
 																	+ attach.fileName
 																	+ "' data-type='"
 																	+ attach.fileType
-																	+ "'><img class='img-item col-xl-12' src='/display?fileName="
+																	+ "'><img class='img-item col-xl-6' src='/display?fileName="
 																					+ imageOriginPath
 																					+ "'>"
 																					// 																					+ overlay
@@ -160,7 +185,7 @@
 																		}
 
 																	});
-													$(".attach-list").html(
+													$(".image-list").html(
 															bodyImg);
 												});
 							})();

@@ -52,7 +52,6 @@ public class ProductController {
 	@GetMapping("/get")
 	public void get(@RequestParam("pno") Long pno, @ModelAttribute("cri") Criteria cri, Model model) {
 		model.addAttribute("pdt", pdtService.get(pno));
-		// model.addAttribute("attach", pdtService.getAttachList(pno));
 	}
 
 	@GetMapping(value = "/get/{pno}", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -63,7 +62,7 @@ public class ProductController {
 
 	@GetMapping("/orderDirect")
 	public void directOrder(@RequestParam("pno") Long pno, Model model) {
-		model.addAttribute("order", pdtService.get(pno));
+		model.addAttribute("item", pdtService.get(pno));
 	}
 
 	@GetMapping("/orderCart")

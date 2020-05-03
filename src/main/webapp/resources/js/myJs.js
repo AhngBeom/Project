@@ -80,21 +80,42 @@ $(document).ready(
 			var operForm = $("#operForm");
 			
 			$(".dir-buy-btn").on("click", function(e) {
-				$("#alertModal").modal('show');
 				var pno = $(this).data("pno");
-				$("#alertModal #modalAccept").on("click", function(e){
-					operForm.attr("action", "/product/orderDirect");
-					operForm.append("<input type='hidden' name='pno' value='"
-							+ pno + "'>");
-					operForm.submit();
+				$.getJSON("/cartList.json", function(result) {
+					if(result.length === 0){
+						operForm.attr("action", "/product/orderDirect");
+						operForm.append("<input type='hidden' name='pno' value='"
+								+ pno + "'>");
+						operForm.submit();
+					}
+					if(result.length > 0){
+						$("#alertModal").modal('show');
+						$("#alertModal #modalAccept").on("click", function(e){
+							operForm.attr("action", "/product/orderDirect");
+							operForm.append("<input type='hidden' name='pno' value='"
+									+ pno + "'>");
+							operForm.submit();
+						});
+						$("#alertModal #modalSecFunc").on("click", function(e){
+							var cartVO = {userID : "unknown", pno : pno};
+							cartADD(cartVO);
+							$("#alertModal .modal-body").html("장바구니에 추가되었습니다.");
+							$("#alertModal #modalAccept").html("주문하러 가기");
+							$("#alertModal #modalSecFunc").html("계속 쇼핑");
+							$("#alertModal").modal('show');
+							$("#alertModal #modalAccept").on("click", function(e){
+								operForm.attr("action", "/product/orderCart");
+								operForm.submit();
+							});
+							$("#alertModal #modalSecFunc").on("click", function(e){
+								operForm.submit();
+							});
+						});
+					}
 				});
-				$("#alertModal #modalSecFunc").on("click", function(e){
-					var cartVO = {userID : "unknown", pno : pno};
-					cartADD(cartVO);
-				});
-				console.log(pno);
+				
 			});
-
+			var pageForm = $("#pageForm");
 			$(document).on(
 					"click", "a[data-oper='get']",
 					function(e) {
@@ -102,13 +123,18 @@ $(document).ready(
 						console.log(pno);
 						operation(operForm, pno);
 					});
+			$(".pdt-mod-btn").on("click", function(e){
+				pageForm.attr("action", "/admin/pdtModify");
+				pageForm.append("<input type='hidden' name='pno' value='" + $(this).data("pno") +"'>");
+				pageForm.submit();
+			});
 			$(".pdt-del-btn").on("click", function(e){
 				var pno = $(this).data("pno");
 				$('#alertModal').modal('show');
 				$("#acceptBtn").on("click", function(e){
-					operForm.append("<input type='hidden' name='pno' value='" + pno + "'>");
-					operForm.attr("action", "/admin/pdtDelete");
-					operForm.attr("method", "post").submit();
+					pageForm.append("<input type='hidden' name='pno' value='" + pno + "'>");
+					pageForm.attr("action", "/admin/pdtDelete");
+					pageForm.attr("method", "post").submit();
 				});
 			});
 		});

@@ -11,52 +11,47 @@
 <meta name="description" content="" />
 <meta name="author" content="" />
 <title>On-Line Shopping Mall</title>
+
 <link href="/resources/css/styles.css?ver=1" rel="stylesheet" />
 <link href="/resources/css/myCss.css?ver=1" rel="stylesheet" />
+<link href="/resources/css/adminPage.css?ver=1" rel="stylesheet" />
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link
 	href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css"
-	rel="stylesheet" crossorigin="anonymous" />
+	rel="stylesheet" />
 
 <script
-	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"
-	crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"
-	crossorigin="anonymous"></script>
+	src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script
-	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
-	integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
-	crossorigin="anonymous"></script>
+	src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
-	integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
-	crossorigin="anonymous"></script>
+	src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+
 </head>
 
 <form action="" method="get" id="headerForm"></form>
 
 <body class="sb-nav-fixed">
-	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
+	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark ">
 		<a class="navbar-brand" href="/product">Shop</a>
 		<button class="btn btn-link btn-sm order-1 order-lg-0"
 			id="sidebarToggle" href="#">
 			<i class="fas fa-bars"></i>
 		</button>
-		<div class="progress ml-3 mr-3" style="height: 30px; width: 800px;"
-			data-toggle="tooltip" data-placement="bottom"
-			title="Development Progress">
+		<div class="progress ml-3 ml-auto mr-auto"
+			style="height: 30px; width: 500px;" data-toggle="tooltip"
+			data-placement="bottom" title="Development Progress">
 			<div class="progress-bar" role="progressbar" style="width: 80%;"
 				aria-valuenow="80" aria-valuemin="0" aria-valuemax="100">80%</div>
 		</div>
 		<!-- Navbar Search-->
 
 		<!-- Navbar-->
-		<ul class="navbar-nav ml-auto ml-md-0">
+		<ul class="navbar-nav ml-auto ml-md-0 pull-right">
 			<li class="nav-item dropdown"><a
 				class="nav-link dropdown-toggle" id="userDropdown" href="#"
 				role="button" data-toggle="dropdown" aria-haspopup="true"
@@ -105,9 +100,26 @@
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/admin/pdtTable">Table</a> <a
-									class="nav-link" href="/admin/pdtAdd">Addition</a>
-									<a
+									class="nav-link" href="/admin/pdtAdd">Addition</a> <a
 									class="nav-link" href="/admin/diary">Diary</a>
+							</nav>
+						</div>
+						<a class="nav-link collapsed" href="#" data-toggle="collapse"
+							data-target="#collapseAdminFmt" aria-expanded="false"
+							aria-controls="collapseAdminPdt"><div
+								class="sb-nav-link-icon">
+								<i class="fas fa-columns"></i>
+							</div> Format
+							<div class="sb-sidenav-collapse-arrow">
+								<i class="fas fa-angle-down"></i>
+							</div></a>
+						<div class="collapse" id="collapseAdminFmt"
+							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+							<nav class="sb-sidenav-menu-nested nav">
+								<a class="nav-link" href="/pages/test"><div
+										class="sb-nav-link-icon">
+										<i class="fas fa-random"></i>
+									</div> Test</a>
 							</nav>
 						</div>
 						<div class="sb-sidenav-menu-heading">Core</div>
@@ -123,8 +135,8 @@
 						<div class="collapse" id="collapseProducts"
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
-								<a class="nav-link nav-product" href="/product" data-ctg="%">All</a> <a
-									class="nav-link nav-product" href="#" data-ctg="Category 1">Category
+								<a class="nav-link nav-product" href="/product" data-ctg="%">All</a>
+								<a class="nav-link nav-product" href="#" data-ctg="Category 1">Category
 									1</a> <a class="nav-link nav-product" href="#"
 									data-ctg="Category 2">Category 2</a> <a
 									class="nav-link nav-product" href="#" data-ctg="Category 3">Category
@@ -205,10 +217,7 @@
 							</div> Charts</a><a class="nav-link" href="/pages/tables"><div
 								class="sb-nav-link-icon">
 								<i class="fas fa-table"></i>
-							</div> Tables</a> <a class="nav-link" href="/pages/test"><div
-								class="sb-nav-link-icon">
-								<i class="fas fa-random"></i>
-							</div> Test</a>
+							</div> Tables</a>
 					</div>
 				</div>
 				<div class="sb-sidenav-footer">

@@ -14,19 +14,20 @@ public class Criteria {
 	private int pageNum;
 	private int amount;
 	
-//	private String table;
 	private String category;
+	private String column;
 	private String sort;
 	
 	private String type;
 	private String keyword;
 	
 	public Criteria() {
-		this("", "uptodate", 0, 12);
+		this("", "pno", "DESC", 0, 12);
 	}
 	
-	public Criteria(String category, String sort, int pageNum, int amount) {
+	public Criteria(String category, String column, String sort, int pageNum, int amount) {
 		this.category = category;
+		this.column = column;
 		this.sort = sort;
 		this.pageNum = pageNum;
 		this.amount = amount;

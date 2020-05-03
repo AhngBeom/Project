@@ -17,6 +17,7 @@
 	border-radius: 3px;
 	margin-bottom: 20px;
 }
+
 .image {
 	opacity: 1;
 	display: block;
@@ -27,8 +28,7 @@
 }
 
 .img-item {
-	/* 	width: 100%; */
-	
+	margin: 10px;
 }
 
 .opacity-div {
@@ -45,15 +45,23 @@
 .card-header {
 	max-width: 100%;
 	height: auto !important;
-	padding-top : calc(300 / 1000 * 100 %);
-	padding-bottom: calc(300/1000 * 100);
+	padding-top: calc(300/ 1000 * 100 %);
+	padding-bottom: calc(300/ 1000 * 100);
 }
 
 .pdt-header:hover img {
 	opacity: 0.5;
 }
 
+.attach-image:hover img {
+	opacity: 0.5;
+}
+
 .pdt-header:hover .opacity-div {
+	opacity: 1;
+}
+
+.attach-image:hover .opacity-div {
 	opacity: 1;
 }
 

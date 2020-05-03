@@ -29,10 +29,11 @@ public class MapperTests {
 	@Test
 	public void test() {
 		Criteria cri = new Criteria();
-//		cri.setKeyword("Mac");
-//		cri.setType("ND");
+//		cri.setSort("ASC");
+		cri.setKeyword("16");
+		cri.setType("TD");
 		List<ProductVO> list = mapper.getListWithPaging(cri);
-		list.forEach(product -> log.info(product.getPrice()));
+		list.forEach(product -> log.info(product.getPno()));
 		
 	}
 

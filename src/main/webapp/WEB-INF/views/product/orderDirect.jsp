@@ -6,22 +6,6 @@
 
 <form action="" method="get" id="operForm"></form>
 <style>
-body {
-	font-family: Arial;
-	font-size: 17px;
-	padding: 8px;
-}
-
-* {
-	box-sizing: border-box;
-}
-
-.row {
-	display: -ms-flexbox; /* IE10 */
-	display: flex;
-	-ms-flex-wrap: wrap; /* IE10 */
-	flex-wrap: wrap;
-}
 
 input[type=text] {
 	width: 100%;
@@ -99,10 +83,10 @@ label {
 						<%-- 							<c:set var="total" value="${total + item.price }"></c:set> --%>
 						<%-- 							<c:set var="count" value="${status.count}"></c:set> --%>
 						<%-- 						</c:forEach> --%>
-						<div class="d-flex justify-content-between mb-3">
-							<a href="#">${order.name }</a>
-							<div class="col-xl-4">
-								<div class="input-group mb-3 col-xl-12">
+						<div class="d-flex justify-content-between">
+							<a class="h3" href="#">${item.name }</a>
+							<div class="d-flex col-xl-6">
+								<div class="input-group mb-3 col-xl-8">
 									<div class="input-group-prepend">
 										<label class="input-group-text" for="inputGroupSelect01">Options</label>
 									</div>
@@ -113,27 +97,35 @@ label {
 										<option value="3">Option 3</option>
 									</select>
 								</div>
-								<div class="input-group mb-3 col-xl-6 float-right">
+								<div class="input-group mb-3 col-xl-4 float-right">
+									<div class="input-group-prepend">
+										<label class="input-group-text btn btn-outline-secondary">Amount</label>
+									</div>
 									<select class="custom-select" id="inputGroupSelect03"
 										aria-label="Example select with button addon">
 										<option value="1" selected>1</option>
 										<option value="2">2</option>
 										<option value="3">3</option>
+										<option value="3">4</option>
+										<option value="3">5</option>
+										<option value="3">6</option>
+										<option value="3">7</option>
+										<option value="3">8</option>
+										<option value="3">9</option>
+										<option value="3">10</option>
 									</select>
-									<div class="input-group-append">
-										<label class="input-group-text btn btn-outline-secondary">Amount</label>
-									</div>
 								</div>
 							</div>
 						</div>
+						
 						<hr>
 						<div class="d-flex justify-content-end">
-							<div class="input-group col-xl-2">
+							<div class="input-group col-xl-3">
 								<div class="input-group-prepend">
 									<span class="input-group-text">Price</span>
 								</div>
 								<input type="text" class="form-control text-right" name="price"
-									value="${order.price }" readonly="readonly">
+									value="${item.price }" readonly="readonly">
 								<div class="input-group-append">
 									<span class="input-group-text">￦</span>
 								</div>

@@ -83,21 +83,8 @@
 			</div>
 		</div>
 	</main>
-	<script>
-		$(document).ready(function(){
-			var str = "";
-			$(".uploadResult ul li")
-		});
-	</script>
 	
 	<script>
-		// 		function myFunction(imgs) {
-		// 			var expandImg = document.getElementById("expandedImg");
-		// 			var imgText = document.getElementById("imgtext");
-		// 			expandImg.src = imgs.src;
-		// 			imgText.innerHTML = imgs.alt;
-		// 			expandImg.parentElement.style.display = "block";
-		// 		}
 		$(document).ready(
 				function() {
 					$("#category option").each(

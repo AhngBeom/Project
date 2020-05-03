@@ -6,6 +6,50 @@
 
 <form action="" method="get" id="operForm"></form>
 <style>
+body {
+	font-family: Arial;
+	font-size: 17px;
+	padding: 8px;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.row {
+	display: -ms-flexbox; /* IE10 */
+	display: flex;
+	-ms-flex-wrap: wrap; /* IE10 */
+	flex-wrap: wrap;
+}
+
+.col-25 {
+	-ms-flex: 25%; /* IE10 */
+	flex: 25%;
+}
+
+.col-50 {
+	-ms-flex: 50%; /* IE10 */
+	flex: 50%;
+}
+
+.col-75 {
+	-ms-flex: 75%; /* IE10 */
+	flex: 75%;
+}
+
+.col-25, .col-50, .col-75 {
+	padding: 0 16px;
+}
+
+.container-order {
+	background-color: #f2f2f2;
+	padding: 5px 20px 15px 20px;
+	border: 1px solid lightgrey;
+	border-radius: 3px;
+	margin-bottom: 20px;
+}
+
 input[type=text] {
 	width: 100%;
 	margin-bottom: 20px;
@@ -23,6 +67,16 @@ label {
 	margin-bottom: 20px;
 	padding: 7px 0;
 	font-size: 24px;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media ( max-width : 800px) {
+	.row {
+		flex-direction: column-reverse;
+	}
+	.col-25 {
+		margin-bottom: 20px;
+	}
 }
 </style>
 <div id="layoutSidenav_content">
@@ -72,83 +126,27 @@ label {
 
 			<div class="row">
 				<div class="col-xl-12">
-					<div class="card mb-3">
-						<div class="card-header h1 d-flex justify-content-between">Cart</div>
-
-						<%-- 						<c:forEach items="${item }" var="item" varStatus="status"> --%>
-						<!-- 							<p class="d-flex justify-content-between mb-3"> -->
-						<%-- 								<a href="#">${item.name }</a> <span class="price">${item.price }</span> --%>
-						<!-- 							</p> -->
-						<%-- 							<c:set var="total" value="${total + item.price }"></c:set> --%>
-						<%-- 							<c:set var="count" value="${status.count}"></c:set> --%>
-						<%-- 						</c:forEach> --%>
-						<div class="card-body bg-light">
-							<c:forEach items="${item }" var="item">
-								<div class="mb-3">
-									<div class="d-flex justify-content-between">
-										<a class="h3" href="#">${item.name }</a>
-										<div class="d-flex col-xl-6">
-											<div class="input-group mb-3 col-xl-8">
-												<div class="input-group-prepend">
-													<label class="input-group-text" for="inputGroupSelect01">Options</label>
-												</div>
-												<select class="custom-select" id="inputGroupSelect01">
-													<option selected>Options</option>
-													<option value="1">Option 1</option>
-													<option value="2">Option 2</option>
-													<option value="3">Option 3</option>
-												</select>
-											</div>
-											<div class="input-group mb-3 col-xl-4 float-right">
-												<div class="input-group-prepend">
-													<label class="input-group-text btn btn-outline-secondary">Amount</label>
-												</div>
-												<select class="custom-select" id="inputGroupSelect03"
-													aria-label="Example select with button addon">
-													<option value="1" selected>1</option>
-													<option value="2">2</option>
-													<option value="3">3</option>
-													<option value="3">4</option>
-													<option value="3">5</option>
-													<option value="3">6</option>
-													<option value="3">7</option>
-													<option value="3">8</option>
-													<option value="3">9</option>
-													<option value="3">10</option>
-												</select>
-											</div>
-										</div>
-									</div>
-									<div class="d-flex justify-content-end">
-										<div class="input-group col-xl-3">
-											<div class="input-group-prepend">
-												<span class="input-group-text">Price</span>
-											</div>
-											<input type="text" class="form-control text-right bg-white"
-												name="price" value="${item.price }" readonly="readonly">
-											<div class="input-group-append">
-												<span class="input-group-text">￦</span>
-											</div>
-										</div>
-									</div>
-								</div>
-								<hr>
-							</c:forEach>
-						</div>
-						<div class="card-footer d-flex justify-content-between">
-							<c:forEach items="${item }" var="item" varStatus="status">
-								<c:set var="total" value="${total + item.price }"></c:set>
-								<c:set var="count" value="${status.count}"></c:set>
-							</c:forEach>
+					<div class="container-order">
+						<div class="h4 d-flex justify-content-between mb-3">Cart</div>
+						<hr>
+						<c:forEach items="${item }" var="item" varStatus="status">
+							<p class="d-flex justify-content-between mb-3">
+								<a href="#">${item.name }</a> <span class="price">${item.price }</span>
+							</p>
+							<c:set var="total" value="${total + item.price }"></c:set>
+							<c:set var="count" value="${status.count}"></c:set>
+						</c:forEach>
+						<hr>
+						<div class="d-flex justify-content-between">
 							<div>
-								<i class="fa fa-shopping-cart fa-lg"></i> <b class="h4"><c:out
+								<i class="fa fa-shopping-cart"></i> <b><c:out
 										value="${count }" /></b>
 							</div>
-							<div class="input-group col-xl-3">
+							<div class="d-flex mb-3">
 								<div class="input-group-prepend">
 									<span class="input-group-text">Total</span>
 								</div>
-								<input type="text" class="form-control text-right" name="Total"
+								<input type="text" class="form-control text-right" name="total"
 									value="${total }" readonly="readonly">
 								<div class="input-group-append">
 									<span class="input-group-text">￦</span>
@@ -157,14 +155,13 @@ label {
 						</div>
 					</div>
 				</div>
-				<div class="col-xl-12">
+				<div class="col-75">
 					<div class="container-order">
 						<form action="/action_page.php">
 
 							<div class="row">
-								<div class="col-xl-6 col-md-12">
+								<div class="col-50">
 									<h3>Billing Address</h3>
-									<hr>
 									<label for="fname"><i class="fa fa-user"></i> Full Name</label>
 									<input type="text" id="fname" name="firstname"
 										placeholder="John M. Doe"> <label for="email"><i
@@ -177,18 +174,18 @@ label {
 										id="city" name="city" placeholder="New York">
 
 									<div class="row">
-										<div class="col-xl-6 col-md-12">
+										<div class="col-50">
 											<label for="state">State</label> <input type="text"
 												id="state" name="state" placeholder="NY">
 										</div>
-										<div class="col-xl-6 col-md-12">
+										<div class="col-50">
 											<label for="zip">Zip</label> <input type="text" id="zip"
 												name="zip" placeholder="10001">
 										</div>
 									</div>
 								</div>
 
-								<div class="col-xl-6 col-md-12">
+								<div class="col-50">
 									<h3>Payment</h3>
 									<label for="fname">Accepted Cards</label>
 									<div class="icon-container-order">
@@ -205,11 +202,11 @@ label {
 										for="expmonth">Exp Month</label> <input type="text"
 										id="expmonth" name="expmonth" placeholder="September">
 									<div class="row">
-										<div class="col-xl-6 col-md-12">
+										<div class="col-50">
 											<label for="expyear">Exp Year</label> <input type="text"
 												id="expyear" name="expyear" placeholder="2018">
 										</div>
-										<div class="col-xl-6 col-md-12">
+										<div class="col-50">
 											<label for="cvv">CVV</label> <input type="text" id="cvv"
 												name="cvv" placeholder="352">
 										</div>

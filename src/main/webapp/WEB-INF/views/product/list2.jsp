@@ -32,7 +32,7 @@
 					<h1 class="mt-4">Product</h1>
 					<!-- 					<ol class="breadcrumb mb-4"> -->
 					<!-- 					</ol> -->
-					<form action="/product" method="get" id="searchForm">
+					<form action="/product/list2" method="get" id="pageForm">
 						<div class="bg-light border mb-3 p-3 rounded-lg">
 							<div class="input-group col-xl-12">
 								<select class="form-control col-xl-4 col-md-4" name="type">
@@ -54,18 +54,22 @@
 							</div>
 
 						</div>
-						<input type="hidden" name="pageNum" value="${page.cri.pageNum }">
-						<input type="hidden" name="amount" value="${page.cri.amount }">
+							<input type='hidden' name="category" value="${page.cri.category }">
+						<input type='hidden' name="pageNum" value="${page.cri.pageNum }">
+						<input type='hidden' name="amount" value="${page.cri.amount }"><input
+							type='hidden' name='column' value='${page.cri.column }'>
+							<input
+							type='hidden' name='sort' value='${page.cri.sort }'>
 					</form>
 
 					<ul class="nav nav-tabs">
-						<li class="nav-item"><a class="nav-link active"
-							data-toggle="tab" href="#home" data-sort="uptodate">최신</a></li>
-						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#menu1" data-sort="name">이름</a></li>
-						<li class="nav-item"><a class="nav-link" data-toggle="tab"
-							href="#menu2" data-sort="price">가격</a></li>
-						<div class="float-right">
+						<li class="nav-item"><a class="nav-link asort"
+							data-toggle="tab" href="#home" data-col="uptodate">최신</a></li>
+						<li class="nav-item"><a class="nav-link asort"
+							data-toggle="tab" href="#menu1" data-col="name">이름</a></li>
+						<li class="nav-item"><a class="nav-link asort"
+							data-toggle="tab" href="#menu2" data-col="price">가격</a></li>
+						<div class="ml-auto">
 							<a class="btn btn-default" href="/product"><i
 								class="fas fa-th"></i></a> <a class="btn btn-default"
 								href="/product/list2"><i class="fas fa-list"></i></a>
@@ -73,28 +77,28 @@
 					</ul>
 					<div class="tab-content">
 						<div id="home" class=" tab-pane active">
-								<table class="table table-striped">
-									<thead>
-										<tr class="table-light">
-											<th scope="col" class="" style="width: 10%">Category</th>
-											<th scope="col" class="" style="width: 70%">Name</th>
-											<th scope="col" class="" style="width: 10%">Price</th>
-											<th scope="col" class="" style="width: 10%">Date</th>
+							<table class="table table-striped">
+								<thead>
+									<tr class="table-light">
+										<th scope="col" class="" style="width: 10%">Category</th>
+										<th scope="col" class="" style="width: 50%">Name</th>
+										<th scope="col" class="" style="width: 20%">Price</th>
+										<th scope="col" class="" style="width: 20%">Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${pdt }" var="pdt" varStatus="status">
+										<tr>
+											<td>${pdt.category }</td>
+											<td><a class="btn btn-primary get-btn text-white"
+												data-oper="get" data-pno="${pdt.pno }">${pdt.name }</a></td>
+											<td class="h5">${pdt.price }</td>
+											<td><fmt:formatDate value="${pdt.upToDate }"
+													pattern="yyyy-MM-dd HH:mm:ss" /></td>
 										</tr>
-									</thead>
-									<tbody>
-										<c:forEach items="${pdt }" var="pdt" varStatus="status">
-											<tr>
-												<td>${pdt.category }</td>
-												<td><a class="btn btn-primary get-btn text-white"
-													data-oper="get" data-pno="${pdt.pno }">${pdt.name }</a></td>
-												<td>${pdt.price }</td>
-												<td><fmt:formatDate value="${pdt.upToDate }"
-														pattern="yyyy-MM-dd HH:mm:ss" /></td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
+									</c:forEach>
+								</tbody>
+							</table>
 						</div>
 					</div>
 					<div class="d-flex justify-content-center col-xl-12">
@@ -149,6 +153,7 @@
 	<form id="pageForm" action="/product/list2" method="get">
 		<input type='hidden' name="pageNum" value="${page.cri.pageNum }">
 		<input type='hidden' name="amount" value="${page.cri.amount }">
+		<input type='hidden' name='sort' value='${page.cri.sort }'>
 	</form>
 	<script type="text/javascript" src="/resources/js/productJs.js"></script>
 	<script type="text/javascript">

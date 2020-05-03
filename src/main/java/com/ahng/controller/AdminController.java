@@ -34,6 +34,15 @@ public class AdminController {
 	@Autowired
 	private ProductService service;
 
+	@GetMapping("/pdtTable")
+	public void pdtTable(Model model, Criteria cri) {
+		cri.setSort("DESC");
+		log.info("List : " + cri);
+		log.info("Total : " + service.getTotal(cri));
+		model.addAttribute("pdt", service.getListWithPaging(cri));
+		model.addAttribute("page", new PageDTO(cri, service.getTotal(cri)));
+	}
+	
 	@GetMapping("/pdtInfo")
 	public void pdtInfo(@RequestParam("pno") Long pno, @ModelAttribute("cri") Criteria cri, Model model) {
 		model.addAttribute("pdt", service.get(pno));
@@ -63,7 +72,6 @@ public class AdminController {
 	@GetMapping("/pdtModify")
 	public void productModify(@RequestParam("pno") Long pno, @ModelAttribute("cri") Criteria cri, Model model) {
 		model.addAttribute("pdt", service.get(pno));
-		// model.addAttribute("attach", service.getAttachList(pno));
 	}
 
 	@PostMapping("/pdtModify")
@@ -72,19 +80,10 @@ public class AdminController {
 		if (service.modify(vo)) {
 			rttr.addFlashAttribute("result", "success_modify");
 		}
-//		rttr.addAttribute("pageNum", cri.getPageNum());
-//		rttr.addAttribute("amount", cri.getAmount());
-//		rttr.addAttribute("type", cri.getType());
-//		rttr.addAttribute("keyword", cri.getKeyword());
-
 		return "redirect:/admin/pdtTable";
 	}
 
-	@GetMapping("/pdtTable")
-	public void pdtTable(Criteria cri, Model model) {
-		model.addAttribute("pdt", service.getPdtList(cri));
-		model.addAttribute("page", new PageDTO(cri, service.getTotal(cri)));
-	}
+	
 	@GetMapping("/diary")
 	public void diary(Criteria cri, Model model) {
 //		cri = new Criteria("", 0, 10);
