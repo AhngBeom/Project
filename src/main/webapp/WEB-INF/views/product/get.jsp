@@ -126,69 +126,38 @@
 	</main>
 
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
-							(function() {
-								var pno = '<c:out value="${pdt.pno}"/>';
-								var overlay = "<div class='opacity-div d-flex flex-column justify-content-center w-100'>"
-										+ "<button class='btn btn-warning m-auto img-expand-btn'><i class=''></i>크게 보기</button>"
+		$(document).ready(function() {
+			(function() {
+				var pno = '<c:out value="${pdt.pno}"/>';
+				var overlay = "<div class='opacity-div d-flex flex-column justify-content-center w-100'>"
+						+ "<button class='btn btn-warning m-auto img-expand-btn'><i class=''></i>크게 보기</button>"
+						+ "</div>";
+
+				$.getJSON("/admin/getAttachList", {pno : pno}, function(arr) {
+						console.log(arr);
+						var titleImg = "";
+						var bodyImg = "";
+						$(arr).each(function(i, attach) {
+							if (attach.fileType) {
+								var imageThumbPath = encodeURIComponent(attach.uploadPath + "/s_"
+										+ attach.uuid + "_" + attach.fileName);
+								var imageOriginPath = encodeURIComponent(attach.uploadPath + "/"
+										+ attach.uuid + "_" + attach.fileName);
+								bodyImg += "<div class='image-item mb-3' data-path='" + attach.uploadPath
+										+ "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName
+										+ "' data-type='" + attach.fileType + "'><img class='img-item col-xl-6' src='/display?fileName="
+										+ imageOriginPath + "'>"
+										// + overlay
 										+ "</div>";
+								if (i === 0) {
+									$(".card-img-top").attr("src", "/display?fileName=" + imageOriginPath);
+								}
+							}
 
-								$
-										.getJSON(
-												"/admin/getAttachList",
-												{
-													pno : pno
-												},
-												function(arr) {
-													console.log(arr);
-													var titleImg = "";
-													var bodyImg = "";
-
-													$(arr)
-															.each(
-																	function(i,
-																			attach) {
-																		if (attach.fileType) {
-																			var imageThumbPath = encodeURIComponent(attach.uploadPath
-																					+ "/s_"
-																					+ attach.uuid
-																					+ "_"
-																					+ attach.fileName);
-																			var imageOriginPath = encodeURIComponent(attach.uploadPath
-																					+ "/"
-																					+ attach.uuid
-																					+ "_"
-																					+ attach.fileName);
-																			bodyImg += "<div class='image-item mb-3' data-path='"
-																	+ attach.uploadPath
-																	+ "' data-uuid='"
-																	+ attach.uuid
-																	+ "' data-filename='"
-																	+ attach.fileName
-																	+ "' data-type='"
-																	+ attach.fileType
-																	+ "'><img class='img-item col-xl-6' src='/display?fileName="
-																					+ imageOriginPath
-																					+ "'>"
-																					// 																					+ overlay
-																					+ "</div>";
-																			if (i === 0) {
-																				$(
-																						".card-img-top")
-																						.attr(
-																								"src",
-																								"/display?fileName="
-																										+ imageOriginPath);
-																			}
-																		}
-
-																	});
-													$(".image-list").html(
-															bodyImg);
-												});
-							})();
 						});
+						$(".image-list").html(bodyImg);
+					});	
+			})();
+		});
 	</script>
 	<%@ include file="../includes/footer.jsp"%>

@@ -42,7 +42,7 @@ public class AdminController {
 		model.addAttribute("pdt", service.getListWithPaging(cri));
 		model.addAttribute("page", new PageDTO(cri, service.getTotal(cri)));
 	}
-	
+
 	@GetMapping("/pdtInfo")
 	public void pdtInfo(@RequestParam("pno") Long pno, @ModelAttribute("cri") Criteria cri, Model model) {
 		model.addAttribute("pdt", service.get(pno));
@@ -81,15 +81,6 @@ public class AdminController {
 			rttr.addFlashAttribute("result", "success_modify");
 		}
 		return "redirect:/admin/pdtTable";
-	}
-
-	
-	@GetMapping("/diary")
-	public void diary(Criteria cri, Model model) {
-//		cri = new Criteria("", 0, 10);
-//		cri.setTable("diary");
-		model.addAttribute("diary", service.getDiaryList(cri));
-		model.addAttribute("page", new PageDTO(cri, service.getTotal(cri)));
 	}
 
 	private void deleteFiles(List<ProductAttachVO> attachList) {
@@ -131,5 +122,13 @@ public class AdminController {
 	@ResponseBody
 	public ResponseEntity<List<ProductAttachVO>> getAttachList(Long pno) {
 		return new ResponseEntity<>(service.getAttachList(pno), HttpStatus.OK);
+	}
+
+	@GetMapping("/diary")
+	public void diary(Criteria cri, Model model) {
+//		cri = new Criteria("", 0, 10);
+//		cri.setTable("diary");
+		model.addAttribute("diary", service.getDiaryList(cri));
+		model.addAttribute("page", new PageDTO(cri, service.getTotal(cri)));
 	}
 }

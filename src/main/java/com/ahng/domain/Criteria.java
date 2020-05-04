@@ -1,7 +1,5 @@
 package com.ahng.domain;
-
 import org.springframework.web.util.UriComponentsBuilder;
-
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -45,5 +43,4 @@ public class Criteria {
 				.queryParam("keyword", this.getKeyword());
 		return builder.toUriString();
 	}
-	
 }

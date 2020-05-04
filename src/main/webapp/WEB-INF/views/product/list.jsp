@@ -2,8 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<%@ include file="../includes/header.jsp"%>
 
+<%@ include file="../includes/header.jsp"%>
 
 <form action="" method="get" id="operForm"></form>
 
@@ -54,10 +54,10 @@
 
 						<input type='hidden' name="category" value="${page.cri.category }">
 						<input type='hidden' name="pageNum" value="${page.cri.pageNum }">
-						<input type='hidden' name="amount" value="${page.cri.amount }"><input
-							type='hidden' name='column' value='${page.cri.column }'>
-							<input
-							type='hidden' name='sort' value='${page.cri.sort }'>
+						<input type='hidden' name="amount" value="${page.cri.amount }">
+						<input type='hidden' name='column' value='${page.cri.column }'>
+						<input type='hidden' name='sort' value='${page.cri.sort }'>
+						
 					</form>
 					<ul class="nav nav-tabs">
 						<li class="nav-item"><a class="nav-link asort" data-toggle="tab"
@@ -297,10 +297,6 @@
 			var pageForm = $("#pageForm");
 
 			$("#searchBtn").on("click", function(e) {
-// 				if (!pageForm.find("option:selected").val()) {
-// 					alert("검색 종류를 선택하세요");
-// 					return false;
-// 				}
 				if (!pageForm.find("input[name='keyword']").val()) {
 					alert("키워드를 입력하세요");
 					return false;

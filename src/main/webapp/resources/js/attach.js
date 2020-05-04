@@ -40,19 +40,12 @@ $(document)
 								+ "<button class='btn btn-danger m-auto img-remove-btn'><i class=''></i>삭제</button>"
 								+ "</div>";
 						var str = "";
-						$(uploadResultArr)
-								.each(
-										function(i, attach) {
+						$(uploadResultArr).each(function(i, attach) {
 											if (attach.fileType) {
-												var imageThumbPath = encodeURIComponent(attach.uploadPath
-														+ "/s_"
-														+ attach.uuid
-														+ "_" + attach.fileName);
-												var imageOriginPath = encodeURIComponent(attach.uploadPath
-														+ "/"
-														+ attach.uuid
-														+ "_"
-														+ attach.fileName);
+												var imageThumbPath = encodeURIComponent(attach.uploadPath + "/s_"
+														+ attach.uuid + "_" + attach.fileName);
+												var imageOriginPath = encodeURIComponent(attach.uploadPath + "/"
+														+ attach.uuid + "_" + attach.fileName);
 												str += "<div class='card-image attach-image col-xl-3 mb-3' data-path='"
 														+ attach.uploadPath
 														+ "' data-uuid='"
@@ -71,6 +64,7 @@ $(document)
 										});
 						attachDiv.append(str);
 					}
+					
 					$("input[type='file']").change(function(e) {
 						var formData = new FormData();
 						var inputFile = $("input[name='uploadFile']");

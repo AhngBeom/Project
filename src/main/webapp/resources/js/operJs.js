@@ -8,6 +8,7 @@ $(document).ready(function() {
 		pageForm.find("input[name='pageNum']").val($(this).attr("href"));
 		pageForm.submit();
 	});
+	
 	$(".asort").on("click", function(e) {
 		pageForm.find("input[name='column']").val($(this).data("col"));
 		pageForm.submit();
