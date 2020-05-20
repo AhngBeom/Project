@@ -4,7 +4,7 @@ $(document).ready(function() {
 				function(i, titleImg) {
 					var pno = $(this).data("pno");
 					var index = $(this).data("index");
-					$.getJSON("/admin/getAttachList",
+					$.getJSON("/product/getAttachList",
 							{
 								pno : pno
 							},

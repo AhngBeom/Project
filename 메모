@@ -1,72 +1,7 @@
-==========================================================
-Mapper ¸Þ¼Òµå ÀÛ¼º ½Ã ÆÄ¶ó¹ÌÅÍ°¡ 2°³ ÀÌ»ó ÇÊ¿äÇÒ °æ¿ì @Param ¾î³ëÅ×ÀÌ¼Ç Àû¿ë!
-JQuery¸¦ ÀÌ¿ëÇÏ¿© HTML µ¿Àû ÅÂ±× »ý¼º ½Ã $(document).on("click", "ÅÂ±×¸í(¶Ç´Â Å¬·¡½º,¾ÆÀÌµð µî)", function(e){}
+j_spring_security_check
 
-==========================================================
-Ä«Å×°í¸® Ãß°¡ ±â´É -> DB Ä«Å×°í¸® ÄÃ·³(all, c1, c2 .....)À¸·Î Á¶°Ç ±¸ºÐÇÏ¿© Product List Ãâ·Â
-all : select * from
-c1 : where category like = #{category}
-
-»óÇ° ÁÖ¹® (Àå¹Ù±¸´Ï¿¡ Ãß°¡ ÈÄ ÁÖ¹®[1] & ¹Ù·Î ÁÖ¹®[2])
-[1], [2] À» ±¸ºÐÇÏ¿© »óÇ° ¸®½ºÆ® Ãâ·Â? 
-ÁÖ¹® È­¸éÀ¸·Î °¡±â Àü Å¬¶óÀÌ¾ðÆ®¿¡°Ô "ÇØ´ç »óÇ°À» Àå¹Ù±¸´Ï¿¡ ´ã±ä »óÇ°À» Æ÷ÇÔ¾Æ¿© ÁÖ¹®ÇÏ½Ã°Ú½À´Ï±î?" ¸Þ½ÃÁö¸¦ ¶ç¿ò
-[1] : ÇØ´ç »óÇ°À» Àå¹Ù±¸´Ï¿¡ Ãß°¡ÇÑ ÈÄ »óÇ° ¸®½ºÆ®¿Í ÇÔ²² ÁÖ¹® ÆäÀÌÁö Ãâ·Â 
-[2] : Àå¹Ù±¸´Ï¿¡ ´ã±ä »óÇ°µéÀº À¯ÁöÇÑ Ã¤ ÇØ´ç »óÇ°¸¸ ´ã±ä ¸®½ºÆ®¿Í ÁÖ¹® ÆäÀÌÁö Ãâ·Â
-
-* Àå¹Ù±¸´Ï Ãß°¡ Function
-
-==========================================================
-
-Responsive Image Grid (Instagram Grid?)
-
-<c:if test="${status.index % 4 eq 0}">${status.index }</c:if>
-
-  0       1      2      3     
-column culumn culumn culumn »ý¼º
+ë¹„íšŒì› ì•„ì´ë”” => ì£¼ë¬¸ë²ˆí˜¸ (í˜•ì‹ : ì£¼ë¬¸ë‚ ì§œì‹œê° + ëžœë¤4ìžë¦¬?) 20051905380000
  
- 4,5,6 ..... culumn ¾È¿¡ Ä«µå¸¸ Ãß°¡
- 
+ë¹„íšŒì› ë¹„ë°€ë²ˆí˜¸ => ê°„ë‹¨í•˜ê²Œ í´ë¼ì´ì–¸íŠ¸ê°€ ì„¤ì •(ex: 4ìžë¦¬~8ìžë¦¬)
 
-
-<div class="row">
-	<div class="col-xl-3 col-md-6">								*1 Loop
-		<div class="card">
-			<div class="card-header">
-				<img class="card-image"/>						
-				<div class="opacity-div"></div>
-			</div>
-			<div class="collapse">
-				<div class="card-body"></div>
-			</div>
-		</div>
-	</div>														*
-</div>
-==========================================================
-Àå¹Ù±¸´Ï ÆäÀÌÁö col-md-12 ¸ð¹ÙÀÏ¹öÀü È­¸é ·¹ÀÌ¾Æ¿ô Á¶Á¤
-
-data-oper='get' Function Ãß°¡ (headerForm, operForm)
-==========================================================
-¿ÜºÎ À¥»çÀÌÆ® µî ¿¡¼­ÀÇ µ¥ÀÌÅÍ ÃßÃâ & »ðÀÔ (Python)
-
-»óÇ° ¿É¼Ç ³»º¸³»±â & °¡Á®¿À±â 
-
-Àå¹Ù±¸´Ï È­¸é ¼ö·®º¯°æ ¹®Á¦·Î ÀÎÇÑ ¿À·ù¸¦ ¹æÁöÇÏ¿© Form ÅÂ±× Ãß°¡
-
-==========================================================
-
-»óÇ° ÆäÀÌÁö ·¹ÀÌ¾Æ¿ô (Page Number || Scroll and Spinner)
-
-Page Request(cri.getPageNum, cri.amount) -> 
-Controller(cri, pageDTO) -> Service(cri) -> Mapper(cri.pageNum, cri.amount)
- -> Service(cri) -> Controller(cri) 
- -> Page Response(cri.getPageNum, cri.amount)
- 
-Pagination ÄÚµå Ä¸½¶È­?
-
-==========================================================
-
-ÇÊÅÍ Åä±Û
-
-¸ð¹ÙÀÏ ¹öÀü ·¹ÀÌ¾Æ¿ô Á¶Á¤
-
-
+ìƒí’ˆ ì£¼ë¬¸ ë²„íŠ¼ í´ë¦­í•  ê²½ìš° í•˜ë‹¨ collapse ì£¼ë¬¸ ì •ë³´ ìž…ë ¥ DIV ì¶œë ¥

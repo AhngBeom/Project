@@ -8,6 +8,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.authentication.configuration.EnableGlobalAuthentication;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +29,7 @@ import com.ahng.service.ProductService;
 
 import lombok.extern.log4j.Log4j;
 
+@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
 @Controller
 @RequestMapping("/admin/*")
 @Log4j
@@ -116,12 +120,6 @@ public class AdminController {
 			log.info("Product(" + pno + ") Delete : Success");
 		}
 		return "redirect:/admin/pdtTable";
-	}
-
-	@GetMapping(value = "/getAttachList")
-	@ResponseBody
-	public ResponseEntity<List<ProductAttachVO>> getAttachList(Long pno) {
-		return new ResponseEntity<>(service.getAttachList(pno), HttpStatus.OK);
 	}
 
 	@GetMapping("/diary")

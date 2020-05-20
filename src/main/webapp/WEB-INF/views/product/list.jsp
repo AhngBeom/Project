@@ -57,15 +57,15 @@
 						<input type='hidden' name="amount" value="${page.cri.amount }">
 						<input type='hidden' name='column' value='${page.cri.column }'>
 						<input type='hidden' name='sort' value='${page.cri.sort }'>
-						
+
 					</form>
 					<ul class="nav nav-tabs">
-						<li class="nav-item"><a class="nav-link asort" data-toggle="tab"
-							href="#home" data-col="uptodate">최신</a></li>
-						<li class="nav-item"><a class="nav-link asort" data-toggle="tab"
-							href="#menu1" data-col="name">이름</a></li>
-						<li class="nav-item"><a class="nav-link asort" data-toggle="tab"
-							href="#menu2" data-col="price">가격</a></li>
+						<li class="nav-item"><a class="nav-link asort"
+							data-toggle="tab" href="#home" data-col="uptodate">최신</a></li>
+						<li class="nav-item"><a class="nav-link asort"
+							data-toggle="tab" href="#menu1" data-col="name">이름</a></li>
+						<li class="nav-item"><a class="nav-link asort"
+							data-toggle="tab" href="#menu2" data-col="price">가격</a></li>
 						<div class="ml-auto">
 							<a class="btn btn-default" href="/product"><i
 								class="fas fa-th"></i></a> <a class="btn btn-default"
@@ -86,10 +86,15 @@
 												<div
 													class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
 													<div class="d-flex justify-content-around w-100 mb-3">
-														<button class="btn btn-warning add-cart-btn"
-															data-pno="${pdt.pno }">
-															<i class="fas fa-cart-plus"></i> 장바구니
-														</button>
+														<sec:authorize access="isAuthenticated()">
+															<button class="btn btn-warning add-cart-dirbtn"
+																data-pno="${pdt.pno }"
+																data-userid='<sec:authentication property="principal.username"/>'>장바구니</button>
+														</sec:authorize>
+														<sec:authorize access="isAnonymous()">
+															<button class="btn btn-warning add-cart-dirbtn"
+																data-pno="${pdt.pno }" data-userid=''>장바구니</button>
+														</sec:authorize>
 														<button class="btn btn-success dir-buy-btn"
 															data-pno="${pdt.pno }">바로 구매</button>
 													</div>
@@ -127,10 +132,15 @@
 												<div
 													class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
 													<div class="d-flex justify-content-around w-100 mb-3">
-														<button class="btn btn-warning add-cart-btn"
-															data-pno="${pdt.pno }">
-															<i class="fas fa-cart-plus"></i> 장바구니
-														</button>
+														<sec:authorize access="isAuthenticated()">
+															<button class="btn btn-warning add-cart-dirbtn"
+																data-pno="${pdt.pno }"
+																data-userid='<sec:authentication property="principal.username"/>'>장바구니</button>
+														</sec:authorize>
+														<sec:authorize access="isAnonymous()">
+															<button class="btn btn-warning add-cart-dirbtn"
+																data-pno="${pdt.pno }" data-userid=''>장바구니</button>
+														</sec:authorize>
 														<button class="btn btn-success dir-buy-btn"
 															data-pno="${pdt.pno }">바로 구매</button>
 													</div>
@@ -168,10 +178,15 @@
 												<div
 													class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
 													<div class="d-flex justify-content-around w-100 mb-3">
-														<button class="btn btn-warning add-cart-btn"
-															data-pno="${pdt.pno }">
-															<i class="fas fa-cart-plus"></i> 장바구니
-														</button>
+														<sec:authorize access="isAuthenticated()">
+															<button class="btn btn-warning add-cart-dirbtn"
+																data-pno="${pdt.pno }"
+																data-userid='<sec:authentication property="principal.username"/>'>장바구니</button>
+														</sec:authorize>
+														<sec:authorize access="isAnonymous()">
+															<button class="btn btn-warning add-cart-dirbtn"
+																data-pno="${pdt.pno }" data-userid=''>장바구니</button>
+														</sec:authorize>
 														<button class="btn btn-success dir-buy-btn"
 															data-pno="${pdt.pno }">바로 구매</button>
 													</div>
@@ -209,10 +224,15 @@
 												<div
 													class="opacity-div d-flex flex-column bd-highlight p-3 w-100">
 													<div class="d-flex justify-content-around w-100 mb-3">
-														<button class="btn btn-warning add-cart-simple"
-															data-pno="${pdt.pno }">
-															<i class="fas fa-cart-plus"></i> 장바구니
-														</button>
+														<sec:authorize access="isAuthenticated()">
+															<button class="btn btn-warning add-cart-dirbtn"
+																data-pno="${pdt.pno }"
+																data-userid='<sec:authentication property="principal.username"/>'>장바구니</button>
+														</sec:authorize>
+														<sec:authorize access="isAnonymous()">
+															<button class="btn btn-warning add-cart-dirbtn"
+																data-pno="${pdt.pno }" data-userid=''>장바구니</button>
+														</sec:authorize>
 														<button class="btn btn-success dir-buy-btn"
 															data-pno="${pdt.pno }">바로 구매</button>
 													</div>
@@ -294,6 +314,7 @@
 	<script type="text/javascript" src="/resources/js/productJs.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
+			
 			var pageForm = $("#pageForm");
 
 			$("#searchBtn").on("click", function(e) {

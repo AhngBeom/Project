@@ -53,6 +53,11 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
+	public boolean Allremove() {
+		return mapper.allDelete() == 1;
+	}
+
+	@Override
 	public int getTotal(Criteria cri) {
 		// TODO Auto-generated method stub
 		return 0;

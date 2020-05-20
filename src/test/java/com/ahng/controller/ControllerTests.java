@@ -62,9 +62,9 @@ public class ControllerTests {
 	 */
 	@Test
 	public void testListPaging() throws Exception {
-		log.info(
-				mockMvc.perform(MockMvcRequestBuilders.get("/replies/pages").param("fno", "6").param("page", "1"))
-						.andReturn().getModelAndView().getModelMap());
+		log.info(mockMvc
+				.perform(MockMvcRequestBuilders.post("/cartItemDel").param("userID", "member1").param("pno", "29"))
+				.andReturn().getModelAndView().getModelMap());
 	}
 
 }

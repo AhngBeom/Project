@@ -17,6 +17,8 @@ public interface CartService {
 	public boolean modify(CartVO vo);
 
 	public boolean remove(String userID, Long pno);
+	
+	public boolean Allremove();
 
 	public int getTotal(Criteria cri);
 

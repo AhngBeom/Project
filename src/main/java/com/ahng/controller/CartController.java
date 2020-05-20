@@ -1,5 +1,6 @@
 package com.ahng.controller;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,15 +29,16 @@ public class CartController {
 	private CartService service;
 
 	@GetMapping("/product/cart")
-	public void cart(Model model) {
-		model.addAttribute("item", service.getList("unknown"));
+	public void cart(Model model, Principal pc) {
+		model.addAttribute("item", service.getList(pc.getName()));
 	}
 
 	@GetMapping(value = "/cartList", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<List<ProductVO>> cartList(String userID) {
-		return new ResponseEntity<>(service.getList(userID), HttpStatus.OK);
+	public ResponseEntity<List<ProductVO>> cartList(String userID, Principal pc) {
+		log.info(pc.getName());
+		return new ResponseEntity<>(service.getList(pc.getName()), HttpStatus.OK);
 	}
-	
+
 	@GetMapping(value = "/cartRead", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CartVO>> cartRead(String userID) {
 		return new ResponseEntity<>(service.get(userID), HttpStatus.OK);
@@ -52,35 +54,20 @@ public class CartController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@PostMapping("/cartItemDel")
-	public String remove(@RequestParam("userID") String userID, @RequestParam("pno") Long pno, RedirectAttributes rttr) {
-		service.remove(userID, pno);
+	@PostMapping(value = "/cartItemDel")
+	public String remove(@RequestParam("userID") String userID, @RequestParam("pno") Long pno,
+			RedirectAttributes rttr) {
+		log.info("Cart DELETE : " + userID + ", " + pno);
+		boolean deleteCnt = service.remove(userID, pno);
+		log.info("Cart DELETE COUNT : " + (deleteCnt == true ? "Success" : "Failure"));
 		return "redirect:/product/cart";
 	}
 
-//	@PostMapping("/pdtAdd")
-//	public String pdtAddPOST(ProductVO vo, RedirectAttributes rttr) {
-//
-//		log.info("===============================================");
-//		if(vo.getAttachList() != null) {
-//			vo.getAttachList().forEach(attach -> log.info(attach));
-//		}
-//		log.info(vo);
-//		log.info("===============================================");
-//
-//		service.register(vo);
-//		rttr.addFlashAttribute("result", vo.getPno());
-//		return "redirect:/product/all";
-//	}
-//
-//	@GetMapping("/pdtModify")
-//	public void productModify(@RequestParam("pno") Long pno, @ModelAttribute("cri") Criteria cri, Model model) {
-//		model.addAttribute("pdt", service.get(pno));
-//		// model.addAttribute("attach", service.getAttachList(pno));
-//	}
-//
-//	@GetMapping("/pdtTable")
-//	public void pdtTable(Criteria cri, Model model) {
-//		model.addAttribute("pdt", service.getList(cri));
-//	}
+	@PostMapping("/cartAllDel")
+	public String CartAllItemDelete(RedirectAttributes rttr) {
+		boolean deleteCnt = service.Allremove();
+		log.info("Cart DELETE COUNT : " + (deleteCnt == true ? "Success" : "Failure"));
+		return "redirect:/product/cart";
+	}
+
 }

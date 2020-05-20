@@ -1,9 +1,13 @@
 package com.ahng.controller;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ahng.domain.Criteria;
 import com.ahng.domain.PageDTO;
+import com.ahng.domain.ProductAttachVO;
 import com.ahng.domain.ProductVO;
 import com.ahng.service.CartService;
 import com.ahng.service.ProductService;
@@ -40,7 +45,7 @@ public class ProductController {
 		model.addAttribute("page", new PageDTO(cri, pdtService.getTotal(cri)));
 		return "/product/list";
 	}
-	
+
 	@RequestMapping(value = "/list2", method = RequestMethod.GET)
 	public void list2(Criteria cri, Model model) {
 		log.info("List : " + cri);
@@ -60,13 +65,20 @@ public class ProductController {
 		return new ResponseEntity<>(pdtService.get(pno), HttpStatus.OK);
 	}
 
+	@GetMapping("/getAttachList")
+	@ResponseBody
+	public ResponseEntity<List<ProductAttachVO>> getAttachList(Long pno) {
+		return new ResponseEntity<>(pdtService.getAttachList(pno), HttpStatus.OK);
+	}
+
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/orderDirect")
 	public void directOrder(@RequestParam("pno") Long pno, Model model) {
 		model.addAttribute("item", pdtService.get(pno));
 	}
 
 	@GetMapping("/orderCart")
-	public void cartOrder(Model model) {
-		model.addAttribute("item", cartService.getList("unknown"));
+	public void cartOrder(Model model, Principal pc) {
+		model.addAttribute("item", cartService.getList(pc.getName()));
 	}
 }

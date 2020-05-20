@@ -2,12 +2,14 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <%@ include file="../includes/header.jsp"%>
 
 <div id="layoutSidenav_content">
 	<main>
 		<div class="container-fluid mt-3">
-			<form action="/product/all" method="get" id="operForm">
+			<form action="/product/list" method="get" id="operForm">
 				<input type="hidden" name="pageNum" value="${cri.pageNum }">
 				<input type="hidden" name="amount" value="${cri.amount }">
 			</form>
@@ -80,8 +82,15 @@
 									</div>
 								</form>
 								<div class="d-flex justify-content-around col-xl-12">
-									<button class="btn btn-warning add-cart-btn"
-										data-pno="${pdt.pno }">장바구니</button>
+									<sec:authorize access="isAuthenticated()">
+										<button class="btn btn-warning add-cart-btn"
+											data-pno="${pdt.pno }"
+											data-userid='<sec:authentication property="principal.username"/>'>장바구니</button>
+									</sec:authorize>
+									<sec:authorize access="isAnonymous()">
+										<button class="btn btn-warning add-cart-btn"
+											data-pno="${pdt.pno }" data-userid=''>장바구니</button>
+									</sec:authorize>
 									<button class="btn btn-success dir-buy-btn"
 										data-pno="${pdt.pno }">바로주문</button>
 								</div>
@@ -109,13 +118,10 @@
 								<span aria-hidden="true">&times;</span>
 							</button>
 						</div>
-						<div class="modal-body">
-							장바구니에 보관되어있는 상품이 있습니다.<br> 현재 상품만 구매하시겠습니까?
-						</div>
+						<div class="modal-body">Modal Body</div>
 						<div class="modal-footer">
-							<button type="button" class="btn btn-warning" id="modalSecFunc">장바구니에
-								추가 & 구매</button>
-							<button type="button" class="btn btn-primary" id="modalAccept">예</button>
+							<button type="button" class="btn btn-warning" id="modalSecFunc">SecFunc</button>
+							<button type="button" class="btn btn-primary" id="modalAccept">Accept</button>
 							<!-- 					<button type="button" class="btn btn-secondary" -->
 							<!-- 						data-dismiss="modal">Close</button> -->
 						</div>
@@ -126,38 +132,62 @@
 	</main>
 
 	<script type="text/javascript">
-		$(document).ready(function() {
-			(function() {
-				var pno = '<c:out value="${pdt.pno}"/>';
-				var overlay = "<div class='opacity-div d-flex flex-column justify-content-center w-100'>"
-						+ "<button class='btn btn-warning m-auto img-expand-btn'><i class=''></i>크게 보기</button>"
-						+ "</div>";
+		$(document)
+				.ready(
+						function() {
+							(function() {
+								var pno = '<c:out value="${pdt.pno}"/>';
+								var overlay = "<div class='opacity-div d-flex flex-column justify-content-center w-100'>"
+										+ "<button class='btn btn-warning m-auto img-expand-btn'><i class=''></i>크게 보기</button>"
+										+ "</div>";
 
-				$.getJSON("/admin/getAttachList", {pno : pno}, function(arr) {
-						console.log(arr);
-						var titleImg = "";
-						var bodyImg = "";
-						$(arr).each(function(i, attach) {
-							if (attach.fileType) {
-								var imageThumbPath = encodeURIComponent(attach.uploadPath + "/s_"
-										+ attach.uuid + "_" + attach.fileName);
-								var imageOriginPath = encodeURIComponent(attach.uploadPath + "/"
-										+ attach.uuid + "_" + attach.fileName);
-								bodyImg += "<div class='image-item mb-3' data-path='" + attach.uploadPath
+								$
+										.getJSON(
+												"/product/getAttachList",
+												{
+													pno : pno
+												},
+												function(arr) {
+													console.log(arr);
+													var titleImg = "";
+													var bodyImg = "";
+													$(arr)
+															.each(
+																	function(i,
+																			attach) {
+																		if (attach.fileType) {
+																			var imageThumbPath = encodeURIComponent(attach.uploadPath
+																					+ "/s_"
+																					+ attach.uuid
+																					+ "_"
+																					+ attach.fileName);
+																			var imageOriginPath = encodeURIComponent(attach.uploadPath
+																					+ "/"
+																					+ attach.uuid
+																					+ "_"
+																					+ attach.fileName);
+																			bodyImg += "<div class='image-item mb-3' data-path='" + attach.uploadPath
 										+ "' data-uuid='" + attach.uuid + "' data-filename='" + attach.fileName
 										+ "' data-type='" + attach.fileType + "'><img class='img-item col-xl-6' src='/display?fileName="
-										+ imageOriginPath + "'>"
-										// + overlay
-										+ "</div>";
-								if (i === 0) {
-									$(".card-img-top").attr("src", "/display?fileName=" + imageOriginPath);
-								}
-							}
+																					+ imageOriginPath
+																					+ "'>"
+																					// + overlay
+																					+ "</div>";
+																			if (i === 0) {
+																				$(
+																						".card-img-top")
+																						.attr(
+																								"src",
+																								"/display?fileName="
+																										+ imageOriginPath);
+																			}
+																		}
 
+																	});
+													$(".image-list").html(
+															bodyImg);
+												});
+							})();
 						});
-						$(".image-list").html(bodyImg);
-					});	
-			})();
-		});
 	</script>
 	<%@ include file="../includes/footer.jsp"%>

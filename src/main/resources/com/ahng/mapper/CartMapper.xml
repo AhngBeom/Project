@@ -22,12 +22,18 @@
 	</resultMap>
 
 	<select id="itemList" resultMap="product">
-		select * from cart natural join product 
-<!-- 		select * from cart where userid = #{userID} -->
+		select * from cart natural join product where userid = #{userID}
+		<!-- select * from cart where userid = #{userID} -->
+	</select>
+
+	<select id="itemCheck" resultMap="product">
+		select * from cart where pno = #{pno}
+		<!-- select * from cart where userid = #{userID} -->
 	</select>
 
 	<insert id="insert">
-		insert into cart(userid, pno, amount) values(#{userID},
+		insert into cart(userid, pno, amount)
+		values(#{userID},
 		#{pno}, #{amount})
 	</insert>
 
@@ -39,6 +45,10 @@
 	<delete id="delete">
 		delete from cart where userid = #{userID} and pno =
 		#{pno}
+	</delete>
+
+	<delete id="allDelete">
+		delete from cart where pno > 0
 	</delete>
 
 

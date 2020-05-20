@@ -26,14 +26,6 @@ public class ServiceTests {
 
 	@Test
 	public void serviceTest() {
-		String userID = "unknown";
-//		CartVO vo = new CartVO();
-//		vo.setUserID(userID);
-//		vo.setPno(7L);
-//		service.register(vo);
-//		service.remove(userID, 2L);
-		List<ProductVO> vo = cartService.getList(userID);
-		log.info(vo);
-//		pdtService.getAttachList(13L);
+		cartService.remove("member1", 29L);
 	}
 }

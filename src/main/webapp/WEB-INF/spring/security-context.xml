@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="customAccessDenied"
+		class="com.ahng.security.CustomAccessDeniedHandler"></bean>
+	<bean id="loginSuccess"
+		class="org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler">
+		<property name="useReferer" value="true"></property>
+	</bean>
+	<!-- <bean id="customLoginSuccess" -->
+	<!-- class="com.ahng.security.CustomLoginSuccessHandler"></bean> -->
+	<!-- <bean id="customPasswordEncoder" -->
+	<!-- class="com.ahng.security.CustomNoOpPasswordEncoder"></bean> -->
+	<bean id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></bean>
+	<bean id="UserDetailsServiceImpl"
+		class="com.ahng.security.UserDetailsServiceImpl"></bean>
+
+	<security:http auto-config="true" use-expressions="true">
+		<security:intercept-url pattern="/auth/all"
+			access="permitAll" />
+		<security:intercept-url pattern="/auth/member"
+			access="hasRole('ROLE_MEMBER')" />
+		<security:intercept-url pattern="/auth/admin"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:access-denied-handler
+			ref="customAccessDenied" />
+		<security:form-login login-page="/auth/login"
+			authentication-success-handler-ref="loginSuccess" />
+		<security:remember-me
+			data-source-ref="dataSource" token-validity-seconds="604800" /> <!-- 7일간 저장 -->
+		<security:logout logout-url="/auth/logout"
+			invalidate-session="true" delete-cookies="remember-me, JSESSION_ID" />
+		<security:csrf disabled="true" />
+	</security:http>
+
+	<security:authentication-manager>
+		<security:authentication-provider
+			user-service-ref="UserDetailsServiceImpl">
+			<!-- <security:jdbc-user-service -->
+			<!-- data-source-ref="dataSource" -->
+			<!-- users-by-username-query="select userid, userpw, enabled from members 
+				where userid = ? " -->
+			<!-- authorities-by-username-query="select userid, authority from authorities 
+				where userid = ?" /> -->
+			<!-- <security:password-encoder -->
+			<!-- ref="customPasswordEncoder" /> -->
+			<security:password-encoder
+				ref="bcryptPasswordEncoder" />
+			<!-- <security:user-service> -->
+			<!-- <security:user name="member" password="{noop}member" -->
+			<!-- authorities="ROLE_MEMBER" /> -->
+			<!-- <security:user name="admin" password="{noop}admin" -->
+			<!-- authorities="ROLE_MEMBER, ROLE_ADMIN" /> -->
+			<!-- </security:user-service> -->
+		</security:authentication-provider>
+	</security:authentication-manager>
+
+</beans>

@@ -11,6 +11,8 @@ import com.ahng.domain.ProductVO;
 public interface CartMapper {
 
 	public List<ProductVO> itemList(String userID);
+	
+	public List<CartVO> itemCheck(Long pno);
 
 	public int insert(CartVO vo);
 
@@ -19,6 +21,8 @@ public interface CartMapper {
 	public int update(CartVO vo);
 
 	public int delete(@Param("userID") String userID, @Param("pno") Long pno);
+	
+	public int allDelete();
 
 	public int getTotalCount(Criteria cri);
 

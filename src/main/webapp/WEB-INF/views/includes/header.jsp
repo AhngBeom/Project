@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/security/tags"
+	prefix="sec"%>
 <!DOCTYPE html>
 <html lang="kr">
 <head>
@@ -36,6 +38,59 @@
 <form action="" method="get" id="headerForm"></form>
 
 <body class="sb-nav-fixed">
+
+	<div class="modal fade" id="headerModal" tabindex="-1" role="dialog"
+		aria-labelledby="headerModalLabel" aria-hidden="true">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title text-bold font-weight-light my-4"
+						id="exampleModalLabel">Login</h5>
+					<div class="form-group d-flex flex-column">
+						<button type="button" class="close mb-auto" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<a class="" href="/pages/register">Sign Up</a>
+					</div>
+				</div>
+				<form action="/login" method="post">
+					<div class="modal-body">
+						<div class="form-group">
+							<label class="small mb-1" for="inputEmailAddress">ID</label><input
+								class="form-control py-4" id="inputEmailAddress" type="text"
+								name="username" placeholder="Enter Identification" />
+						</div>
+						<div class="form-group">
+							<label class="small mb-1" for="inputPassword">Password</label><input
+								class="form-control py-4" id="inputPassword" type="password"
+								name="password" placeholder="Enter password" />
+						</div>
+						<div class="form-group">
+							<div class="custom-control custom-checkbox">
+								<input class="custom-control-input" id="rememberPasswordCheck"
+									type="checkbox" name="remember-me" /><label
+									class="custom-control-label" for="rememberPasswordCheck">Remember
+									password</label>
+							</div>
+						</div>
+						<div
+							class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+							<a class="small" href="password.html">Forgot Password?</a>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<input type="submit" class="btn btn-primary" value="Login">
+						<input type="hidden" name="${_csrf.parameterName }"
+							value="${_csrf.token }">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 	<nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark ">
 		<a class="navbar-brand" href="/product">Shop</a>
 		<button class="btn btn-link btn-sm order-1 order-lg-0"
@@ -58,10 +113,23 @@
 				aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
-					<a class="dropdown-item" href="#">Activity Log</a>
+					<div class="user-info text-center" data-userid=''>
+						<sec:authorize access="isAnonymous()">null</sec:authorize>
+						<sec:authorize access="isAuthenticated()">
+							<sec:authentication property="principal.username" />
+							<%-- 							<sec:authentication property="principal.member.userName" /> --%>
+						</sec:authorize>
+					</div>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="#">My Page</a> <a
-						class="dropdown-item" href="login.html">Logout</a>
+					<a class="dropdown-item" href="#">Activity Log</a> <a
+						class="dropdown-item" href="/auth/member">My Page</a>
+					<sec:authorize access="isAnonymous()">
+						<a class="dropdown-item" href="/auth/login" data-toggle="modal"
+							data-target="#headerModal">Login</a>
+					</sec:authorize>
+					<sec:authorize access="isAuthenticated()">
+						<a class="dropdown-item" href="/auth/logout">Logout</a>
+					</sec:authorize>
 				</div></li>
 			<li class="nav-item dropdown nav-cart"><a
 				class="nav-link dropdown-toggle cart-toggle" id="userDropdown"
