@@ -69,7 +69,6 @@ $(document)
 																}
 															});
 														var price = arr[i].amount * priceTag.val();
-														console.log(price);
 														priceTag.val(price);
 													}
 												});

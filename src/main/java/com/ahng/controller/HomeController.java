@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.ahng.domain.Criteria;
 import com.ahng.domain.PageDTO;
-import com.ahng.service.ProductService;
+import com.ahng.service.OrderService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -18,7 +18,7 @@ import lombok.extern.log4j.Log4j;
 public class HomeController {
 
 	@Autowired
-	private ProductService pdtService;
+	private OrderService pdtService;
 
 //	@RequestMapping(value = "/", method = RequestMethod.GET)
 //	public String home(@RequestParam(value = "ctg", defaultValue = "%") String ctg, Criteria cri, Model model) {

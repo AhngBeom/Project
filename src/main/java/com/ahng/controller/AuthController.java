@@ -1,8 +1,10 @@
 package com.ahng.controller;
 
+import java.security.Principal;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ahng.domain.MemberVO;
+import com.ahng.domain.OrderVO;
 import com.ahng.service.MemberService;
+import com.ahng.service.OrderService;
 
 import lombok.extern.log4j.Log4j;
 
@@ -22,9 +26,11 @@ import lombok.extern.log4j.Log4j;
 public class AuthController {
 
 	@Autowired
+	private PasswordEncoder pwencoder;
+	@Autowired
 	private MemberService service;
 	@Autowired
-	private PasswordEncoder pwencoder;
+	private OrderService orderService;
 
 	@PostMapping("/register")
 	public String register(MemberVO vo, RedirectAttributes rttr) {
@@ -75,11 +81,6 @@ public class AuthController {
 	@GetMapping("/all")
 	public void doAll() {
 		log.info("do all can access everybody");
-	}
-
-	@GetMapping("/member")
-	public void doMember() {
-		log.info("logined member");
 	}
 
 	@GetMapping("/admin")

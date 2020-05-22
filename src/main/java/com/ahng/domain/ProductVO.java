@@ -18,8 +18,8 @@ public class ProductVO {
 	private Date regDate;
 	private Timestamp upToDate;
 	
+//	private int amount;
 	private List<CartVO> cartVO;
-	
 	private List<ProductAttachVO> attachList;
 
 }

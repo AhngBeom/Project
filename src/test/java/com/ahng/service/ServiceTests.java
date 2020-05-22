@@ -23,9 +23,11 @@ public class ServiceTests {
 	private CartService cartService;
 	@Autowired
 	private ProductService pdtService;
+	@Autowired
+	private OrderService orderService;
 
 	@Test
 	public void serviceTest() {
-		cartService.remove("member1", 29L);
+		orderService.orderList("member1");
 	}
 }

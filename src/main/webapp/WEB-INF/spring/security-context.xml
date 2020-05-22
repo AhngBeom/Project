@@ -23,7 +23,7 @@
 	<security:http auto-config="true" use-expressions="true">
 		<security:intercept-url pattern="/auth/all"
 			access="permitAll" />
-		<security:intercept-url pattern="/auth/member"
+		<security:intercept-url pattern="/member/info"
 			access="hasRole('ROLE_MEMBER')" />
 		<security:intercept-url pattern="/auth/admin"
 			access="hasRole('ROLE_ADMIN')" />

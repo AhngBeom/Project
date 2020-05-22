@@ -68,14 +68,33 @@ create table if not exists persistent_logins (
 
 select * from persistent_logins;
 
-create table pdtOrder(
-	ono datetime default now(),
+create table pdt_order(
+    order_number varchar(50) not null primary key,
     userid varchar(50),
-	constraint fk_authorities_users foreign key(userid) references members(userid)
+    orderer varchar(100),
+    orderer_contact varchar(100),
+    receiver varchar(100),
+    receiver_address varchar(1000),
+    order_date datetime default now(),
+	constraint fk_order_userid foreign key(userid) references members(userid)
     );
-drop table pdtOrder;
-insert into pdtOrder(userid) values("aaa"); 
-select ono from pdtOrder;
+drop table pdt_order;
+delete from pdt_order;
+insert into pdt_order(order_number, userid, orderer, orderer_contact, receiver, receiver_address)
+values(concat(DATE_FORMAT(now(), "%Y%m%d"), lpad(floor(rand()*10000), 4, '0')), "member1", "TESTER",
+"TEST", "TEST", "TEST"); 
+select * from pdt_order;
 
-select rand() * 100;
-SELECT DATE_FORMAT("2017-06-15", "%Y%m%d");
+select lpad(floor(rand()*10000), 4, '0');
+SELECT concat(DATE_FORMAT(now(), "%Y%m%d"), lpad(floor(rand()*10000), 4, '0'));
+
+create table order_pdt(
+	 order_number varchar(50),
+     pno bigint(10) unsigned not null,
+     amount int unsigned,
+     constraint fk_order_pdt_ordernumber foreign key(order_number) references pdt_order(order_number),
+     constraint fk_order_pdt_pno foreign key(pno) references product(pno)
+);
+drop table order_pdt cascade;
+select * from order_pdt;
+insert into order_pdt values("202005232920", 29, 1);
