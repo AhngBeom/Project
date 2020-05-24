@@ -23,9 +23,13 @@ DROP TABLE IF EXISTS `cart`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cart` (
-  `userid` varchar(100) DEFAULT NULL,
+  `userid` varchar(50) DEFAULT NULL,
   `pno` bigint unsigned DEFAULT NULL,
-  `amount` int DEFAULT '1'
+  `amount` int unsigned DEFAULT NULL,
+  KEY `fk_cart_pno` (`pno`),
+  KEY `fk_cart_userid` (`userid`),
+  CONSTRAINT `fk_cart_pno` FOREIGN KEY (`pno`) REFERENCES `product` (`pno`),
+  CONSTRAINT `fk_cart_userid` FOREIGN KEY (`userid`) REFERENCES `members` (`userid`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -35,7 +39,7 @@ CREATE TABLE `cart` (
 
 LOCK TABLES `cart` WRITE;
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-INSERT INTO `cart` VALUES ('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',28,0),('unknown',29,0),('unknown',28,0),('unknown',28,0),('unknown',28,0);
+INSERT INTO `cart` VALUES ('member1',29,1),('member1',28,2);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-04  2:12:57
+-- Dump completed on 2020-05-23 16:12:24

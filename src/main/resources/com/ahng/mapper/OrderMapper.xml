@@ -29,15 +29,24 @@
 		select * from pdt_order where order_number =
 		#{order_number}
 	</select>
-
-	<insert id="insert">
+	
+	<insert id="insert" parameterType="com.ahng.domain.OrderVO">
+		<selectKey keyProperty="orderNumber" order="BEFORE"
+			resultType="String">
+			select concat(DATE_FORMAT(now(), "%Y%m%d"),
+			lpad(floor(rand()*10000), 4, '0'))
+		</selectKey>
 		insert into pdt_order(order_number, userid, orderer,
-		orderer_contact, receiver, receiver_address)
-		values(concat(DATE_FORMAT(now(), "%Y%m%d"), lpad(floor(rand()*10000),
-		4, '0')), #{userId}, #{orderer}, #{ordererContact}, #{receiver},
+		orderer_contact,
+		receiver, receiver_address)
+		values( #{orderNumber} <!--concat(DATE_FORMAT(now(), "%Y%m%d"),lpad(floor(rand()*10000), 
+			4, '0')) -->
+		, #{userId}, #{orderer},
+		#{ordererContact}, #{receiver},
 		#{receiverAddress})
 	</insert>
-	<insert id="pdtInsert">
+	<insert id="pdtInsert"
+		parameterType="com.ahng.domain.ProductOnOrderVO">
 		insert into order_pdt(order_number, pno, amount)
 		values(#{orderNumber}, #{pno}, #{amount})
 	</insert>

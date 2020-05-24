@@ -47,6 +47,7 @@ $(document)
 									});
 					(function() {
 						console.log($.trim($(".user-info").html()));
+						var form = $("#orderRegister");
 						var cart;
 						$(".card")
 								.each(
@@ -68,6 +69,12 @@ $(document)
 																			.attr("selected", "selected");
 																}
 															});
+														var str = "";
+														str += "<input type='hidden' name='pdtOnOrder[" + i + "].pno' value='"
+									 							+ arr[i].pno + "'>";
+									 					str += "<input type='hidden' name='pdtOnOrder[" + i + "].amount' value='"
+									 							+ arr[i].amount + "'>";
+														form.append(str);
 														var price = arr[i].amount * priceTag.val();
 														priceTag.val(price);
 													}

@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.ahng.domain.Criteria;
 import com.ahng.domain.OrderVO;
 import com.ahng.domain.ProductAttachVO;
+import com.ahng.domain.ProductOnOrderVO;
 import com.ahng.domain.ProductVO;
 import com.ahng.mapper.OrderMapper;
 
@@ -24,20 +25,23 @@ public class OrderServiceImpl implements OrderService {
 	@Transactional
 	@Override
 	public void register(OrderVO vo) {
+//		log.warn("OrderVO : " + vo);
 		mapper.insert(vo);
-		log.info(vo.getOrderNumber());
 		if (vo.getPdtOnOrder() == null || vo.getPdtOnOrder().size() <= 0) {
+			log.warn("Product on Order IS NULL");
 			return;
 		}
-		vo.getPdtOnOrder().forEach(p -> {
-			p.setOrderNumber(vo.getOrderNumber());
-			mapper.pdtInsert(vo.getOrderNumber());
+
+		vo.getPdtOnOrder().forEach(product -> {
+			product.setOrderNumber(vo.getOrderNumber());
+			log.warn("Product : " + product);
+			mapper.pdtInsert(product);
 		});
 	}
 
 	@Override
-	public void pdtOfOrderRegister(String orderNumber) {
-		mapper.pdtInsert(orderNumber);
+	public void pdtOfOrderRegister(ProductOnOrderVO vo) {
+		mapper.pdtInsert(vo);
 	}
 
 	@Transactional

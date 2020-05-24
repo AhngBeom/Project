@@ -23,7 +23,7 @@
 				<sec:authorize access="isAuthenticated()">
 					<c:forEach items="${item }" var="item" varStatus="status">
 						<div class="col-xl-12 mb-3">
-							<div class="card" data-pno="${item.pno }" 
+							<div class="card" data-pno="${item.pno }"
 								data-index="${status.index }">
 								<div class="card-header">
 									<input type="checkbox">
@@ -109,13 +109,16 @@
 						id="cartAllDelBtn">전체 상품 삭제</a>
 				</div>
 
-				<div class="collapse1" id="orderCollapse">
+				<div class="collapse" id="orderCollapse">
 					<div class="border p-3">
-						<form role="form" action="/orderRegister" method="post">
+						<form role="form" action="/orderRegister" method="post"
+							id="orderRegister">
 							<div class="form-group">
-							<input type="hidden" name="userId" value='<sec:authentication property="principal.username"/>'>
+								<input type="hidden" name="userId"
+									value='<sec:authentication property="principal.username"/>'>
 								<label for="exampleFormControlInput1">주문자명</label> <input
-									type="text" class="form-control" name="orderer" value='<sec:authentication property="principal.member.userName"/>'>
+									type="text" class="form-control" name="orderer"
+									value='<sec:authentication property="principal.member.userName"/>'>
 							</div>
 							<div class="form-group">
 								<label for="exampleFormControlInput1">주문자 연락처</label> <input
@@ -136,6 +139,7 @@
 							<div class="form-group d-flex justify-content-center">
 								<input type="submit" class="btn btn-primary" value="주문하기">
 							</div>
+
 						</form>
 					</div>
 				</div>
@@ -149,30 +153,6 @@
 			$("#allOrder").on("click", function(e) {
 				$(".collapse").collapse();
 			});
-
-			var formObj = $("form[role='form']");
-			$("input[type='submit']").on("click", function(e) {
-				e.preventDefault();
-// 				console.log($("select[name='amount']").val());
-				$(".card").each(function(i, obj) {
-						var jobj = $(obj);
-						console.dir(jobj.data("pno"));
-						console.dir(jobj.find("select[name='amount']").val());
-						$.getJSON("/product/get/" + jobj.data("pno")
-								+ ".json", function(product) {
-							console.log(product);
-							var str = "";
-							str += "<input type 'hidden' name='pdtOnOrder[" + i + "].pno' value='"
-									+ product.pno + "'>";
-							str += "<input type 'hidden' name='pdtOnOrder[" + i + "].amount' value='"
-									+ jobj.find("select[name='amount']").val() + "'>";
-							console.log(str);
-							formObj.append(str);
-						});
-				});
-				formObj.submit();
-			});
 		});
-		
 	</script>
 	<%@ include file="../includes/footer.jsp"%>

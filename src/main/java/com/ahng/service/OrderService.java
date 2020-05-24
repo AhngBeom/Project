@@ -6,6 +6,7 @@ import com.ahng.domain.Criteria;
 import com.ahng.domain.DiaryVO;
 import com.ahng.domain.OrderVO;
 import com.ahng.domain.ProductAttachVO;
+import com.ahng.domain.ProductOnOrderVO;
 import com.ahng.domain.ProductVO;
 
 public interface OrderService {
@@ -17,7 +18,7 @@ public interface OrderService {
 	public ProductVO get(Long pno);
 
 	public void register(OrderVO vo);
-	public void pdtOfOrderRegister(String orderNumber);
+	public void pdtOfOrderRegister(ProductOnOrderVO vo);
 
 	public boolean modify(OrderVO vo);
 

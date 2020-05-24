@@ -38,6 +38,11 @@ public class CartController {
 		log.info(pc.getName());
 		return new ResponseEntity<>(service.getList(pc.getName()), HttpStatus.OK);
 	}
+	@GetMapping(value = "/cartListId", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<List<ProductVO>> cartList(String userID) {
+		log.info(userID);
+		return new ResponseEntity<>(service.getList(userID), HttpStatus.OK);
+	}
 
 	@GetMapping(value = "/cartRead", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<CartVO>> cartRead(String userID) {

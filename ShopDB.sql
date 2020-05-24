@@ -84,9 +84,8 @@ insert into pdt_order(order_number, userid, orderer, orderer_contact, receiver, 
 values(concat(DATE_FORMAT(now(), "%Y%m%d"), lpad(floor(rand()*10000), 4, '0')), "member1", "TESTER",
 "TEST", "TEST", "TEST"); 
 select * from pdt_order;
+select concat(DATE_FORMAT(now(), "%Y%m%d"), lpad(floor(rand()*10000), 4, '0'));
 
-select lpad(floor(rand()*10000), 4, '0');
-SELECT concat(DATE_FORMAT(now(), "%Y%m%d"), lpad(floor(rand()*10000), 4, '0'));
 
 create table order_pdt(
 	 order_number varchar(50),
@@ -97,4 +96,5 @@ create table order_pdt(
 );
 drop table order_pdt cascade;
 select * from order_pdt;
+delete from order_pdt;
 insert into order_pdt values("202005232920", 29, 1);

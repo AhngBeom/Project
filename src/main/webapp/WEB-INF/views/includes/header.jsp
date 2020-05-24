@@ -122,7 +122,7 @@
 					</div>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#">Activity Log</a> <a
-						class="dropdown-item" href="/auth/member">My Page</a>
+						class="dropdown-item" href="/member/info">My Page</a>
 					<sec:authorize access="isAnonymous()">
 						<a class="dropdown-item" href="/auth/login" data-toggle="modal"
 							data-target="#headerModal">Login</a>

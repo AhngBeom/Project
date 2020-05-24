@@ -8,7 +8,6 @@ import lombok.Data;
 @Data
 public class OrderVO {
 
-	private Long ono;
 	private String orderNumber;
 	private String userId;
 	private String orderer;
