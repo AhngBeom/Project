@@ -14,12 +14,12 @@
 				<c:when test="${page.total == 0}">
 					<div class="img-fluid col-xl-12 mt-4">
 						<img class="card-img-top"
-							src="/resources/assets/img/pexels-photo-1546901.jpeg"
+							src="/resources/assets/img/bg-img-pexels-photo.jpeg"
 							alt="Card image"
 							style="width: 100%; filter: blur(6px); height: 750px;">
 						<div class="row align-items-center card-img-overlay">
 							<div class="col h1 text-white text-center">
-								<h4 class="card-title">상품 준비 중</h4>
+								<h2 class="card-title">해당 상품이 존재하지 않습니다.</h2>
 								<div id="time"></div>
 							</div>
 						</div>
@@ -29,7 +29,7 @@
 					<h1 class="mt-4">Product</h1>
 					<!-- 					<ol class="breadcrumb mb-4"> -->
 					<!-- 					</ol> -->
-					<form id="pageForm" action="/product" method="get">
+					<form id="pageForm" action="/product/list" method="get">
 						<div class="bg-light border mb-3 p-3 rounded-lg">
 							<div class="input-group col-xl-12">
 								<select class="form-control col-xl-4 col-md-4" name="type">
@@ -330,8 +330,7 @@
 	</script>
 	<script type="text/javascript">
 		$(document).ready(function() {
-			var x = setInterval(function() {
-
+			var time = setInterval(function() {
 				var now = new Date();
 				$("#time").html(now);
 			}, 1000);

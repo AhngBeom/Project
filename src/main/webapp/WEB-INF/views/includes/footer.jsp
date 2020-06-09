@@ -25,6 +25,8 @@
 <script type="text/javascript" src="/resources/js/attach.js"></script>
 <script type="text/javascript" src="/resources/js/myJs.js"></script>
 <script type="text/javascript" src="/resources/js/operJs.js"></script>
+<script type="text/javascript" src="/resources/js/cart.js"></script>
+<script type="text/javascript" src="/resources/js/productJs.js"></script>
 <script
 	src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"
 	crossorigin="anonymous"></script>

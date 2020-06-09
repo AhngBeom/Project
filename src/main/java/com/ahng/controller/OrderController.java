@@ -28,12 +28,18 @@ public class OrderController {
 //			pdt.setOrderNumber(vo.getOrderNumber());
 //			log.info("ProductOnOrderVO : " + pdt);
 //		});
-		return "/member/info";
+		return "redirect:/member/info";
 	}
 	
 	@PostMapping("/orderPdtRegister")
 	public void orderPdtRegister(ProductOnOrderVO vo) {
 		service.pdtOfOrderRegister(vo);
+	}
+	
+	@PostMapping("/orderRemove")
+	public String orderRemove(String orderNumber, RedirectAttributes rttr) {
+		service.remove(orderNumber);
+		return "redirect:/member/orderList";
 	}
 
 }

@@ -22,7 +22,7 @@
 							style="width: 100%; filter: blur(6px); height: 750px;">
 						<div class="row align-items-center card-img-overlay">
 							<div class="col h1 text-white text-center">
-								<h4 class="card-title">상품 준비 중</h4>
+								<h2 class="card-title">해당 상품이 존재하지 않습니다.</h2>
 								<div id="time"></div>
 							</div>
 						</div>

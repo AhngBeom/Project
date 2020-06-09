@@ -37,15 +37,23 @@ public class ProductController {
 	@Autowired
 	private CartService cartService;
 
-	@RequestMapping(value = "", method = RequestMethod.GET)
+	@GetMapping("/list")
+	public void list1(Criteria cri, Model model) {
+		log.info("List : " + cri);
+		log.info("Total : " + pdtService.getTotal(cri));
+		model.addAttribute("pdt", pdtService.getListWithPaging(cri));
+		model.addAttribute("page", new PageDTO(cri, pdtService.getTotal(cri)));
+	}
+	
+	@RequestMapping(value = {""}, method = RequestMethod.GET)
 	public String list(Criteria cri, Model model) {
 		log.info("List : " + cri);
 		log.info("Total : " + pdtService.getTotal(cri));
 		model.addAttribute("pdt", pdtService.getListWithPaging(cri));
 		model.addAttribute("page", new PageDTO(cri, pdtService.getTotal(cri)));
-		return "/product/list";
+		return "redirect:/product/list";
 	}
-
+	
 	@RequestMapping(value = "/list2", method = RequestMethod.GET)
 	public void list2(Criteria cri, Model model) {
 		log.info("List : " + cri);

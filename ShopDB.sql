@@ -19,10 +19,10 @@ create table cart(
     pno bigint(10) unsigned,
     amount int unsigned,
     CONSTRAINT fk_cart_pno FOREIGN KEY(pno) REFERENCES product(pno),
-    constraint fk_cart_userid foreign key(userid) references members(userid)
+    constraint fk_cart_userid foreign key(userid) references members(userid) on delete cascade
     );
+drop table cart;
 select * from cart; 
-
 select * from product
 where pno in(select pno from cart where userid = 'unknown');
 delete from cart;
@@ -53,10 +53,15 @@ create table members(
 create table authorities(
 	userid varchar(50) not null,
     authority varchar(50) not null,
-    constraint fk_authorities_users foreign key(userid) references members(userid)
+    constraint fk_authorities_users foreign key(userid) references members(userid) on delete cascade
 );
+
 select * from members;
-delete from members where userid = 'test';
+select * from authorities;
+delete from members;
+delete from members where userid in("a","b","admin0");
+update members set username = "Tester2", uptodate = now() where userid = "test";
+select count(userid) from members where userid = "test";
 create unique index ix_auth_username on authorities (userid, authority);
 
 create table if not exists persistent_logins ( 
@@ -68,33 +73,43 @@ create table if not exists persistent_logins (
 
 select * from persistent_logins;
 
-create table pdt_order(
-    order_number varchar(50) not null primary key,
+create table order_table(
+    ordernumber varchar(50) not null primary key,
     userid varchar(50),
     orderer varchar(100),
-    orderer_contact varchar(100),
+    orderercontact varchar(100),
     receiver varchar(100),
-    receiver_address varchar(1000),
-    order_date datetime default now(),
-	constraint fk_order_userid foreign key(userid) references members(userid)
+    receiveraddress varchar(1000),
+    orderdate datetime default now(),
+	constraint fk_order_userid foreign key(userid) references members(userid) on delete cascade
     );
-drop table pdt_order;
-delete from pdt_order;
-insert into pdt_order(order_number, userid, orderer, orderer_contact, receiver, receiver_address)
+rename table order_pdt to pdt_on_order;
+alter table order_table rename column order_date to orderdate;
+delete from order_table where ordernumber = "202005256301" ;
+insert into order_table(order_number, userid, orderer, orderer_contact, receiver, receiver_address)
 values(concat(DATE_FORMAT(now(), "%Y%m%d"), lpad(floor(rand()*10000), 4, '0')), "member1", "TESTER",
 "TEST", "TEST", "TEST"); 
-select * from pdt_order;
+select ordernumber, pno, amount, name, price, category, title from product natural join pdt_on_order; 
+select pno, ordernumber, amount, name, price, title from pdt_on_order
+		natural
+		join product where
+		ordernumber like CONCAT('%',"", '%');
 select concat(DATE_FORMAT(now(), "%Y%m%d"), lpad(floor(rand()*10000), 4, '0'));
 
 
-create table order_pdt(
-	 order_number varchar(50),
+create table pdt_on_order(
+	 ordernumber varchar(50),
      pno bigint(10) unsigned not null,
      amount int unsigned,
-     constraint fk_order_pdt_ordernumber foreign key(order_number) references pdt_order(order_number),
+     constraint fk_order_pdt_ordernumber foreign key(ordernumber) references order_table(ordernumber) on delete cascade,
      constraint fk_order_pdt_pno foreign key(pno) references product(pno)
 );
-drop table order_pdt cascade;
-select * from order_pdt;
-delete from order_pdt;
-insert into order_pdt values("202005232920", 29, 1);
+ alter table pdt_on_order rename column order_number to ordernumber;
+drop table pdt_on_order cascade;
+select * from cart;
+select * from order_table;
+select * from pdt_on_order;
+delete from order_table;
+insert into pdt_on_order values("202005247326", 27, 1);
+        
+select pno, ordernumber, amount from pdt_on_order natural join product where ordernumber = "202005247326";

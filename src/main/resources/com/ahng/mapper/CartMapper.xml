@@ -42,6 +42,13 @@
 		#{userID}
 	</select>
 
+	<update id="update">
+		update cart
+		set pno = #{pno},
+		amount = #{amount}
+		where userid = #{userID} and pno = #{pno}
+	</update>
+
 	<delete id="delete">
 		delete from cart where userid = #{userID} and pno =
 		#{pno}

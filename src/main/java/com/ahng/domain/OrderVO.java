@@ -16,5 +16,7 @@ public class OrderVO {
 	private String receiverAddress;
 	private Date orderDate;
 
+	private int amount;
+	
 	private List<ProductOnOrderVO> pdtOnOrder;
 }

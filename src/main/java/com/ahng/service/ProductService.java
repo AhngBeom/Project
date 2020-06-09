@@ -3,7 +3,6 @@ package com.ahng.service;
 import java.util.List;
 
 import com.ahng.domain.Criteria;
-import com.ahng.domain.DiaryVO;
 import com.ahng.domain.ProductAttachVO;
 import com.ahng.domain.ProductVO;
 
@@ -11,8 +10,6 @@ public interface ProductService {
 
 	public List<ProductVO> getPdtList(Criteria cri);
 
-	public List<DiaryVO> getDiaryList(Criteria cri);
-	
 	public List<ProductVO> getListWithPaging(Criteria cri/*, String ctg*/);
 
 	public void register(ProductVO vo);

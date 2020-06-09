@@ -36,7 +36,7 @@ public class MemberTests {
 	public void insertMember() {
 		String sql = "insert into members(userid, userpw, username) values(?, ?, ?)";
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -45,10 +45,10 @@ public class MemberTests {
 				con = ds.getConnection();
 				pstmt = con.prepareStatement(sql);
 
-				pstmt.setString(2, pwencoder.encode("pw" + i));
+				pstmt.setString(2, pwencoder.encode("admin"));
 
 				if (i == 0) {
-					pstmt.setString(1, "admin" + i);
+					pstmt.setString(1, "admin");
 					pstmt.setString(3, "관리자" + i);
 				} else{
 					pstmt.setString(1, "member" + i);
@@ -80,7 +80,7 @@ public class MemberTests {
 	public void grantMemberAuthority() {
 		String sql = "insert into authorities(userid, authority) values(?, ?)";
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 1; i++) {
 
 			Connection con = null;
 			PreparedStatement pstmt = null;
@@ -90,7 +90,7 @@ public class MemberTests {
 				pstmt = con.prepareStatement(sql);
 
 				if (i == 0) {
-					pstmt.setString(1, "admin" + i);
+					pstmt.setString(1, "admin");
 					pstmt.setString(2, "ROLE_ADMIN");
 				} else{
 					pstmt.setString(1, "member" + i);

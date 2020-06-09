@@ -3,14 +3,11 @@ package com.ahng.mapper;
 import java.util.List;
 
 import com.ahng.domain.Criteria;
-import com.ahng.domain.DiaryVO;
 import com.ahng.domain.ProductVO;
 
 public interface ProductMapper {
 	
 	public List<ProductVO> getPdtList(Criteria cri);
-	
-	public List<DiaryVO> getDiaryList(Criteria cri);
 	
 	public List<ProductVO> getListWithPaging(/*@Param("cri") */Criteria cri/*, @Param("ctg") String category*/);
 

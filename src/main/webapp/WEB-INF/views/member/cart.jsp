@@ -28,7 +28,7 @@
 						<c:if test="${empty item }">
 							<div class="card">
 								<div class="card-header"></div>
-								<div class="card-body text-center h5">상품 없음</div>
+								<div class="card-body text-center h5">장바구니에 담긴 상품이 존재하지 않습니다.</div>
 								<div class="card-footer"></div>
 							</div>
 						</c:if>

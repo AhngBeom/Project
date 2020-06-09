@@ -28,16 +28,22 @@ public class CartController {
 	@Autowired
 	private CartService service;
 
+//	@GetMapping("/product/cart")
+//	public void cart(Model model, Principal pc) {
+//		model.addAttribute("item", service.getList(pc.getName()));
+//	}
 	@GetMapping("/product/cart")
-	public void cart(Model model, Principal pc) {
-		model.addAttribute("item", service.getList(pc.getName()));
+	public void cart(Model model, String userid) {
+		model.addAttribute("item", service.getList(userid));
 	}
 
 	@GetMapping(value = "/cartList", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductVO>> cartList(String userID, Principal pc) {
-		log.info(pc.getName());
+//		log.info(pc.getName());
+		
 		return new ResponseEntity<>(service.getList(pc.getName()), HttpStatus.OK);
 	}
+
 	@GetMapping(value = "/cartListId", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<List<ProductVO>> cartList(String userID) {
 		log.info(userID);
@@ -59,9 +65,15 @@ public class CartController {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	@PostMapping(value = "/cartItemDel")
-	public String remove(@RequestParam("userID") String userID, @RequestParam("pno") Long pno,
-			RedirectAttributes rttr) {
+	@PostMapping("/cartModify")
+	public String modify(CartVO vo, Principal pc, RedirectAttributes rttr) {
+		vo.setUserID(pc.getName());
+		service.modify(vo);
+		return "redirect:/product/cart";
+	}
+	
+	@PostMapping("/cartItemDel")
+	public String remove(String userID, Long pno, RedirectAttributes rttr) {
 		log.info("Cart DELETE : " + userID + ", " + pno);
 		boolean deleteCnt = service.remove(userID, pno);
 		log.info("Cart DELETE COUNT : " + (deleteCnt == true ? "Success" : "Failure"));

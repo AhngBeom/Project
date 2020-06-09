@@ -3,69 +3,103 @@
 <mapper namespace="com.ahng.mapper.OrderMapper">
 
 	<resultMap type="com.ahng.domain.OrderVO" id="orderMap">
-		<result column="order_number" property="orderNumber" />
+		<result column="ordernumber" property="orderNumber" />
 		<result column="userid" property="userId" />
 		<result column="orderer" property="orderer" />
-		<result column="orderer_contact" property="ordererContact" />
+		<result column="orderercontact" property="ordererContact" />
 		<result column="receiver" property="receiver" />
-		<result column="receiver_address" property="receiverAddress" />
-		<result column="order_date" property="orderDate" />
-		<collection property="pdtOnOrder" resultMap="orderMapPdt">
+		<result column="receiveraddress" property="receiverAddress" />
+		<result column="orderdate" property="orderDate" />
+		<collection property="pdtOnOrder"
+			ofType="com.ahng.domain.ProductOnOrderVO">
+			<!-- <result column="ordernumber" property="orderNumber" /> -->
+			<result column="pno" property="pno" />
+			<result column="amount" property="amount" />
 		</collection>
 	</resultMap>
 
-	<resultMap type="com.ahng.domain.ProductVO" id="orderMapPdt">
-		<result column="pno" property="pno"></result>
-		<result column="amount" property="amount"></result>
+	<resultMap type="com.ahng.domain.ProductOnOrderVO"
+		id="pdtOnOrderMap">
+		<result column="pno" property="pno" />
+		<result column="ordernumber" property="orderNumber" />
+		<result column="amount" property="amount" />
+		<result column="name" property="pdtName" />
+		<result column="price" property="pdtPrice" />
+		<result column="title" property="pdtTitle" />
+		<!-- <collection property="product"> -->
+		<!-- <result column="name" property="name" /> -->
+		<!-- <result column="price" property="price" /> -->
+		<!-- </collection> -->
 	</resultMap>
 
-	<select id="orderList" resultMap="orderMap">
-		select * from pdt_order where
+	<select id="orderList" resultType="com.ahng.domain.OrderVO">
+		select * from
+		order_table
+		where
 		userid = #{userId}
 	</select>
 
-	<select id="orderItemList"
-		resultType="com.ahng.domain.ProductVO">
-		select * from pdt_order where order_number =
-		#{order_number}
+	<!-- <select id="getPdtOnOrder" resultMap="orderPdtMap"> -->
+	<!-- select ordernumber, pno, amount, name, price, category, title from 
+		product natural join pdt_on_order -->
+	<!-- select * from order_table -->
+	<!-- natural join pdt_on_order where -->
+	<!-- userid = #{userId} -->
+	<!-- order by orderdate desc -->
+	<!-- </select> -->
+
+	<select id="orderItemList" resultMap="pdtOnOrderMap">
+		<!-- resultType="com.ahng.domain.ProductOnOrderVO"> -->
+		select pno, ordernumber, amount, name, price, title from pdt_on_order
+		natural
+		join product where
+		ordernumber
+		like CONCAT('%',
+		#{orderNumber},
+		'%')
+		order by ordernumber desc
 	</select>
-	
+
 	<insert id="insert" parameterType="com.ahng.domain.OrderVO">
 		<selectKey keyProperty="orderNumber" order="BEFORE"
 			resultType="String">
 			select concat(DATE_FORMAT(now(), "%Y%m%d"),
 			lpad(floor(rand()*10000), 4, '0'))
 		</selectKey>
-		insert into pdt_order(order_number, userid, orderer,
-		orderer_contact,
-		receiver, receiver_address)
-		values( #{orderNumber} <!--concat(DATE_FORMAT(now(), "%Y%m%d"),lpad(floor(rand()*10000), 
-			4, '0')) -->
+		insert into order_table(ordernumber, userid, orderer,
+		orderercontact,
+		receiver, receiveraddress)
+		values( #{orderNumber} <!--concat(DATE_FORMAT(now(), 
+			"%Y%m%d"),lpad(floor(rand()*10000), 4, '0')) -->
 		, #{userId}, #{orderer},
 		#{ordererContact}, #{receiver},
 		#{receiverAddress})
 	</insert>
 	<insert id="pdtInsert"
 		parameterType="com.ahng.domain.ProductOnOrderVO">
-		insert into order_pdt(order_number, pno, amount)
+		insert into pdt_on_order(ordernumber, pno, amount)
 		values(#{orderNumber}, #{pno}, #{amount})
 	</insert>
 
 	<select id="read" resultType="com.ahng.domain.OrderVO">
-		select * from pdt_order where
-		order_number =
+		select * from order_table where
+		ordernumber =
 		#{orderNumber}
 	</select>
 
+	<delete id="deletePdtOnOrder">
+		delete from pdt_on_order where ordernumber =
+		#{orderNumber}
+	</delete>
+
 	<delete id="delete">
-		delete from pdt_order where userid = #{userID} and
-		pno =
-		#{pno}
+		delete from order_table where ordernumber =
+		#{orderNumber}
 	</delete>
 
 	<delete id="allDelete">
-		delete from pdt_order where order_number =
-		#{order_number}
+		delete from order_table where ordernumber =
+		#{orderNumber}
 	</delete>
 
 

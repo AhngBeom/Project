@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.ahng.domain.Criteria;
-import com.ahng.domain.DiaryVO;
 import com.ahng.domain.ProductAttachVO;
 import com.ahng.domain.ProductVO;
 import com.ahng.mapper.ProductAttachMapper;
@@ -27,11 +26,6 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<ProductVO> getPdtList(Criteria cri) {
 		return mapper.getPdtList(cri);
-	}
-
-	@Override
-	public List<DiaryVO> getDiaryList(Criteria cri) {
-		return mapper.getDiaryList(cri);
 	}
 
 	@Override

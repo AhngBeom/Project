@@ -43,8 +43,7 @@ public class CartServiceImpl implements CartService {
 
 	@Override
 	public boolean modify(CartVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return mapper.update(vo) == 1;
 	}
 
 	@Override

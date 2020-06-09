@@ -11,6 +11,7 @@ import com.ahng.domain.OrderVO;
 import com.ahng.domain.ProductAttachVO;
 import com.ahng.domain.ProductOnOrderVO;
 import com.ahng.domain.ProductVO;
+import com.ahng.mapper.CartMapper;
 import com.ahng.mapper.OrderMapper;
 
 import lombok.extern.log4j.Log4j;
@@ -21,7 +22,9 @@ public class OrderServiceImpl implements OrderService {
 
 	@Autowired
 	private OrderMapper mapper;
-
+	@Autowired
+	private CartMapper cartMapper;
+	
 	@Transactional
 	@Override
 	public void register(OrderVO vo) {
@@ -36,6 +39,7 @@ public class OrderServiceImpl implements OrderService {
 			product.setOrderNumber(vo.getOrderNumber());
 			log.warn("Product : " + product);
 			mapper.pdtInsert(product);
+			cartMapper.delete(vo.getUserId(), product.getPno());
 		});
 	}
 
@@ -67,9 +71,13 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public List<ProductVO> orderItemList(String orderNumber) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProductOnOrderVO> getPdtOnOrder(String userId) {
+		return mapper.getPdtOnOrder(userId);
+	}
+
+	@Override
+	public List<ProductVO> orderPdtList(String orderNumber) {
+		return mapper.orderItemList(orderNumber);
 	}
 
 	@Override
@@ -79,9 +87,9 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	@Override
-	public boolean remove(Long pno) {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean remove(String orderNumber) {
+		mapper.deletePdtOnOrder(orderNumber);
+		return mapper.delete(orderNumber) == 1;
 	}
 
 	@Override

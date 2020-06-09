@@ -43,50 +43,52 @@
 		aria-labelledby="headerModalLabel" aria-hidden="true">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title text-bold font-weight-light my-4"
-						id="exampleModalLabel">Login</h5>
-					<div class="form-group d-flex flex-column">
-						<button type="button" class="close mb-auto" data-dismiss="modal"
-							aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-						<a class="" href="/pages/register">Sign Up</a>
-					</div>
-				</div>
-				<form action="/login" method="post">
-					<div class="modal-body">
-						<div class="form-group">
-							<label class="small mb-1" for="inputEmailAddress">ID</label><input
-								class="form-control py-4" id="inputEmailAddress" type="text"
-								name="username" placeholder="Enter Identification" />
+				<div class="card shadow-lg border-0 rounded-lg">
+						<div class="card-header">
+							<h3 class="text-center font-weight-light my-4">Login</h3>
+							<h5>
+								<c:out value="${error }" />
+							</h5>
+							<h5>
+								<c:out value="${logout }" />
+							</h5>
 						</div>
-						<div class="form-group">
-							<label class="small mb-1" for="inputPassword">Password</label><input
-								class="form-control py-4" id="inputPassword" type="password"
-								name="password" placeholder="Enter password" />
+
+						<div class="card-body">
+							<form method="post" action="/login">
+								<div class="form-group">
+									<label class="small mb-1" for="inputId">ID</label><input
+										class="form-control py-4" id="inputId" name="username"
+										type="text" placeholder="Enter Identification" />
+								</div>
+								<div class="form-group">
+									<label class="small mb-1" for="inputPw">Password</label><input
+										class="form-control py-4" id="inputPw" type="password"
+										name="password" placeholder="Enter password" />
+								</div>
+								<div class="form-group">
+									<div class="custom-control custom-checkbox">
+										<input class="custom-control-input" id="rememberPasswordCheck"
+											type="checkbox" name="remember-me" /><label
+											class="custom-control-label" for="rememberPasswordCheck">Remember
+											password</label>
+									</div>
+								</div>
+								<div
+									class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
+									<a class="small" href="/pages/password">Forgot Password?</a>
+									<button type="submit" class="btn btn-primary">Login</button>
+								</div>
+								<input type="hidden" name="${_csrf.parameterName }"
+									value="${_csrf.token }">
+							</form>
 						</div>
-						<div class="form-group">
-							<div class="custom-control custom-checkbox">
-								<input class="custom-control-input" id="rememberPasswordCheck"
-									type="checkbox" name="remember-me" /><label
-									class="custom-control-label" for="rememberPasswordCheck">Remember
-									password</label>
+						<div class="card-footer text-center">
+							<div class="small">
+								<a href="/pages/register">Need an account? Sign up!</a>
 							</div>
 						</div>
-						<div
-							class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-							<a class="small" href="password.html">Forgot Password?</a>
-						</div>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary"
-							data-dismiss="modal">Close</button>
-						<input type="submit" class="btn btn-primary" value="Login">
-						<input type="hidden" name="${_csrf.parameterName }"
-							value="${_csrf.token }">
-					</div>
-				</form>
 			</div>
 		</div>
 	</div>
@@ -128,7 +130,7 @@
 							data-target="#headerModal">Login</a>
 					</sec:authorize>
 					<sec:authorize access="isAuthenticated()">
-						<a class="dropdown-item" href="/auth/logout">Logout</a>
+						<a class="dropdown-item" href="/logout">Logout</a>
 					</sec:authorize>
 				</div></li>
 			<li class="nav-item dropdown nav-cart"><a
@@ -138,11 +140,9 @@
 				<div class="dropdown-menu dropdown-menu-right"
 					aria-labelledby="userDropdown">
 					<div class="cart-list">
-						<div class="dropdown-item">Item 1</div>
-						<a class="dropdown-item" href="#">Item 2</a>
 					</div>
 					<div class="dropdown-divider"></div>
-					<a class="dropdown-item" href="/product/cart">Cart Page</a> <a
+					<a class="dropdown-item" href="/member/cart">Cart Page</a> <a
 						class="dropdown-item" href="/product/orderCart">Buy Now</a>
 				</div></li>
 		</ul>
@@ -168,8 +168,7 @@
 							aria-labelledby="headingOne" data-parent="#sidenavAccordion">
 							<nav class="sb-sidenav-menu-nested nav">
 								<a class="nav-link" href="/admin/pdtTable">Table</a> <a
-									class="nav-link" href="/admin/pdtAdd">Addition</a> <a
-									class="nav-link" href="/admin/diary">Diary</a>
+									class="nav-link" href="/admin/pdtAdd">Addition</a>
 							</nav>
 						</div>
 						<a class="nav-link collapsed" href="#" data-toggle="collapse"

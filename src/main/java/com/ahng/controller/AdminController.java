@@ -117,11 +117,4 @@ public class AdminController {
 		return "redirect:/admin/pdtTable";
 	}
 
-	@GetMapping("/diary")
-	public void diary(Criteria cri, Model model) {
-//		cri = new Criteria("", 0, 10);
-//		cri.setTable("diary");
-		model.addAttribute("diary", service.getDiaryList(cri));
-		model.addAttribute("page", new PageDTO(cri, service.getTotal(cri)));
-	}
 }

@@ -25,6 +25,11 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 
+	@Override
+	public int idCheck(MemberVO vo) {
+		return mapper.idCheck(vo);
+	}
+
 	@Transactional
 	@Override
 	public void register(MemberVO vo) {
@@ -41,8 +46,7 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public boolean modify(MemberVO vo) {
-		// TODO Auto-generated method stub
-		return false;
+		return mapper.update(vo) == 1;
 	}
 
 	@Override

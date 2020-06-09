@@ -28,10 +28,6 @@
 		or B.uuid is null
 		order by uptodate desc
 	</select>
-	<select id="getDiaryList" resultType="com.ahng.domain.DiaryVO">
-		SELECT * FROM diary
-		order by dno desc
-	</select>
 	
 	<select id="getListWithPaging"
 		resultType="com.ahng.domain.ProductVO">

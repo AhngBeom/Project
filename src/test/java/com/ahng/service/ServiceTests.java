@@ -28,6 +28,6 @@ public class ServiceTests {
 
 	@Test
 	public void serviceTest() {
-		orderService.orderList("member1");
+		orderService.orderPdtList("");
 	}
 }

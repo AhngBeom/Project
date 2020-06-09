@@ -8,6 +8,8 @@ import com.ahng.domain.Criteria;
 public interface MemberService {
 
 	public List<MemberVO> getList(String authority);
+	
+	public int idCheck(MemberVO	vo);
 
 	public void register(MemberVO vo);
 

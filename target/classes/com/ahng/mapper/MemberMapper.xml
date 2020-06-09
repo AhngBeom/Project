@@ -17,6 +17,10 @@
 		<result property="auth" column="authority" />
 	</resultMap>
 
+	<select id="idCheck" resultType="int">
+		select count(userid) from members where userid = #{userid}
+	</select>
+
 	<insert id="register">
 		insert into members(userid, userpw,
 		username)
@@ -24,7 +28,8 @@
 	</insert>
 	<insert id="grantAuth">
 		insert into
-		authorities(userid, authority) values(#{userid}, "ROLE_MEMBER")
+		authorities(userid, authority)
+		values(#{userid}, "ROLE_MEMBER")
 	</insert>
 
 	<select id="read" resultMap="memberMap">
@@ -32,4 +37,12 @@
 		enabled, regdate, uptodate, authority from members m LEFT OUTER JOIN
 		authorities a on m.userid = a.userid where m.userid = #{userid}
 	</select>
+	
+	<update id="update">
+		update members
+		set username = #{userName},
+		userpw = #{userpw},
+		uptodate = now()
+		where userid = #{userid}
+	</update>
 </mapper>
